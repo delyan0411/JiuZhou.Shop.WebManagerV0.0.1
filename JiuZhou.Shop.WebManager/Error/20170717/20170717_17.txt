@@ -1,0 +1,12 @@
+﻿=======================2017-07-17 17:01:33=============================	
+{"body":{"end_date":"2017-07-18 23:59:59","page_no":"1","page_size":"100","refoudreq_state":"-1","search_key":"","start_date":"2017-06-17 00:00:00"},"header":{"dev_model":"Chrome59","dev_no":"e9b4d8e289f44e55b7953c3c76036a65","dev_plat":"WEB","dev_ver":"1.0","ip_addr":"127.0.0.1","push_id":"","soft_ver":"59.0","token_id":"3d7743e2a60940fdb5adf5ad73f14034","use_cache":"NO","user_id":"102831"},"key":"QueryRefoudReqList"}
+
+=======================2017-07-17 17:01:33=============================	
+{"body":{},"key":"QueryRefoudReqList","header":{"ret_result":{"ret_code":4,"ret_msg":"后台未定义这个协议:QueryRefoudReqList"}}}
+
+=======================2017-07-17 17:03:15=============================	
+{"body":{"end_date":"2017-07-18 23:59:59","page_no":"1","page_size":"100","refoudreq_state":"-1","search_key":"","start_date":"2017-06-17 00:00:00"},"header":{"dev_model":"Chrome59","dev_no":"e9b4d8e289f44e55b7953c3c76036a65","dev_plat":"WEB","dev_ver":"1.0","ip_addr":"127.0.0.1","push_id":"","soft_ver":"59.0","token_id":"3d7743e2a60940fdb5adf5ad73f14034","use_cache":"NO","user_id":"102831"},"key":"QueryRefoudReqList"}
+
+=======================2017-07-17 17:03:15=============================	
+{"body":{},"key":"QueryRefoudReqList","header":{"ret_result":{"ret_code":4,"ret_msg":"后台未定义这个协议:QueryRefoudReqList"}}}
+

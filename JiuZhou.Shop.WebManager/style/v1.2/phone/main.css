@@ -1,0 +1,618 @@
+@import url("normalize.css");
+@import url("/images/font/iconfont.css");
+
+.clear:before, .clear:after {
+    display: table;
+    content: '';
+}
+
+.clear:after {
+    clear: both;
+}
+
+.clear {
+    zoom: 1;
+    width: inherit;
+    float: none;
+    clear: both;
+    height: inherit;
+    line-height: 16px;
+}
+
+* {
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+button {
+    border: 0;
+    outline: 0;
+    background-color: #f1f3f6;
+}
+
+input {
+    outline: 0;
+}
+
+.drag {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    overflow: hidden;
+}
+
+    .drag .drag-frame {
+        position: absolute;
+        z-index: 11;
+        top: 10px;
+        left: 10px;
+        width: 100px;
+        height: 100px;
+        border: 1px solid #62c3fb;
+        background-color: rgba(129,255,195,0.5);
+    }
+
+        .drag .drag-frame:hover {
+            cursor: move;
+        }
+
+        .drag .drag-frame.active {
+            background-color: rgba(98,195,251,0.5);
+        }
+
+            .drag .drag-frame.active .draghandle {
+                display: block;
+            }
+
+            .drag .drag-frame.active .dh-del {
+                display: block;
+            }
+
+    .drag .draghandle {
+        position: absolute;
+        display: none;
+        width: 8px;
+        height: 8px;
+        border: 1px solid #62c3fb;
+        background-color: #eee;
+    }
+
+    .drag .dh-tl {
+        top: -4px;
+        left: -4px;
+    }
+
+        .drag .dh-tl:hover {
+            cursor: nw-resize;
+        }
+
+    .drag .dh-tm {
+        top: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+        .drag .dh-tm:hover {
+            cursor: n-resize;
+        }
+
+    .drag .dh-tr {
+        top: -4px;
+        right: -4px;
+    }
+
+        .drag .dh-tr:hover {
+            cursor: ne-resize;
+        }
+
+    .drag .dh-ml {
+        top: 50%;
+        left: -4px;
+        transform: translateY(-50%);
+    }
+
+        .drag .dh-ml:hover {
+            cursor: w-resize;
+        }
+
+    .drag .dh-mr {
+        top: 50%;
+        right: -4px;
+        transform: translateY(-50%);
+    }
+
+        .drag .dh-mr:hover {
+            cursor: e-resize;
+        }
+
+    .drag .dh-bl {
+        bottom: -4px;
+        left: -4px;
+    }
+
+        .drag .dh-bl:hover {
+            cursor: sw-resize;
+        }
+
+    .drag .dh-bm {
+        bottom: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+        .drag .dh-bm:hover {
+            cursor: s-resize;
+        }
+
+    .drag .dh-br {
+        right: -4px;
+        bottom: -4px;
+    }
+
+        .drag .dh-br:hover {
+            cursor: se-resize;
+        }
+
+    .drag .dh-del {
+        display: none;
+        line-height: 20px;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        text-align: center;
+        color: #fff;
+        border: 1px solid #62c3fb;
+    }
+
+.drag-btn {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+
+    .drag-btn button {
+        display: block;
+        padding: 10px 30px;
+        cursor: pointer;
+        color: #fff;
+        border: 0;
+        outline: 0;
+        background-color: green;
+    }
+
+.container {
+    overflow: hidden;
+    height: 100%;
+}
+
+.header {
+    line-height: 80px;
+    height: 80px;
+    padding-left: 30px;
+    color: #fff;
+    background-color: green;
+}
+
+    .header h1 {
+        margin: 0;
+        float:left;
+    }
+
+.main {
+    width: 100%;
+}
+
+.modules {
+    float: left;
+    width: 200px;
+    height: 100%;
+    background-color: #fff;
+}
+
+.module-title {
+    font-size: 16px;
+    padding: 10px 10px;
+    color: #5e5e5e;
+    border: 1px solid #ddd;
+    border-right: 0;
+    border-left: 0;
+    background-color: #fafafa;
+}
+
+.module-list {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+    .module-list .module-spec {
+        float: left;
+        width: 50%;
+        text-align: center;
+    }
+
+        .module-list .module-spec:hover {
+            cursor: pointer;
+        }
+
+            .module-list .module-spec:hover .module-icon {
+                background-color: #FF5000;
+            }
+
+        .module-list .module-spec .module-icon {
+            margin: 10px auto;
+        }
+
+        .module-list .module-spec p {
+            color: #5e5e5e;
+            margin-top: 0;
+        }
+
+.module-single-icon {
+    width: 20px;
+    height: 15px;
+    background-color: #7F8797;
+}
+
+.module-three-icon {
+    width: 20px
+}
+
+.module-three-icon .mt-top {
+    width: 20px;
+    height: 3px;
+    background-color: #7f8797
+}
+
+.module-three-icon .mt-list {
+    margin-top: 3px
+}
+
+.module-three-icon .mt-list>div {
+    float: left;
+    width: 4px;
+    height: 15px;
+    background-color: #7f8797
+}
+
+.module-three-icon .mt-list div+div {
+    margin-left: 4px
+}
+
+.image-space {
+    float: left;
+    height: 100%;
+    background-color: #dfdfdf;
+}
+
+.outer-wrapper {
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.inner-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 375px;
+    margin: 10px auto;
+}
+
+    .inner-wrapper .drag {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .inner-wrapper .box img {
+        display: block;
+        width: 100%;
+    }
+
+.module-wrapper {
+    position: relative;
+}
+
+    .module-wrapper.chosen {
+        box-shadow: 0 0 10px #FF5000;
+    }
+
+        .module-wrapper.chosen .mod-handle {
+            display: block;
+        }
+
+    .module-wrapper .mod-handle {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: -32px;
+    }
+
+        .module-wrapper .mod-handle > div {
+            width: 32px;
+            height: 32px;
+            background: #7f8798 url("/images/phone/mod_handle.png") no-repeat;
+        }
+
+            .module-wrapper .mod-handle > div:hover {
+                background-color: #FF5000;
+                cursor: pointer;
+            }
+
+        .module-wrapper .mod-handle .mod-up {
+            background-position: 0 0;
+        }
+
+        .module-wrapper .mod-handle .mod-down {
+            background-position: 0 -32px;
+        }
+
+        .module-wrapper .mod-handle .mod-del {
+            background-position: 0 -64px;
+        }
+
+    .module-wrapper + .module-wrapper {
+        margin-top: 5px;
+    }
+
+.tool-bar {
+    position: relative;
+    float: right;
+    width: 350px;
+    height: 100%;
+    padding: 20px;
+    background-color: #fff;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.tool-top {
+    width: 100%;
+    text-align: center;
+    height: 34px;
+}
+
+    .tool-top .pub {
+        font-size: 14px;
+        float: right;
+        padding: 8px 30px;
+        cursor: pointer;
+        color: #fff;
+        border: 1px solid #ccc;
+        border-color: #3089dc;
+        background-color: #3089dc;
+    }
+
+    .add-img {
+    width: 100%;
+    position: relative;
+    border: 1px #d7dae1 solid;
+    background: #f0f0f0 none no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+    overflow: hidden;
+        height: 180px;
+}
+     .add-img .layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    cursor: pointer;
+    color: gray;
+}
+    .add-img .img-plus {
+    background: url(//img.alicdn.com/tps/i1/TB1OFFnLXXXXXcwXFXXAz6UFXXX-16-16.png) center center no-repeat;
+    height: 100%;
+}
+
+
+.hot-area {
+    margin-top: 20px;
+}
+
+.hot-item {
+    display: table;
+    width: 100%;
+    height: 34px;
+    margin-bottom: 10px;
+}
+
+    .hot-item.selected .hot-item-input {
+        border-color: #009dfb;
+        box-shadow: 0 0 2px #009dfb;
+    }
+
+    .hot-item .hot-item-wrap {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .hot-item .hot-btn-wrap {
+        width: 34px;
+        height: 34px;
+    }
+
+    .hot-item .hot-item-input {
+        font-size: 14px;
+        line-height: 26px;
+        width: 242px;
+        height: 34px;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+    }
+
+    .hot-item .hot-item-btn {
+        width: 34px;
+        height: 34px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        border-left: 0;
+        background: url("/images/phone/hot_btn.png") center center no-repeat;
+    }
+
+    .hot-item .hot-item-del {
+        display: block;
+        width: 34px;
+        height: 34px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        border-left: 0;
+        background: url("/images/phone/hot_del.png") center center no-repeat;
+    }
+
+.hot-add {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px 0;
+    cursor: pointer;
+    color: #5e5e5e;
+    border: 1px dashed #ccc;
+}
+.hotlistupdate {
+    font-size: 14px;
+        padding: 8px 30px;
+        cursor: pointer;
+        color: #fff;
+        border: 1px solid #ccc;
+        border-color: #3089dc;
+        background-color: #3089dc;
+}
+
+
+.module-three-layout {
+    background-size: contain;
+    /*padding-top: 70px;*/
+    background: #ebdcc5;
+}
+
+.three-layout-product img {
+    display: block;
+    width: 113px;
+    height: 113px;
+}
+
+.three-layout-item {
+    float: left;
+    width: 113px;
+    margin-bottom: 15px;
+    margin-left: 9px;
+    background-color: #fff
+}
+
+.three-layout-item>a {
+    display: block;
+    text-decoration: none
+}
+
+.three-layout-desc {
+    background-color: #d1d1d1
+}
+
+.three-layout-desc span {
+    font-size: 12px;
+    display: block;
+    overflow: hidden;
+    margin: 0 5px;
+    padding: 3px 0;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #656565
+}
+
+.three-layout-price {
+    padding: 5px
+}
+
+.three-layout-price .tl-real-price {
+    float: left
+}
+
+.three-layout-price .tl-real-price span {
+    font-size: 12px;
+    font-weight: bold;
+    color: #af0b01
+}
+
+.three-layout-price .tl-real-price span em {
+    font-size: 16px;
+    font-style: normal
+}
+
+.three-layout-price .tl-del-price {
+    float: right
+}
+
+.three-layout-price .tl-del-price del {
+    font-size: 12px;
+    color: #af0b01
+}
+
+.three-layout-btn button {
+    font-size: 12px;
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    text-align: center;
+    color: #fff;
+    background-color: #af0b01
+}
+
+.three-add-box {
+    width: 100%;
+    height: 180px;
+    border: 1px solid #ccc;
+    background: url("../images/jiahao.png") center center no-repeat;
+    background-color: #efefef
+}
+
+.three-add-box:hover {
+    cursor: pointer;
+    background-color: #dfdfdf
+}
+
+.three-add-btn {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100%;
+    margin: 20px 0;
+    padding: 10px 0;
+    cursor: pointer;
+    text-align: center;
+    color: #3089dc;
+    border: 1px dashed #3089dc
+}
+
+.three-cfm-btn {
+    display: block;
+    width: 50%;
+    margin-top: 60px;
+    padding: 10px 20px;
+    text-align: center;
+    color: #fff;
+    background-color: #3089dc;
+    cursor:pointer;
+}
+
+.ulitemlist li {
+height:20px;
+display:inline-block;
+line-height:20px;
+width:290px;
+overflow:hidden;
+}
+
+
+/*# sourceMappingURL=../../maps/main.css.map */

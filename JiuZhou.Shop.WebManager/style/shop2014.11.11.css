@@ -1,0 +1,79 @@
+﻿@charset "utf-8";
+#jz11-container{background:#f3ebd6;}
+/* CSS Document */
+.shop-banner{min-width:1192px;width:100%;margin:0 auto;background:url(http://www.dada360.com/images/shop/shop_01.jpg) center center no-repeat;height:440px;position:relative;}
+.shop-banner .banner-data{width:1192px;margin:0 auto;position:relative;}
+.shop-banner .text{font-size:20px;color:#fff;width:100%;margin:0 auto;height:70px;line-height:70px;text-align:center;font-family:"微软雅黑";}
+.shop-banner .text b{display:inline-block;font-family:Arial;width:25px;text-align:center;color:#333;height:30px;line-height:30px;
+margin:auto 3px;background:url(http://www.dada360.com/images/shop/t-bg.png) center center no-repeat;font-weight:bold;position:relative;}
+.shop-banner .text span{display:inline-block;position:relative;}
+.shop-banner .text span i{display:block;position:absolute;font-size:0;height:1px;width:100%;left:0;top:50%;border-top:#b9b9b9 1px solid;}
+.shop-banner .shop-logo{display:block;position:absolute;background:url(http://www.dada360.com/images/shop/shop-logo.png) center center no-repeat;width:100px;height:100px;overflow:hidden;
+left:95px;top:86px;}
+
+.shop-recommend{width:1192px;margin:8px auto;float:none;clear:both;height:460px;overflow:hidden;}
+.shop-recommend .shop-rlf{float:left;width:49.7%;height:100%;position:relative;background-color:#53154c;}
+.shop-recommend .shop-rrt{float:right;width:49.7%;height:100%;position:relative;}
+.shop-recommend .shop-rrt ol{height:100%;width:100%;}
+.shop-recommend .shop-rrt li{margin-bottom:9px;height:49%;background-color:#53154c;}
+
+.shop-data-list{width:1192px;margin:8px auto;float:none;clear:both;min-height:48px;}
+.shop-data-list .hd{background:#b52a64;height:48px;line-height:48px;width:100%;float:none;clear:both;text-align:center;color:#fff;font-size:20px;font-family:"微软雅黑";}
+.shop-data-list .bd{float:none;clear:both;margin-top:10px;}
+.shop-data-list .bd dd{float:left;width:24.8%;}
+.shop-data-list .bd dt{float:none;clear:both;width:100%;height:1px;line-height:1px;font-size:0;overflow:hidden;}
+
+.shop-data-list .bd a{font-size:12px;color:#999;display:block;width:94%;margin:0 auto;background:#fff;border:#b3b3b3 1px solid;padding:3px;}
+.shop-data-list .bd a:hover{text-decoration:none;}
+.shop-data-list .bd dd img{width:100%;margin:8px auto;margin-bottom:0;display:block;}
+
+.floor-data a{padding-bottom:0px;}
+.floor-data .oprice-11-11{line-height:22px;position:relative;}
+.floor-data .oprice-11-11 b{color:#999;font-family:Arial;text-decoration:line-through;font-size:14px;font-weight:100;}
+.floor-data .price-11-11{font-size:20px;background-color:#353535;height:56px;line-height:56px;color:#fff;text-align:left;width:100%;}
+.floor-data .price-11-11 span{display:inline;background:none;}
+.floor-data .price-11-11 .pLeft{float:left;width:74px;font-size:14px;color:#fff;text-align:left;}
+.floor-data .price-11-11 .pLeft span{font-family:Arial;font-size:18px;line-height:28px;}
+.floor-data .price-11-11 .pCenter{float:left;width:116px;font-family:Arial;font-size:38px;height:46px;line-height:46px;margin-top:16px;font-weight:bold;color:#fff;}
+.floor-data .price-11-11 .pCenter span{font-size:16px;}
+.floor-data .price-11-11 .pRight{position:absolute;right:0;top:0;height:56px;line-height:56px;width:110px;background:#ff2e2c;color:#fff;font-weight:bold;text-indent:6px;}
+.floor-data .price-11-11 .pRight em{display:block;font-size:0;width:0;height:0;border:#ff2e2c 5px solid;border-right:0;border-left:#353535 5px solid;
+left:0;top:25px;position:absolute;overflow:hidden;}
+.floor-data .price-11-11 .pRight i{display:block;font-size:0;width:12px;height:21px;background:url(/images/p-11.11.png) center no-repeat;
+right:0px;top:20px;position:absolute;overflow:hidden;}
+
+.jz11-banner{min-width:1192px;width:100%;margin:0 auto;background:url(http://www.dada360.com/images/shop/11.11_01.jpg) center center no-repeat;background-color:#ee0853;height:1128px;position:relative;}
+.jz11-banner .banner-data{width:1192px;margin:0 auto;position:relative;}
+.jz11-banner .text{font-size:20px;color:#fff;width:100%;margin:0 auto;height:70px;line-height:70px;text-align:center;font-family:"微软雅黑";}
+.jz11-banner .text b{display:inline-block;font-family:Arial;width:25px;text-align:center;color:#333;height:30px;line-height:30px;
+margin:auto 3px;background:url(http://www.dada360.com/images/shop/t-bg.png) center center no-repeat;font-weight:bold;position:relative;}
+.jz11-banner .text span{display:inline-block;position:relative;}
+.jz11-banner .text span i{display:block;position:absolute;font-size:0;height:1px;width:100%;left:0;top:50%;border-top:#b9b9b9 1px solid;}
+.jz11-banner .shop-logo{display:none;}
+.jz11-banner .banner-data a,.jz11-banner .banner-data a:hover{display:block;text-decoration:none;}
+.jz11-banner .prize01{position:absolute;width:108px;height:138px;top:260px;right:152px;background:url(http://www.dada360.com/images/shop/prize01.gif) 3px center no-repeat;}
+
+.jz11-banner .prize02{position:absolute;width:356px;height:166px;left:66px;top:720px;background:url(http://www.dada360.com/images/shop/prize02.gif) left -1px no-repeat;}
+.jz11-banner .rushbuy{position:absolute;width:344px;height:134px;left:424px;top:760px;}
+.jz11-banner .groupbuy{position:absolute;width:344px;height:136px;right:76px;top:746px;}
+
+.jz11-container{min-width:1192px;width:100%;margin:0 auto;height:1398px;background-color:#ee0853;position:relative;}
+.jz11-container .jz11-data{width:1192px;height:100%;margin:0 auto;position:relative;float:none;clear:both;}
+.jz11-container .jz11-data .jz11-icon{position:absolute;background:url(http://www.dada360.com/images/shop/11.11-bg.png) 0px 0px no-repeat;width:108px;height:92px;z-index:1;
+top:-20px;left:186px;}
+.jz11-container .jz11-data .jz11-icon-bottom{position:absolute;background:url(http://www.dada360.com/images/shop/11.11-bg.png) -375px -60px no-repeat;width:225px;height:165px;
+bottom:-100px;left:483px;}
+.jz11-container .jz11-data .jz11-images{float:none;clear:both;width:100%;height:1320px;overflow:hidden;}
+.jz11-container .jz11-data a{display:block;}
+.jz11-container .jz11-data a,.jz11-container .jz11-data a:hover{display:block;text-decoration:none;}
+
+.jz11-container .jz11-data .jz11-images-left{float:left;width:278px;overflow:hidden;background-color:#111;}
+.jz11-container .jz11-data .jz11-images-center{float:left;width:604px;overflow:hidden;background-color:#111;}
+.jz11-container .jz11-data .jz11-images-right{float:left;width:308px;overflow:hidden;background-color:#111;}
+
+.jz11-img-list{width:1192px;height:100%;margin:0 auto;margin-top:120px;position:relative;float:none;clear:both;}
+.jz11-img-list dl{width:100%;margin:0 auto;margin-bottom:10px;position:relative;float:none;clear:both;}
+.jz11-img-list dd{float:left;width:25%;height:288px;overflow:hidden;text-align:center;}
+.jz11-img-list dd a{display:block;width:286px;height:286px;margin:0 auto;background-color:#111;overflow:hidden;}
+.jz11-img-list dd img{width:286px;height:286px;}
+.jz11-img-list .clear{float:none;clear:both;width:100%;height:1px;font-size:0;line-height:1px;overflow:hidden;}

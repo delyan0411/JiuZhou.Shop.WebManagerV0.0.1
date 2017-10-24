@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5580961C-AEF7-4A42-BB39-FBC78D0E9ADF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JiuZhou.DataBase</RootNamespace>
+    <AssemblyName>JiuZhou.DataBase</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MySql\AuditOrder.cs" />
+    <Compile Include="MySql\BalanceRefund.cs" />
+    <Compile Include="MySql\DeleteStore.cs" />
+    <Compile Include="MySql\GetStoreInfo.cs" />
+    <Compile Include="MySql\GetRedPackInfo.cs" />
+    <Compile Include="MySql\GetUserResource.cs" />
+    <Compile Include="MySql\Logger.cs" />
+    <Compile Include="MySql\ModifyUserIntelgral.cs" />
+    <Compile Include="MySql\OpStore.cs" />
+    <Compile Include="MySql\OpRedPackInfo.cs" />
+    <Compile Include="MySql\OpTopicPhoneModuleItems.cs" />
+    <Compile Include="MySql\QueryReChargeList.cs" />
+    <Compile Include="MySql\QueryStoreOrderList.cs" />
+    <Compile Include="MySql\QueryNeedList.cs" />
+    <Compile Include="MySql\OpResource.cs" />
+    <Compile Include="MySql\QueryRedPackList.cs" />
+    <Compile Include="MySql\QueryResource.cs" />
+    <Compile Include="MySql\GetTypeListAll.cs" />
+    <Compile Include="MySql\GetProductGift.cs" />
+    <Compile Include="MySql\GetSkusByProductId.cs" />
+    <Compile Include="MySql\GetProductInfo.cs" />
+    <Compile Include="MySql\OpProductInfo.cs" />
+    <Compile Include="MySql\GetArrivalNoticeInfo.cs" />
+    <Compile Include="MySql\GetSysPicFile.cs" />
+    <Compile Include="MySql\ModifyProductState.cs" />
+    <Compile Include="MySql\GetShopInfo.cs" />
+    <Compile Include="MySql\GetProductAlbum.cs" />
+    <Compile Include="MySql\GetProductSeo.cs" />
+    <Compile Include="MySql\ModifyProductSeo.cs" />
+    <Compile Include="MySql\GetFareTempList.cs" />
+    <Compile Include="MySql\OpProductAlbum.cs" />
+    <Compile Include="MySql\DeleteProductAlbum.cs" />
+    <Compile Include="MySql\GetFareRulesByTempId.cs" />
+    <Compile Include="MySql\OpProductSku.cs" />
+    <Compile Include="MySql\DeleteProductSku.cs" />
+    <Compile Include="MySql\QueryProductInfo.cs" />
+    <Compile Include="MySql\AddSysPicFile.cs" />
+    <Compile Include="MySql\ModifyProductTypeVisible.cs" />
+    <Compile Include="MySql\ModifyStockNumAndPrice.cs" />
+    <Compile Include="MySql\GetProductTypeInfo.cs" />
+    <Compile Include="MySql\OpProductType.cs" />
+    <Compile Include="MySql\QueryStoreList.cs" />
+    <Compile Include="MySql\ResponseFile.cs" />
+    <Compile Include="MySql\GetShortProductsByProductIds.cs" />
+    <Compile Include="MySql\GetRelationRecommend.cs" />
+    <Compile Include="MySql\AddRelationRecommend.cs" />
+    <Compile Include="MySql\DeleteRelationRecommend.cs" />
+    <Compile Include="MySql\OpProductGift.cs" />
+    <Compile Include="MySql\GetProductInfoByCode.cs" />
+    <Compile Include="MySql\QueryProductJoin.cs" />
+    <Compile Include="MySql\DeleteProductJoins.cs" />
+    <Compile Include="MySql\GetProductJoinDetail.cs" />
+    <Compile Include="MySql\OpProductJoinInfo.cs" />
+    <Compile Include="MySql\OpProductJoin.cs" />
+    <Compile Include="MySql\QueryAssembleList.cs" />
+    <Compile Include="MySql\DeleteAssembles.cs" />
+    <Compile Include="MySql\QueryProductAssembleDetail.cs" />
+    <Compile Include="MySql\GetProductAsseembleListByIds.cs" />
+    <Compile Include="MySql\GetGiftsByProductIds.cs" />
+    <Compile Include="MySql\GetRecommendPositionByCode.cs" />
+    <Compile Include="MySql\QueryRecommendPositionList.cs" />
+    <Compile Include="MySql\DeleteRecommendPosition.cs" />
+    <Compile Include="MySql\GetRecommendPositionInfo.cs" />
+    <Compile Include="MySql\GetRecommendItemByRpId.cs" />
+    <Compile Include="MySql\ModifyRecommendItemSortNo.cs" />
+    <Compile Include="MySql\DeleteRecommendItem.cs" />
+    <Compile Include="MySql\OpProductAssemble.cs" />
+    <Compile Include="MySql\GetHomeTypeById.cs" />
+    <Compile Include="MySql\OpTopRecommendPosition.cs" />
+    <Compile Include="MySql\QueryShopList.cs" />
+    <Compile Include="MySql\OpRecommendPosition.cs" />
+    <Compile Include="MySql\GetArea.cs" />
+    <Compile Include="MySql\GetShopDetail.cs" />
+    <Compile Include="MySql\OpShopInfo.cs" />
+    <Compile Include="MySql\GetAreaByParentId.cs" />
+    <Compile Include="MySql\OpFareTemplate.cs" />
+    <Compile Include="MySql\GetPayType.cs" />
+    <Compile Include="MySql\GetOrderStatisticsInfo.cs" />
+    <Compile Include="MySql\QueryOrderList.cs" />
+    <Compile Include="MySql\UpdateNeedReceiveAddr.cs" />
+    <Compile Include="MySql\UpdateNeedRemark.cs" />
+    <Compile Include="MySql\UpdateOrderRemark.cs" />
+    <Compile Include="MySql\AddDeliveryInfo.cs" />
+    <Compile Include="MySql\UpdateOrderMoney.cs" />
+    <Compile Include="MySql\NoticeUserPay.cs" />
+    <Compile Include="MySql\GetOrderDetail.cs" />
+    <Compile Include="MySql\GetOrderTrackLogInfo.cs" />
+    <Compile Include="MySql\QueryCommentList.cs" />
+    <Compile Include="MySql\UpCommentState.cs" />
+    <Compile Include="MySql\UpCommentStateList.cs" />
+    <Compile Include="MySql\DeleteCommentReply.cs" />
+    <Compile Include="MySql\OpCommentReply.cs" />
+    <Compile Include="MySql\QueryTopicList.cs" />
+    <Compile Include="MySql\ModifyRecommentPositionUsePlat.cs" />
+    <Compile Include="MySql\ModifyRecommentItemsUsePlat.cs" />
+    <Compile Include="MySql\OpRecommendItems.cs" />
+    <Compile Include="MySql\DeleteTopicInfo.cs" />
+    <Compile Include="MySql\GetTopicInfoById.cs" />
+    <Compile Include="MySql\OpTopicInfo.cs" />
+    <Compile Include="MySql\GetTopicDetails.cs" />
+    <Compile Include="MySql\ModifyTopicInfoState.cs" />
+    <Compile Include="MySql\ModifyModuleSortNo.cs" />
+    <Compile Include="MySql\AddSTopicModule.cs" />
+    <Compile Include="MySql\GetSTopicModuleInfo.cs" />
+    <Compile Include="MySql\DeleteTopicModule.cs" />
+    <Compile Include="MySql\OpTopicTextModule.cs" />
+    <Compile Include="MySql\QueryProductInfoByShopId.cs" />
+    <Compile Include="MySql\GetUserType.cs" />
+    <Compile Include="MySql\CanVisitResouce.cs" />
+    <Compile Include="MySql\DeleteFareTemplate.cs" />
+    <Compile Include="MySql\GetTopicModuleItems.cs" />
+    <Compile Include="MySql\OpTopicModuleItems.cs" />
+    <Compile Include="MySql\OpTopicModulePaging.cs" />
+    <Compile Include="MySql\RefundOrder.cs" />
+    <Compile Include="MySql\ReturnOrder.cs" />
+    <Compile Include="MySql\QueryFullOff.cs" />
+    <Compile Include="MySql\DeleteFullOff.cs" />
+    <Compile Include="MySql\GetOrderCountByState.cs" />
+    <Compile Include="MySql\GetNoReadMsgCount.cs" />
+    <Compile Include="MySql\GetHomePageType.cs" />
+    <Compile Include="MySql\QueryFullOffItem.cs" />
+    <Compile Include="MySql\OpFullOff.cs" />
+    <Compile Include="MySql\GetAllFullOffItem.cs" />
+    <Compile Include="MySql\QueryUserList.cs" />
+    <Compile Include="MySql\ModifyUserState.cs" />
+    <Compile Include="MySql\GetConvertIntergralRule.cs" />
+    <Compile Include="MySql\DeleteConvertIntergralRule.cs" />
+    <Compile Include="MySql\DeleteUseCouponRule.cs" />
+    <Compile Include="MySql\ModifyConvertIntergralRuleState.cs" />
+    <Compile Include="MySql\ModifyUseCouponRuleState.cs" />
+    <Compile Include="MySql\GetUseCouponRule.cs" />
+    <Compile Include="MySql\QueryConvertIntergralRuleDetail.cs" />
+    <Compile Include="MySql\GetUseCouponRuleDetail.cs" />
+    <Compile Include="MySql\OpConvertIntergralRule.cs" />
+    <Compile Include="MySql\OpUseCouponRule.cs" />
+    <Compile Include="MySql\GetSysFileType.cs" />
+    <Compile Include="MySql\ModifySysFileTypeState.cs" />
+    <Compile Include="MySql\OpSysFileType.cs" />
+    <Compile Include="MySql\QueryPayOrderDetail.cs" />
+    <Compile Include="MySql\QuerySysFile.cs" />
+    <Compile Include="MySql\ModifySysFileState.cs" />
+    <Compile Include="MySql\GetArticleType.cs" />
+    <Compile Include="MySql\OpArticleType.cs" />
+    <Compile Include="MySql\ModifyArticleState.cs" />
+    <Compile Include="MySql\QueryArticleList.cs" />
+    <Compile Include="MySql\GetArticleInfo.cs" />
+    <Compile Include="MySql\DeleteArticleType.cs" />
+    <Compile Include="MySql\OpArticle.cs" />
+    <Compile Include="MySql\ModifyArticleSort.cs" />
+    <Compile Include="MySql\ModifyArticleTypeState.cs" />
+    <Compile Include="MySql\DeleteArticle.cs" />
+    <Compile Include="MySql\GetHelpType.cs" />
+    <Compile Include="MySql\ModifyHelpTypeState.cs" />
+    <Compile Include="MySql\DeleteHelpType.cs" />
+    <Compile Include="MySql\OpHelpType.cs" />
+    <Compile Include="MySql\QueryHelpList.cs" />
+    <Compile Include="MySql\ModifyHelpState.cs" />
+    <Compile Include="MySql\ModifyHelpSort.cs" />
+    <Compile Include="MySql\DeleteHelp.cs" />
+    <Compile Include="MySql\GetHelpInfo.cs" />
+    <Compile Include="MySql\OpHelp.cs" />
+    <Compile Include="MySql\ModifyShopState.cs" />
+    <Compile Include="MySql\GetOrderMoney.cs" />
+    <Compile Include="MySql\GetUserDetail.cs" />
+    <Compile Include="MySql\ResetUserPassWord.cs" />
+    <Compile Include="MySql\GetExpressInfo.cs" />
+    <Compile Include="MySql\ModifyUserMoblie.cs" />
+    <Compile Include="MySql\GetReceiveAddrByMobileNo.cs" />
+    <Compile Include="MySql\DeleteHomeType.cs" />
+    <Compile Include="MySql\OpHomeType.cs" />
+    <Compile Include="MySql\QueryRoleList.cs" />
+    <Compile Include="MySql\QueryDataBySql.cs" />
+    <Compile Include="MySql\DeleteRole.cs" />
+    <Compile Include="MySql\GetRoleDetail.cs" />
+    <Compile Include="MySql\OpRole.cs" />
+    <Compile Include="MySql\QueryAccessList.cs" />
+    <Compile Include="MySql\QueryRoleAccess.cs" />
+    <Compile Include="MySql\GetUserRole.cs" />
+    <Compile Include="MySql\OpUserRole.cs" />
+    <Compile Include="MySql\SetUserType.cs" />
+    <Compile Include="MySql\AddRoleAccess.cs" />
+    <Compile Include="MySql\DeleteAccess.cs" />
+    <Compile Include="MySql\OpAccess.cs" />
+    <Compile Include="MySql\QueryAccessResource.cs" />
+    <Compile Include="MySql\OpAccessResource.cs" />
+    <Compile Include="MySql\OpClickFarming.cs" />
+    <Compile Include="MySql\Jygl.cs" />
+    <Compile Include="MySql\Dpph.cs" />
+    <Compile Include="MySql\Ppph.cs" />
+    <Compile Include="MySql\Ylmxlph.cs" />
+    <Compile Include="MySql\Sjxlph.cs" />
+    <Compile Include="MySql\Xptj.cs" />
+    <Compile Include="MySql\Xyhtj.cs" />
+    <Compile Include="MySql\Lyhtj.cs" />
+    <Compile Include="MySql\GetReceiveMobileNo.cs" />
+    <Compile Include="MySql\UpdateOrderReceiveAddr.cs" />
+    <Compile Include="MySql\Szlmxlph.cs" />
+    <Compile Include="MySql\RefundPartOrder.cs" />
+    <Compile Include="MySql\GiveUserCoupon.cs" />
+    <Compile Include="MySql\UpdateOrderProductCode.cs" />
+    <Compile Include="MySql\QueryLtimeDiscount.cs" />
+    <Compile Include="MySql\QueryCouponGetRule.cs" />
+    <Compile Include="MySql\DeleteCouponGetRule.cs" />
+    <Compile Include="MySql\GetCouponGetRuleDetail.cs" />
+    <Compile Include="MySql\OpCouponGetRule.cs" />
+    <Compile Include="MySql\SendManagerVerifyCode.cs" />
+    <Compile Include="MySql\CheckManagerVerifyCode.cs" />
+    <Compile Include="MySql\GetUserLoginInfo.cs" />
+    <Compile Include="MySql\ResetDeliverNo.cs" />
+    <Compile Include="MySql\GetLtimeDiscountDetail.cs" />
+    <Compile Include="MySql\DeleteLtimeDiscount.cs" />
+    <Compile Include="MySql\OpLtimeDiscount.cs" />
+    <Compile Include="MySql\QueryBrandList.cs" />
+    <Compile Include="MySql\GetBrandDetail.cs" />
+    <Compile Include="MySql\ResetBrandState.cs" />
+    <Compile Include="MySql\DeleteBrand.cs" />
+    <Compile Include="MySql\OpBrand.cs" />
+    <Compile Include="MySql\Sstj.cs" />
+    <Compile Include="MySql\Glsy.cs" />
+    <Compile Include="MySql\OpTopicCarouselModule.cs" />
+    <Compile Include="MySql\ReturnPartOrder.cs" />
+    <Compile Include="MySql\QueryProductByGiftId.cs" />
+    <Compile Include="MySql\OrderAmount.cs" />
+    <Compile Include="MySql\CheckProductCode.cs" />
+    <Compile Include="MySql\ResetShopPswd.cs" />
+    <Compile Include="MySql\OpTopicPicModule.cs" />
+    <Compile Include="MySql\QueryAwardActivityList.cs" />
+    <Compile Include="MySql\GetAwardActivityInfo.cs" />
+    <Compile Include="MySql\OpAwardActivityInfo.cs" />
+    <Compile Include="MySql\NewProductInCategory.cs" />
+    <Compile Include="MySql\ModifyNeedState.cs" />
+    <Compile Include="MySql\GetSeoRuleList.cs" />
+    <Compile Include="MySql\GetBrandListAll.cs" />
+    <Compile Include="MySql\GetSeoRuleItemsByRuleId.cs" />
+    <Compile Include="MySql\OpSeoRule.cs" />
+    <Compile Include="MySql\DeleteSeoRule.cs" />
+    <Compile Include="MySql\OpSeoHomeRule.cs" />
+    <Compile Include="MySql\QueryRefoudReqList.cs" />
+    <Compile Include="MySql\OpRefoudReqReply.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlSource\ConnStringConfig.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JiuZhou.Common\JiuZhou.Common.csproj">
+      <Project>{067F9337-E204-446E-A315-B8FDD93F679E}</Project>
+      <Name>JiuZhou.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JiuZhou.HttpTools\JiuZhou.HttpTools.csproj">
+      <Project>{680EB214-83E8-45B1-935A-E5EE4F6FB5BF}</Project>
+      <Name>JiuZhou.HttpTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JiuZhou.Model\JiuZhou.Model.csproj">
+      <Project>{4E3DEFCA-53E9-4165-BB84-85AC0325CC45}</Project>
+      <Name>JiuZhou.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

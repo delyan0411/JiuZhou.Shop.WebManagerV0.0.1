@@ -1,0 +1,279 @@
+﻿=======================2017-07-17 10:53:31=============================	
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 192.168.1.211:8080
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   在 System.Net.HttpWebRequest.GetRequestStream()
+   在 JiuZhou.HttpTools.HttpUtils.HttpPost(String url, String requestStr) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\HttpUtils.cs:行号 27
+
+=======================2017-07-17 10:53:31=============================	
+System.Runtime.Serialization.SerializationException: 应为来自命名空间“”的元素“root”。。遇到名称为“”、命名空间为“”的“None”。
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.InternalReadObject(XmlReaderDelegator xmlReader, Boolean verifyObjectName)
+   在 System.Runtime.Serialization.XmlObjectSerializer.InternalReadObject(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(XmlDictionaryReader reader)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(Stream stream)
+   在 JiuZhou.HttpTools.JsonHelper.JsonToObject[T](String json) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\JsonHelper.cs:行号 52
+
+=======================2017-07-17 10:53:31=============================	
+null
+
+=======================2017-07-17 10:53:31=============================	
+我也不知道发生什么了。。。
+
+=======================2017-07-17 10:53:32=============================	
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 192.168.1.211:8080
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   在 System.Net.HttpWebRequest.GetRequestStream()
+   在 JiuZhou.HttpTools.HttpUtils.HttpPost(String url, String requestStr) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\HttpUtils.cs:行号 45
+
+=======================2017-07-17 10:53:32=============================	
+System.Runtime.Serialization.SerializationException: 应为来自命名空间“”的元素“root”。。遇到名称为“”、命名空间为“”的“None”。
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.InternalReadObject(XmlReaderDelegator xmlReader, Boolean verifyObjectName)
+   在 System.Runtime.Serialization.XmlObjectSerializer.InternalReadObject(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(XmlDictionaryReader reader)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(Stream stream)
+   在 JiuZhou.HttpTools.JsonHelper.JsonToObject[T](String json) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\JsonHelper.cs:行号 52
+
+=======================2017-07-17 10:53:32=============================	
+null
+
+=======================2017-07-17 10:53:39=============================	
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 192.168.1.211:8080
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   在 System.Net.HttpWebRequest.GetRequestStream()
+   在 JiuZhou.HttpTools.HttpUtils.HttpPost(String url, String requestStr) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\HttpUtils.cs:行号 45
+
+=======================2017-07-17 10:53:39=============================	
+System.Runtime.Serialization.SerializationException: 应为来自命名空间“”的元素“root”。。遇到名称为“”、命名空间为“”的“None”。
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.InternalReadObject(XmlReaderDelegator xmlReader, Boolean verifyObjectName)
+   在 System.Runtime.Serialization.XmlObjectSerializer.InternalReadObject(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(XmlDictionaryReader reader)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(Stream stream)
+   在 JiuZhou.HttpTools.JsonHelper.JsonToObject[T](String json) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\JsonHelper.cs:行号 52
+
+=======================2017-07-17 10:53:39=============================	
+null
+
+=======================2017-07-17 10:54:10=============================	
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 192.168.1.211:8080
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   在 System.Net.HttpWebRequest.GetRequestStream()
+   在 JiuZhou.HttpTools.HttpUtils.HttpPost(String url, String requestStr) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\HttpUtils.cs:行号 45
+
+=======================2017-07-17 10:54:10=============================	
+System.Runtime.Serialization.SerializationException: 应为来自命名空间“”的元素“root”。。遇到名称为“”、命名空间为“”的“None”。
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.InternalReadObject(XmlReaderDelegator xmlReader, Boolean verifyObjectName)
+   在 System.Runtime.Serialization.XmlObjectSerializer.InternalReadObject(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(XmlDictionaryReader reader)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(Stream stream)
+   在 JiuZhou.HttpTools.JsonHelper.JsonToObject[T](String json) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\JsonHelper.cs:行号 52
+
+=======================2017-07-17 10:54:10=============================	
+null
+
+=======================2017-07-17 10:54:10=============================	
+我也不知道发生什么了。。。
+
+=======================2017-07-17 10:54:11=============================	
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 192.168.1.211:8080
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   在 System.Net.HttpWebRequest.GetRequestStream()
+   在 JiuZhou.HttpTools.HttpUtils.HttpPost(String url, String requestStr) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\HttpUtils.cs:行号 45
+
+=======================2017-07-17 10:54:11=============================	
+System.Runtime.Serialization.SerializationException: 应为来自命名空间“”的元素“root”。。遇到名称为“”、命名空间为“”的“None”。
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.InternalReadObject(XmlReaderDelegator xmlReader, Boolean verifyObjectName)
+   在 System.Runtime.Serialization.XmlObjectSerializer.InternalReadObject(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(XmlDictionaryReader reader)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(Stream stream)
+   在 JiuZhou.HttpTools.JsonHelper.JsonToObject[T](String json) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\JsonHelper.cs:行号 52
+
+=======================2017-07-17 10:54:11=============================	
+null
+
+=======================2017-07-17 10:54:12=============================	
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 192.168.1.211:8080
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   在 System.Net.HttpWebRequest.GetRequestStream()
+   在 JiuZhou.HttpTools.HttpUtils.HttpPost(String url, String requestStr) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\HttpUtils.cs:行号 45
+
+=======================2017-07-17 10:54:12=============================	
+System.Runtime.Serialization.SerializationException: 应为来自命名空间“”的元素“root”。。遇到名称为“”、命名空间为“”的“None”。
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.InternalReadObject(XmlReaderDelegator xmlReader, Boolean verifyObjectName)
+   在 System.Runtime.Serialization.XmlObjectSerializer.InternalReadObject(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(XmlDictionaryReader reader)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(Stream stream)
+   在 JiuZhou.HttpTools.JsonHelper.JsonToObject[T](String json) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\JsonHelper.cs:行号 52
+
+=======================2017-07-17 10:54:12=============================	
+null
+
+=======================2017-07-17 10:54:22=============================	
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 192.168.1.211:8080
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   在 System.Net.HttpWebRequest.GetRequestStream()
+   在 JiuZhou.HttpTools.HttpUtils.HttpPost(String url, String requestStr) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\HttpUtils.cs:行号 45
+
+=======================2017-07-17 10:54:22=============================	
+System.Runtime.Serialization.SerializationException: 应为来自命名空间“”的元素“root”。。遇到名称为“”、命名空间为“”的“None”。
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.InternalReadObject(XmlReaderDelegator xmlReader, Boolean verifyObjectName)
+   在 System.Runtime.Serialization.XmlObjectSerializer.InternalReadObject(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(XmlDictionaryReader reader)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(Stream stream)
+   在 JiuZhou.HttpTools.JsonHelper.JsonToObject[T](String json) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\JsonHelper.cs:行号 52
+
+=======================2017-07-17 10:54:22=============================	
+null
+
+=======================2017-07-17 10:54:23=============================	
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 192.168.1.211:8080
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   在 System.Net.HttpWebRequest.GetRequestStream()
+   在 JiuZhou.HttpTools.HttpUtils.HttpPost(String url, String requestStr) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\HttpUtils.cs:行号 45
+
+=======================2017-07-17 10:54:23=============================	
+System.Runtime.Serialization.SerializationException: 应为来自命名空间“”的元素“root”。。遇到名称为“”、命名空间为“”的“None”。
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.InternalReadObject(XmlReaderDelegator xmlReader, Boolean verifyObjectName)
+   在 System.Runtime.Serialization.XmlObjectSerializer.InternalReadObject(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(XmlDictionaryReader reader)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(Stream stream)
+   在 JiuZhou.HttpTools.JsonHelper.JsonToObject[T](String json) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\JsonHelper.cs:行号 52
+
+=======================2017-07-17 10:54:23=============================	
+null
+
+=======================2017-07-17 10:54:32=============================	
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 192.168.1.211:8080
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   在 System.Net.HttpWebRequest.GetRequestStream()
+   在 JiuZhou.HttpTools.HttpUtils.HttpPost(String url, String requestStr) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\HttpUtils.cs:行号 45
+
+=======================2017-07-17 10:54:32=============================	
+System.Runtime.Serialization.SerializationException: 应为来自命名空间“”的元素“root”。。遇到名称为“”、命名空间为“”的“None”。
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.InternalReadObject(XmlReaderDelegator xmlReader, Boolean verifyObjectName)
+   在 System.Runtime.Serialization.XmlObjectSerializer.InternalReadObject(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(XmlDictionaryReader reader)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(Stream stream)
+   在 JiuZhou.HttpTools.JsonHelper.JsonToObject[T](String json) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\JsonHelper.cs:行号 52
+
+=======================2017-07-17 10:54:32=============================	
+null
+
+=======================2017-07-17 10:54:34=============================	
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 192.168.1.211:8080
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   在 System.Net.HttpWebRequest.GetRequestStream()
+   在 JiuZhou.HttpTools.HttpUtils.HttpPost(String url, String requestStr) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\HttpUtils.cs:行号 45
+
+=======================2017-07-17 10:54:34=============================	
+System.Runtime.Serialization.SerializationException: 应为来自命名空间“”的元素“root”。。遇到名称为“”、命名空间为“”的“None”。
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.InternalReadObject(XmlReaderDelegator xmlReader, Boolean verifyObjectName)
+   在 System.Runtime.Serialization.XmlObjectSerializer.InternalReadObject(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(XmlDictionaryReader reader)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(Stream stream)
+   在 JiuZhou.HttpTools.JsonHelper.JsonToObject[T](String json) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\JsonHelper.cs:行号 52
+
+=======================2017-07-17 10:54:34=============================	
+null
+
+=======================2017-07-17 10:54:36=============================	
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 192.168.1.211:8080
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   在 System.Net.HttpWebRequest.GetRequestStream()
+   在 JiuZhou.HttpTools.HttpUtils.HttpPost(String url, String requestStr) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\HttpUtils.cs:行号 45
+
+=======================2017-07-17 10:54:36=============================	
+System.Runtime.Serialization.SerializationException: 应为来自命名空间“”的元素“root”。。遇到名称为“”、命名空间为“”的“None”。
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.InternalReadObject(XmlReaderDelegator xmlReader, Boolean verifyObjectName)
+   在 System.Runtime.Serialization.XmlObjectSerializer.InternalReadObject(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(XmlDictionaryReader reader)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(Stream stream)
+   在 JiuZhou.HttpTools.JsonHelper.JsonToObject[T](String json) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\JsonHelper.cs:行号 52
+
+=======================2017-07-17 10:54:36=============================	
+null
+
+=======================2017-07-17 10:54:43=============================	
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 192.168.1.211:8080
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   在 System.Net.HttpWebRequest.GetRequestStream()
+   在 JiuZhou.HttpTools.HttpUtils.HttpPost(String url, String requestStr) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\HttpUtils.cs:行号 45
+
+=======================2017-07-17 10:54:43=============================	
+System.Runtime.Serialization.SerializationException: 应为来自命名空间“”的元素“root”。。遇到名称为“”、命名空间为“”的“None”。
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.InternalReadObject(XmlReaderDelegator xmlReader, Boolean verifyObjectName)
+   在 System.Runtime.Serialization.XmlObjectSerializer.InternalReadObject(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(XmlDictionaryReader reader)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(Stream stream)
+   在 JiuZhou.HttpTools.JsonHelper.JsonToObject[T](String json) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\JsonHelper.cs:行号 52
+
+=======================2017-07-17 10:54:43=============================	
+null
+
+=======================2017-07-17 10:54:44=============================	
+System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 192.168.1.211:8080
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   在 System.Net.HttpWebRequest.GetRequestStream()
+   在 JiuZhou.HttpTools.HttpUtils.HttpPost(String url, String requestStr) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\HttpUtils.cs:行号 45
+
+=======================2017-07-17 10:54:44=============================	
+System.Runtime.Serialization.SerializationException: 应为来自命名空间“”的元素“root”。。遇到名称为“”、命名空间为“”的“None”。
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.InternalReadObject(XmlReaderDelegator xmlReader, Boolean verifyObjectName)
+   在 System.Runtime.Serialization.XmlObjectSerializer.InternalReadObject(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.XmlObjectSerializer.ReadObjectHandleExceptions(XmlReaderDelegator reader, Boolean verifyObjectName, DataContractResolver dataContractResolver)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(XmlDictionaryReader reader)
+   在 System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(Stream stream)
+   在 JiuZhou.HttpTools.JsonHelper.JsonToObject[T](String json) 位置 F:\mallsource\JiuZhou.Shop.WebManager\JiuZhou.HttpTools\HttpTools\JsonHelper.cs:行号 52
+
+=======================2017-07-17 10:54:44=============================	
+null
+

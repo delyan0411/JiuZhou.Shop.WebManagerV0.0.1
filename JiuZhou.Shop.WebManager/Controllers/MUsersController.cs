@@ -1064,13 +1064,13 @@ namespace JiuZhou.Shop.WebManager.Controllers
         [HttpPost]
         public ActionResult GetCoupon()
         {
-            List<ConvertIntergralRuleInfo> listinfo = new List<ConvertIntergralRuleInfo>();
+            List<UseCouponRuleInfo> listinfo = new List<UseCouponRuleInfo>();
 
-            var res= GetConvertIntergralRule.Do();
+            var res= GetUseCouponRule.Do();
 
-            if (res != null && res.Body != null && res.Body.intergral_rule_list != null)
+            if (res != null && res.Body != null && res.Body.coupon_rule_list != null)
             {
-                listinfo = res.Body.intergral_rule_list;
+                listinfo = res.Body.coupon_rule_list;
 
                 return Json(new { error = false, list = listinfo, message = "操作成功!" });
             }

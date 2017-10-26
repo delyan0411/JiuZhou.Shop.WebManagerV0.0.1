@@ -378,7 +378,7 @@ function checksearch(form){
 			        var htmls = [];
 			        htmls.push('<option value="-1">请选择面值</option>');
 			        for (var i = 0; i < json.list.length; i++) {
-			            htmls.push('<option value="' + json.list[i].coupon_price + '">' + json.list[i].coupon_price + '元</option>');
+			            htmls.push('<option value="' + json.list[i].coupon_price + '">' + json.list[i].coupon_price + '元,满'+ json.list[i].min_price+'使用</option>');
 			        }
 			        dataObject.html(htmls.join("\r\n"));
 			    }

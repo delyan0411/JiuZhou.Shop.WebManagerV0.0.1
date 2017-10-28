@@ -454,7 +454,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
             if (pagesize > 100) pagesize = 100;
             if (pageindex < 1) pageindex = 1;
             int sType = DoRequest.RequestInt("stype");
-            int isonsale = DoRequest.RequestInt("isonsale",1);
+            int isonsale = DoRequest.RequestInt("isonsale", 1);
 
             string q = DoRequest.HtmlEncode(DoRequest.Request("q").Trim());
             string sKey = "";
@@ -481,6 +481,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
                 , -1
                 , -1
                 , sType
+                , -1
                 , isonsale
                 , 1
                 , sKey
@@ -492,7 +493,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
                 _table = res.Body.product_list;
 
             List<ShortProductInfo> list = new List<ShortProductInfo>();
-           // System.Text.StringBuilder ids = new System.Text.StringBuilder();
+            // System.Text.StringBuilder ids = new System.Text.StringBuilder();
             //ids.Append("0");
             foreach (ProductsInfo item in _table)
             {
@@ -527,7 +528,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
                 #endregion
                 list.Add(Info);
             }
-            
+
             return Json(new
             {
                 dataCount = dataCount

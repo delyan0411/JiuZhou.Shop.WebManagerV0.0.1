@@ -50,7 +50,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
             int shopid = DoRequest.GetQueryInt("shopid", -1);
             int ison = 1;
             int sType = DoRequest.GetQueryInt("stype");
-
+            int promotion = DoRequest.GetQueryInt("promotion", -1);
             string ocol = DoRequest.GetQueryString("ocol").Trim().ToLower();
             if (ocol == "") {
                 ocol = "modifytime";
@@ -81,7 +81,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
             int pageCount = 0;
             List<ProductsInfo> _table = new List<ProductsInfo>();
             DoCache cache = new DoCache();
-            string cachekey = "product-index=" + pageindex + "shopid=" + shopid + "classid=" + classid + "stype=" + sType + "ison=" + ison + "visible=" + isVisible + "skey=" + sKey + "ocol=" + ocol + "otype=" + otype;
+            string cachekey = "product-index=" + pageindex + "shopid=" + shopid + "classid=" + classid + "stype=" + sType + "promotion=" + promotion + "ison=" + ison + "visible=" + isVisible + "skey=" + sKey + "ocol=" + ocol + "otype=" + otype;
             if (cache.GetCache(cachekey) == null)
             {
                 var resp = QueryProductInfo.Do(pagesize, pageindex
@@ -89,6 +89,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
                     , shopid
                     , classid
                     , sType
+                    , promotion
                     , ison
                     , isVisible
                     , sKey
@@ -100,12 +101,13 @@ namespace JiuZhou.Shop.WebManager.Controllers
                 {
                     _table = resp.Body.product_list;
                     cache.SetCache(cachekey, _table, 10);
-                    cache.SetCache("product-datacount1",dataCount,10);
+                    cache.SetCache("product-datacount1", dataCount, 10);
                     if (_table.Count == 0)
                         cache.RemoveCache(cachekey);
                 }
             }
-            else {
+            else
+            {
                 _table = (List<ProductsInfo>)cache.GetCache(cachekey);
                 dataCount = (int)cache.GetCache("product-datacount1");
             }
@@ -116,6 +118,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
             currPageUrl.Append("&size=" + pagesize);
             currPageUrl.Append("&classid=" + classid);
             currPageUrl.Append("&stype=" + sType);
+            currPageUrl.Append("&promotion=" + promotion);
             currPageUrl.Append("&visi=" + isVisible);
             currPageUrl.Append("&ison=" + ison);
             currPageUrl.Append("&ocol=" + ocol);
@@ -205,6 +208,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
                     , shopid
                     , classid
                     , sType
+                    , -1
                     , ison
                     , isVisible
                     , sKey
@@ -320,6 +324,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
                     , shopid
                     , classid
                     , sType
+                    , -1
                     , ison
                     , isVisible
                     , sKey
@@ -436,6 +441,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
                     , shopid
                     , classid
                     , sType
+                    , -1
                     , ison
                     , isVisible
                     , sKey

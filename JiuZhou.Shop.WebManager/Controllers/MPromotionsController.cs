@@ -2341,7 +2341,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
             bool isError = false;
             string errorText = "";
             string xmlString = DoRequest.GetFormString("xml1", false);
-            #region 运费规则
+            #region 红包规则
             try
             {
                 XmlDataDocument xmlDoc = new XmlDataDocument();

@@ -21,7 +21,7 @@
 <%Html.RenderPartial("Base/_SimplePageTopControl"); %>
 <%
     ConfigInfo config = (ConfigInfo)(ViewData["config"]);
-	int activityid = DoRequest.GetQueryInt("activityid");
+    int activityid = DoRequest.GetQueryInt("activityid");
     AwardActivityInfo Info = null;
     var resp = GetAwardActivityInfo.Do(activityid);
     if (resp == null || resp.Body == null)
@@ -30,24 +30,29 @@
     }else{
         Info = resp.Body;
     }
-    
-    List<ConvertIntergralRuleInfo> listinfo = new List<ConvertIntergralRuleInfo>();
 
-    var res= GetConvertIntergralRule.Do();
+    //List<ConvertIntergralRuleInfo> listinfo = new List<ConvertIntergralRuleInfo>();
 
-    if (res != null && res.Body != null && res.Body.intergral_rule_list != null)
+    // var res= GetConvertIntergralRule.Do();
+    List<UseCouponRuleInfo> listinfo = new List<UseCouponRuleInfo>();
+
+    var res= GetUseCouponRule.Do();
+    if (res != null && res.Body != null && res.Body.coupon_rule_list != null)
     {
-       listinfo = res.Body.intergral_rule_list;
+        listinfo = res.Body.coupon_rule_list;
     }
     string couponvalue = "";
+    string couponmiaosshu = "";
     for(var i=0; i< listinfo.Count;i++) {
         if (i == 0)
         {
             couponvalue = listinfo[i].coupon_price.ToString();
+            couponmiaosshu = listinfo[i].coupon_price + "元-满" + listinfo[i].min_price + "使用";
         }
         else {
             couponvalue = couponvalue + "," + listinfo[i].coupon_price.ToString();
-        } 
+            couponmiaosshu = couponmiaosshu + "," + listinfo[i].coupon_price + "元-满" + listinfo[i].min_price + "使用";
+        }
     }
 %>
 <div id="container-syscp">
@@ -322,10 +327,11 @@ function addAwards() {
     html += '<td><select name="awardtype" style="height:26px;" onchange="selectedthis(this)">';
     html += '<option value="1" >优惠券</option><option value="2">积&nbsp;分</option><option value="3">商&nbsp;品</option></select></td>';
     var _couponvalue = "<%=couponvalue %>".split(','); 
+    var _couponmiaosshu ="<%=couponmiaosshu %>".split(',');  
     html += '<td><input type="text" name="awardvalue" value="" class="input" hidden="hidden" style="width:50px;"/>';
     html += '<select name="sawardvalue" style="width:60px;height:26px;">';
     for (var i = 0; i < _couponvalue.length; i++) {
-        html += '<option value='+ _couponvalue[i] +'>'+ _couponvalue[i] +'</option>';
+        html += '<option value=' + _couponvalue[i] + '>' + _couponmiaosshu[i] + '</option>';
     }
     html += '</select></td>';
     html += '<td><input type="text" name="awardpercent" value="" class="input" style="width:40px;"/> %</td>';
@@ -521,10 +527,10 @@ function removeRules(obj) {
       <input type="text" name="awardvalue" value="<%=item.award_value %>" <%=(item.award_type != 2 && item.award_type != 3)?"hidden=\"hidden\"":"" %> class="input" style="width:50px;"/>
       <select name="sawardvalue" <%=(item.award_type == 2 || item.award_type == 3)?"hidden=\"hidden\"":"" %> style="width:60px;height:26px;">
       <%
-          foreach (ConvertIntergralRuleInfo em in listinfo)
+          foreach (UseCouponRuleInfo em in listinfo)
           {    
       %>
-        <option value="<%=em.coupon_price %>" <%=em.coupon_price==item.award_value?"selected=\"selected\"":"" %>><%=em.coupon_price %></option>
+        <option value="<%=em.coupon_price %>" <%=em.coupon_price==item.award_value?"selected=\"selected\"":"" %>><%=em.coupon_price %>元-满<%=em.min_price %>使用</option>
         <%} %>
       </select>
     </td>

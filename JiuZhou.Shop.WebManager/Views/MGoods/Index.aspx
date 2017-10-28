@@ -132,9 +132,9 @@
                         <select id="promotion" name="promotion" style="width: 80px; height: 26px;">
                             <option value="-1" init="true">促销类型</option>
                             <option value="1">直降</option>
-                            <option value="2">满减</option>
+                            <option value="2">优惠券</option>
                             <option value="3">买赠</option>
-                            <option value="4">优惠券</option>
+                            <%--<option value="4"></option>--%>
                         </select>
                     </p>
                     <p style="position: relative">
@@ -236,12 +236,12 @@ var changeOrderBy=function(ocol,ot){
                                     <%
                                         DateTime promotion_bgdate = DateTime.Parse(info.promotion_bdate);
                                         DateTime promotion_eddate = DateTime.Parse(info.promotion_edate);
-                                        if (promotion_bgdate <= DateTime.Now
-                                          && DateTime.Now <= promotion_eddate
-                                          && promotion_bgdate != promotion_eddate && info.promotion_price < info.sale_price)
-                                        {
-                                            Response.Write("&nbsp;<span>直降</span>");
-                                        }
+                                        //if (promotion_bgdate <= DateTime.Now
+                                        //  && DateTime.Now <= promotion_eddate
+                                        //  && promotion_bgdate != promotion_eddate && info.promotion_price < info.sale_price)
+                                        //{
+                                        //    Response.Write("&nbsp;<span>直降</span>");
+                                        //}
                                         List<GiftsList> gifts = new List<GiftsList>();
                                         if (chche.GetCache("product-GetProductGift" + info.product_id) == null)
                                         {
@@ -258,15 +258,19 @@ var changeOrderBy=function(ocol,ot){
                                         {
                                             gifts = (List<GiftsList>)chche.GetCache("product-GetProductGift" + info.product_id);
                                         }
-                                        if (gifts.Count > 0)
+                                        //if (gifts.Count > 0)
+                                        if (info.gift_flag> 0)
                                         {
                                             Response.Write("&nbsp;<span>买赠</span>");
                                         }
-                                         if (info.has_fulloff > 0)
-                                        {
-                                            Response.Write("&nbsp;<span>满减</span>");
+                                        if (info.pro_flag > 0)
+                                        {  
+                                            if (promotion_bgdate >= DateTime.Now)
+                                                Response.Write("&nbsp;<span>即将直降</span>");
+                                            else
+                                                Response.Write("&nbsp;<span>直降</span>");
                                         }
-                                          if (info.has_coupon > 0)
+                                        if (info.coupon_flag > 0)
                                         {
                                             Response.Write("&nbsp;<span>优惠券</span>");
                                         }

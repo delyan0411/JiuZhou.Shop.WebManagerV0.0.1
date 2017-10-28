@@ -31,10 +31,8 @@ namespace JiuZhou.MySql
             request.Header = request.NewHeader();
             request.Key = "QueryProductList";
             string requestStr = JsonHelper.ObjectToJson<Request<RequestSearchBody>>(request);
-            ;
+            Logger.Log(requestStr);
             string responseStr = HttpUtils.HttpPost(requestStr);
-            ;
-
             var response = JsonHelper.JsonToObject<Response<ResponseSearchBody>>(responseStr);
 
             if (response != null && response.Body != null && response.Body.rec_num != null)
@@ -241,15 +239,15 @@ namespace JiuZhou.MySql
         public int check_user_id { set; get; }
 
         [DataMember]
-        public int has_pricefull { set; get; }
+        public int pro_flag { set; get; }
+
+        //[DataMember]
+        //public int has_fulloff { set; get; }
 
         [DataMember]
-        public int has_fulloff { set; get; }
+        public int gift_flag { set; get; }
 
         [DataMember]
-        public int has_gift { set; get; }
-
-        [DataMember]
-        public int has_coupon { set; get; }
+        public int coupon_flag { set; get; }
     } 
 }

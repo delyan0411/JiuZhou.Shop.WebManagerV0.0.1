@@ -209,7 +209,9 @@
                             </tr>
                             <tr class="bg">
                                 <td style="width: 3%"></td>
-                                <td colspan="5">领取链接为：JS: &lt;a href="javascript:;" onclick="GetCoupon(<%=item.cget_item_id %>)"&gt;领取xx元优惠券&lt;/a&gt;URL: <%=config.UrlHome %>tools/GetCoupon?itemId=<%=item.cget_item_id %>
+                                <td colspan="5">JS: &lt;a href="javascript:;" onclick="GetCoupon(<%=item.cget_item_id %>)"&gt;领取xx元优惠券&lt;/a&gt;<br />
+                                     PCurl:<%=config.UrlHome %>tools/GetCoupon?itemId=<%=item.cget_item_id %><br />
+                                    手机端url:<%=config.UrlMobile %>json/createCoupon.action?itemId=<%=item.cget_item_id %>
                                 </td>
                             </tr>
                         </tbody>

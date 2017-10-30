@@ -38,9 +38,9 @@ namespace JiuZhou.HttpTools
                 ConfigInfo Info = new ConfigInfo();
                 try
                 {
-                    JiuZhou.Cache.DoCache _cache = new JiuZhou.Cache.DoCache();
-                    if (_cache.GetCache("ConfigInfo") != null)
-                        return (ConfigInfo)_cache.GetCache("ConfigInfo");
+                    //JiuZhou.Cache.DoCache _cache = new JiuZhou.Cache.DoCache();
+                    //if (_cache.GetCache("ConfigInfo") != null)
+                    //    return (ConfigInfo)_cache.GetCache("ConfigInfo");
 
                     string path = JiuZhou.HttpTools.DoRequest.RootPath + "/JiuZhouShop.config";
                     string xmlFilePath = JiuZhou.HttpTools.DoRequest.GetMapPath(path.Replace("//", "/"));
@@ -73,15 +73,9 @@ namespace JiuZhou.HttpTools
                         Info.DirPathImage = xmlDoc.GetElementsByTagName("urlImages")[0].Attributes["dirPath"].Value;
                         Info.UrlImagesUpload = xmlDoc.GetElementsByTagName("urlImagesUpload")[0].Attributes[_att].Value;
                         Info.UrlDataAnalysis = xmlDoc.GetElementsByTagName("urlDataAnalysis")[0].Attributes[_att].Value;
-                        //Info.ExchangeRate = xmlDoc.GetElementsByTagName("orderRule")[0].Attributes["exchangeRate"].Value;
-                       // string maxDiscountRate = xmlDoc.GetElementsByTagName("orderRule")[0].Attributes["maxDiscountRate"].Value;
-                       // if (Utils.IsNumber(maxDiscountRate))
-                 //       {
-                   //         Info.MaxDiscountRate = decimal.Parse(maxDiscountRate);
-                    //    }
 
-                        if (!Info.Debug)//debug状态不缓存
-                            _cache.SetCache("ConfigInfo", Info, 600);//缓存10分钟
+                        //if (!Info.Debug)//debug状态不缓存
+                        //    _cache.SetCache("ConfigInfo", Info, 600);//缓存10分钟
                     }
                 }
                 catch (Exception e) {

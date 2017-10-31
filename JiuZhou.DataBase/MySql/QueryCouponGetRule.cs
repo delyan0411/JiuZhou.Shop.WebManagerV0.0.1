@@ -103,6 +103,9 @@ namespace JiuZhou.MySql
         public string end_time { set; get; }
 
         [DataMember]
+        public string lqstart_time { set; get; }
+
+        [DataMember]
         public int add_user_id { set; get; }
 
         [DataMember]

@@ -120,7 +120,6 @@
                                     <div class="tips-text" id="tips-starttime">&nbsp;</div>
                                 </td>
                             </tr>
-
                             <tr>
                                 <td style="width: 3%">&nbsp;</td>
                                 <td class="lable">使用截止<b>*</b></td>
@@ -160,6 +159,47 @@
                                 </td>
                                 <td colspan="2">
                                     <div class="tips-text" id="tips-endtime">&nbsp;</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 3%">&nbsp;</td>
+                                <td class="lable">领取开始时间<b>*</b></td>
+                                <td class="inputText">
+                                    <input type="text" id="box-lqsdate" name="lqsdate" value="<%=string.IsNullOrEmpty(info.lqstart_time)?"":DateTime.Parse(info.lqstart_time).ToString("yyyy-MM-dd")%>" readonly="readonly" class="date" onclick="WdatePicker()" />
+                                    <input type="text" id="box-lqshours" name="lqshours" value="<%=string.IsNullOrEmpty(info.lqstart_time)?"":DateTime.Parse(info.lqstart_time).Hour.ToString()%>" class="input" style="width: 40px" title="数字0至23" />时
+                                    <input type="text" id="box-lqsminutes" name="lqsminutes" value="<%=string.IsNullOrEmpty(info.lqstart_time)?"":DateTime.Parse(info.lqstart_time).Minute.ToString()%>" class="input" style="width: 40px" title="数字0至59" />分
+                                    <script type="text/javascript">
+                                        Atai.addEvent(window, "load", function () {
+                                            var hBox = Atai.$("#box-lqshours");
+                                            var mBox = Atai.$("#box-lqsminutes");
+                                            var tips = Atai.$("#tips-lqstarttime");
+                                            Atai.addEvent(hBox, "blur", function () {
+                                                if (!Atai.isInt(this.value) || parseInt(this.value) < 0 || parseInt(this.value) > 23) {
+                                                    tips.className = "tips-icon";
+                                                    tips.innerHTML = " [时] 请填写0至23之间的数字";
+                                                }
+                                            });
+                                            Atai.addEvent(mBox, "blur", function () {
+                                                if (!Atai.isInt(this.value) || parseInt(this.value) < 0 || parseInt(this.value) > 59) {
+                                                    tips.className = "tips-icon";
+                                                    tips.innerHTML = " [分] 请填写0至59之间的数字";
+                                                }
+                                            });
+                                            Atai.addEvent(hBox, "keyup", function () {
+                                                if (Atai.isInt(this.value) && parseInt(this.value) >= 0 && parseInt(this.value) < 24) {
+                                                    tips.className = "tips-text"; tips.innerHTML = "";
+                                                }
+                                            });
+                                            Atai.addEvent(mBox, "keyup", function () {
+                                                if (Atai.isInt(this.value) && parseInt(this.value) >= 0 && parseInt(this.value) < 60) {
+                                                    tips.className = "tips-text"; tips.innerHTML = "";
+                                                }
+                                            });
+                                        });
+                                    </script>
+                                </td>
+                                <td colspan="2">
+                                    <div class="tips-text" id="tips-lqstarttime">&nbsp;</div>
                                 </td>
                             </tr>
                             <tr>

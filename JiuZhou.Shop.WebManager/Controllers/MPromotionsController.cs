@@ -1757,6 +1757,11 @@ namespace JiuZhou.Shop.WebManager.Controllers
             int eminutes = DoRequest.GetFormInt("eminutes");
             DateTime endDate = Utils.IsDateString(edate) ? DateTime.Parse(edate + " " + ehours + ":" + eminutes + ":59") : DateTime.Now.AddDays(7);
 
+            string lqsdate = DoRequest.GetFormString("lqsdate").Trim();
+            int lqshours = DoRequest.GetFormInt("lqshours");
+            int lqsminutes = DoRequest.GetFormInt("lqsminutes");
+            string lqstartDate = Utils.IsDateString(lqsdate) ? DateTime.Parse(lqsdate + " " + lqshours + ":" + lqsminutes + ":59").ToString() : "";
+
             if (startDate > endDate) {
                 return Json(new { error = true, input = "message", message = "总规则开始时间大于结束时间" });
             }
@@ -1773,6 +1778,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
            // info.limit_per_user_day = limitperuserday;
             info.start_time = startDate.ToString("yyyy-MM-dd HH:mm:ss");
             info.end_time = endDate.ToString("yyyy-MM-dd HH:mm:ss");
+            info.lqstart_time= lqstartDate;
             info.cget_remark = remarks;
 
             bool isError = false;

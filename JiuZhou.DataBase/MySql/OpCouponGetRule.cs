@@ -23,6 +23,7 @@ namespace JiuZhou.MySql
             body.limit_per_user_day = info.limit_per_user_day.ToString();
             body.start_time = info.start_time;
             body.end_time = info.end_time;
+            body.lqstart_time = info.lqstart_time;
             body.del_item_ids = desids.Split(',');
 
             List<CouponGetItem2> list = new List<CouponGetItem2>();
@@ -55,48 +56,51 @@ namespace JiuZhou.MySql
             return response;
         }
     }
-   [DataContract]
-   public class RequestOpCouponGetRuleBody
-   {
-       [DataMember]
-       public string cget_rule_id { set; get; }
+    [DataContract]
+    public class RequestOpCouponGetRuleBody
+    {
+        [DataMember]
+        public string cget_rule_id { set; get; }
 
-       [DataMember]
-       public string cget_name { set; get; }
+        [DataMember]
+        public string cget_name { set; get; }
 
         [DataMember]
         public string coupen_type { set; get; }
 
         [DataMember]
-       public string cget_remark { set; get; }
+        public string cget_remark { set; get; }
 
-       [DataMember]
-       public string validity_days { set; get; }
+        [DataMember]
+        public string validity_days { set; get; }
 
-       [DataMember]
-       public string max_give_num { set; get; }
+        [DataMember]
+        public string max_give_num { set; get; }
 
-       [DataMember]
-       public string max_day_give_num { set; get; }
+        [DataMember]
+        public string max_day_give_num { set; get; }
 
-       [DataMember]
-       public string limit_per_user_total { set; get; }
+        [DataMember]
+        public string limit_per_user_total { set; get; }
 
-       [DataMember]
-       public string limit_per_user_day { set; get; }
+        [DataMember]
+        public string limit_per_user_day { set; get; }
 
-       [DataMember]
-       public string start_time { set; get; }
+        [DataMember]
+        public string start_time { set; get; }
 
-       [DataMember]
-       public string end_time { set; get; }
+        [DataMember]
+        public string end_time { set; get; }
 
-       [DataMember]
-       public string[] del_item_ids { set; get; }
+        [DataMember]
+        public string lqstart_time { set; get; }
 
-       [DataMember]
-       public List<CouponGetItem2> item_list { set; get; }
-   }
+        [DataMember]
+        public string[] del_item_ids { set; get; }
+
+        [DataMember]
+        public List<CouponGetItem2> item_list { set; get; }
+    }
 
    [DataContract]
    public class CouponGetItem2

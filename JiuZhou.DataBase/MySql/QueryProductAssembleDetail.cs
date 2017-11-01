@@ -10,19 +10,21 @@ namespace JiuZhou.MySql
     public class QueryProductAssembleDetail
     {
         public static Response<ResponseProductAssemble> Do(int assid)
-       {
-           RequestProductAssembleBody assBody = new RequestProductAssembleBody();
+        {
+            RequestProductAssembleBody assBody = new RequestProductAssembleBody();
 
-           assBody.ass_id = assid.ToString();
-           Request<RequestProductAssembleBody> request = new Request<RequestProductAssembleBody>();
-           request.Body = assBody;
-           request.Header = request.NewHeader();
-           request.Key = "QueryProductAssembleDetail";
-           string requestStr = JsonHelper.ObjectToJson<Request<RequestProductAssembleBody>>(request);
-           string responseStr = HttpUtils.HttpPost(requestStr);
-           var response = JsonHelper.JsonToObject<Response<ResponseProductAssemble>>(responseStr);
-           return response;
-       }
+            assBody.ass_id = assid.ToString();
+            Request<RequestProductAssembleBody> request = new Request<RequestProductAssembleBody>();
+            request.Body = assBody;
+            request.Header = request.NewHeader();
+            request.Key = "QueryProductAssembleDetail";
+            string requestStr = JsonHelper.ObjectToJson<Request<RequestProductAssembleBody>>(request);
+            Logger.Log(requestStr);
+            string responseStr = HttpUtils.HttpPost(requestStr);
+            Logger.Log(responseStr);
+            var response = JsonHelper.JsonToObject<Response<ResponseProductAssemble>>(responseStr);
+            return response;
+        }
     }
 
     [DataContract]
@@ -45,6 +47,12 @@ namespace JiuZhou.MySql
 
         [DataMember]
         public int ass_type { set; get; }
+
+        [DataMember]
+        public string start_time { set; get; }
+
+        [DataMember]
+        public string end_time { set; get; }
 
         [DataMember]
         public string main_rec_num { set; get; }

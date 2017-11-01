@@ -2762,6 +2762,8 @@ namespace JiuZhou.Shop.WebManager.Controllers
             assemble.ass_subject = DoRequest.GetFormString("name");
             assemble.ass_summary = DoRequest.GetFormString("summary");
             assemble.ass_type = DoRequest.GetFormInt("AssType");
+            assemble.start_time = DoRequest.GetFormString("startname");
+            assemble.end_time = DoRequest.GetFormString("endtime");
 
             #region Checking
             if (assemble.ass_subject.Length < 1)
@@ -2775,6 +2777,14 @@ namespace JiuZhou.Shop.WebManager.Controllers
             if (assemble.ass_summary.Length > 800)
             {
                 return Json(new { error = true, message = "[备注] 不能大于800个字符" });
+            }
+            if (assemble.start_time.Length < 1)
+            {
+                return Json(new { error = true, message = "[开始时间] 不能为空" });
+            }
+            if (assemble.end_time.Length < 1)
+            {
+                return Json(new { error = true, message = "[结束时间] 不能为空" });
             }
             #endregion
 

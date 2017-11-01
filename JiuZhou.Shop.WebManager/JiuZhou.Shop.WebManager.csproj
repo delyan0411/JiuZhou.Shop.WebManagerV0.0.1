@@ -27,6 +27,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,9 +57,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\System.Web.Mvc.dll</HintPath>
@@ -371,6 +372,7 @@
     <Content Include="ckeditor\skins\moono\images\lock.png" />
     <Content Include="ckeditor\skins\moono\images\refresh.png" />
     <Content Include="ckeditor\styles.js" />
+    <Content Include="dll\System.Web.Mvc.dll" />
     <Content Include="dll\ThoughtWorks.QRCode.dll" />
     <Content Include="echarts-2.2.6\build\dist\chart\bar.js" />
     <Content Include="echarts-2.2.6\build\dist\chart\chord.js" />
@@ -1653,15 +1655,12 @@
     <None Include="ckeditor\skins\moono\images\Thumbs.db" />
     <None Include="ckeditor\skins\moono\readme.md" />
     <None Include="documment\excel\template-polymeric.xls" />
-    <None Include="echarts-2.2.6\.DS_Store" />
     <None Include="echarts-2.2.6\.editorconfig" />
     <None Include="echarts-2.2.6\.gitignore" />
     <None Include="echarts-2.2.6\.jshintignore" />
     <None Include="echarts-2.2.6\.jshintrc" />
     <None Include="echarts-2.2.6\.npmignore" />
     <None Include="echarts-2.2.6\bower.json" />
-    <None Include="echarts-2.2.6\build\.DS_Store" />
-    <None Include="echarts-2.2.6\build\dist\.DS_Store" />
     <None Include="echarts-2.2.6\build\source\.DS_Store" />
     <None Include="echarts-2.2.6\doc\.DS_Store" />
     <None Include="echarts-2.2.6\doc\asset\.DS_Store" />

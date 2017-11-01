@@ -10,37 +10,39 @@ namespace JiuZhou.MySql
     public class OpProductAssemble
     {
         public static Response<ResponseBodyEmpty> Do(ResponseProductAssemble assemble, string mainids, List<OpAssembleInfo> assembleproduct, string delitemids, string delmainids)
-       {
-           RequestOpProductAssembleBody assemblebody = new RequestOpProductAssembleBody();
-
-           assemblebody.ass_id = assemble.ass_id.ToString();
-           assemblebody.ass_subject = assemble.ass_subject;
-           assemblebody.ass_summary = assemble.ass_summary ;
-           assemblebody.ass_type = assemble.ass_type.ToString();
-           assemblebody.main_product_ids = mainids;
-           List<OpAssembleInfo> list = new List<OpAssembleInfo>();
-           foreach (OpAssembleInfo item in assembleproduct) {
-               OpAssembleInfo ass = new OpAssembleInfo();
-               ass.ass_item_id = item.ass_item_id;
-               ass.product_id = item.product_id;
-               ass.sort_no = item.sort_no;
-               ass.promotion_price = item.promotion_price;
-               list.Add(ass);
-           }
-           assemblebody.ass_item_list = list;
-           assemblebody.delete_ass_item_ids = delitemids;
-           assemblebody.delete_ass_main_ids = delmainids;
-           Request<RequestOpProductAssembleBody> request = new Request<RequestOpProductAssembleBody>();
-           request.Body = assemblebody;
-           request.Header = request.NewHeader();
-           request.Key = "OpProductAssemble";
-           string requestStr = JsonHelper.ObjectToJson<Request<RequestOpProductAssembleBody>>(request);
-           ;
-           string responseStr = HttpUtils.HttpPost(requestStr);
-           ;
-           var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
-           return response;
-       }
+        {
+            RequestOpProductAssembleBody assemblebody = new RequestOpProductAssembleBody();
+            assemblebody.ass_id = assemble.ass_id.ToString();
+            assemblebody.ass_subject = assemble.ass_subject;
+            assemblebody.ass_summary = assemble.ass_summary;
+            assemblebody.ass_type = assemble.ass_type.ToString();
+            assemblebody.start_time = assemble.start_time;
+            assemblebody.end_time = assemble.end_time;
+            assemblebody.main_product_ids = mainids;
+            List<OpAssembleInfo> list = new List<OpAssembleInfo>();
+            foreach (OpAssembleInfo item in assembleproduct)
+            {
+                OpAssembleInfo ass = new OpAssembleInfo();
+                ass.ass_item_id = item.ass_item_id;
+                ass.product_id = item.product_id;
+                ass.sort_no = item.sort_no;
+                ass.promotion_price = item.promotion_price;
+                list.Add(ass);
+            }
+            assemblebody.ass_item_list = list;
+            assemblebody.delete_ass_item_ids = delitemids;
+            assemblebody.delete_ass_main_ids = delmainids;
+            Request<RequestOpProductAssembleBody> request = new Request<RequestOpProductAssembleBody>();
+            request.Body = assemblebody;
+            request.Header = request.NewHeader();
+            request.Key = "OpProductAssemble";
+            string requestStr = JsonHelper.ObjectToJson<Request<RequestOpProductAssembleBody>>(request);
+            Logger.Log(requestStr);
+            string responseStr = HttpUtils.HttpPost(requestStr);
+            Logger.Log(responseStr);
+            var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
+            return response;
+        }
     }
 
     [DataContract]
@@ -57,6 +59,12 @@ namespace JiuZhou.MySql
 
         [DataMember]
         public string ass_type { set; get; }
+
+        [DataMember]
+        public string start_time { set; get; }
+
+        [DataMember]
+        public string end_time { set; get; }
 
         [DataMember]
         public string main_product_ids { set; get; }

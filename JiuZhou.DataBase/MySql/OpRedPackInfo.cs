@@ -28,8 +28,10 @@ namespace JiuZhou.MySql
             request.Header = request.NewHeader();
             request.Key = "OpRedPackInfo";
             string requestStr = JsonHelper.ObjectToJson<Request<RequestRedPackInfo>>(request);
+            Logger.Log(requestStr);
             string responseStr = HttpUtils.HttpPost(requestStr);
-            var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
+            Logger.Log(responseStr);
+            var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);      
             return response;
         }
     }

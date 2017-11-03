@@ -301,7 +301,7 @@ function addRuleTable(){
 	html += '<td class="inputText" colspan="2">';
 	html += '兑换类型：&nbsp;';
 	html += '<select name="ruletype" style="height:26px;">';
-	html += '<option value="0">积分兑换</option><option value="1">订单金额</option></select>';
+	html += '<option value="0">积分兑换(废弃)</option><option value="1">订单金额</option></select>';
 	html += '&nbsp;&nbsp;相 应 值：&nbsp;<input type="text" name="corrvalue" value="" class="input" style="width:60px;"/>';
 	html += '&nbsp;&nbsp;抽奖次数：<input type="text" name="lotterynum" value="" class="input" style="width:40px;"/></td></tr>';
 
@@ -380,7 +380,7 @@ function removeRules(obj) {
     <td class="inputText" colspan="2">
     兑换类型：
       <select name="ruletype" style="height:26px;">
-        <option value="0" <%=rule.rule_type==0?"selected=\"selected\"":"" %>>积分兑换</option>
+        <option value="0" <%=rule.rule_type==0?"selected=\"selected\"":"" %>>积分兑换(废弃)</option>
         <option value="1" <%=rule.rule_type==1?"selected=\"selected\"":"" %>>订单金额</option>
       </select>
       &nbsp;&nbsp;
@@ -422,7 +422,7 @@ function removeRules(obj) {
     <td class="inputText" colspan="2">
     兑换类型：&nbsp;
       <select name="ruletype" style="height:26px;">
-        <option value="0">积分兑换</option>
+        <option value="0">积分兑换(废弃)</option>
         <option value="1">订单金额</option>
       </select>
       &nbsp;&nbsp;

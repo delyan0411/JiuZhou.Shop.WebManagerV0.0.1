@@ -37,9 +37,7 @@ namespace JiuZhou.MySql
             request.Header = request.NewHeader();
             request.Key = "OpProductAssemble";
             string requestStr = JsonHelper.ObjectToJson<Request<RequestOpProductAssembleBody>>(request);
-            Logger.Log(requestStr);
             string responseStr = HttpUtils.HttpPost(requestStr);
-            Logger.Log(responseStr);
             var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
             return response;
         }

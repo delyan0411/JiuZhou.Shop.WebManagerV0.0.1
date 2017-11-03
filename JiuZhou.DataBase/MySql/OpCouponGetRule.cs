@@ -49,9 +49,7 @@ namespace JiuZhou.MySql
             request.Header = request.NewHeader();
             request.Key = "OpCouponGetRule";
             string requestStr = JsonHelper.ObjectToJson<Request<RequestOpCouponGetRuleBody>>(request);
-            Logger.Log(requestStr);
             string responseStr = HttpUtils.HttpPost(requestStr);
-            Logger.Log(responseStr);
             var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
             return response;
         }

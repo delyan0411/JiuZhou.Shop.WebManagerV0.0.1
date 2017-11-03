@@ -19,10 +19,8 @@ namespace JiuZhou.MySql
            request.Body = body;
            request.Header = request.NewHeader();
            request.Key = "GetCouponGetRuleDetail";          
-            string requestStr = JsonHelper.ObjectToJson<Request<RequestCouponGetRuleBody>>(request);
-            Logger.Log(requestStr);       
+            string requestStr = JsonHelper.ObjectToJson<Request<RequestCouponGetRuleBody>>(request);   
             string responseStr = HttpUtils.HttpPost(requestStr);
-            Logger.Log(responseStr);
             var response = JsonHelper.JsonToObject<Response<CouponGetRuleInfo>>(responseStr);
            return response;
        }

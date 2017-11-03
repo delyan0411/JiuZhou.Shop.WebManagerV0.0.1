@@ -93,7 +93,7 @@
                                 <td style="width: 3%">&nbsp;</td>
                                 <td class="lable">开始时间<b>*</b></td>
                                 <td colspan="2" class="inputText">
-                                    <input type="text"  must="1" name="startname" value="<%=Info.start_time %>" readonly="readonly" class="input" onclick="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'})" />
+                                    <input type="text"  must="1" name="starttime" value="<%=Info.start_time %>" readonly="readonly" class="input" onclick="WdatePicker({dateFmt: 'yyyy-MM-dd HH:mm:ss'})" />
                                     结束时间<b>*</b>
                                     <input type="text"  must="1" name="endtime" value="<%=Info.end_time %>" readonly="readonly" class="input" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                                 </td>

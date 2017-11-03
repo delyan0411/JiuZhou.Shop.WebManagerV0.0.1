@@ -22,9 +22,7 @@ namespace JiuZhou.MySql
            request.Header = request.NewHeader();
            request.Key = "QueryCouponGetRule";
            string requestStr = JsonHelper.ObjectToJson<Request<RequestQueryCouponGetRuleBody>>(request);
-            Logger.Log(requestStr);
            string responseStr = HttpUtils.HttpPost(requestStr);
-            Logger.Log(responseStr);
             var response = JsonHelper.JsonToObject<Response<ResponseQueryCouponGetRuleBody>>(responseStr);
 
            if (response != null && response.Body != null && response.Body.rule_list != null)

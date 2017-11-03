@@ -31,7 +31,6 @@ namespace JiuZhou.MySql
             request.Header = request.NewHeader();
             request.Key = "QueryProductList";
             string requestStr = JsonHelper.ObjectToJson<Request<RequestSearchBody>>(request);
-            Logger.Log(requestStr);
             string responseStr = HttpUtils.HttpPost(requestStr);
             var response = JsonHelper.JsonToObject<Response<ResponseSearchBody>>(responseStr);
 

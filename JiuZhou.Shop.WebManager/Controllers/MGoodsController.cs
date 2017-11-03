@@ -2762,7 +2762,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
             assemble.ass_subject = DoRequest.GetFormString("name");
             assemble.ass_summary = DoRequest.GetFormString("summary");
             assemble.ass_type = DoRequest.GetFormInt("AssType");
-            assemble.start_time = DoRequest.GetFormString("startname");
+            assemble.start_time = DoRequest.GetFormString("starttime");
             assemble.end_time = DoRequest.GetFormString("endtime");
 
             #region Checking

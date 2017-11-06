@@ -16,12 +16,17 @@ namespace JiuZhou.MySql
             body.award_activity_id = info.award_activity_id.ToString();
             body.activity_name = info.activity_name;
             body.activity_desc = info.activity_desc;
+            body.phone_activity_desc = info.phone_activity_desc;
             body.award_desc = info.award_desc;
+            body.phone_award_desc = info.phone_award_desc;
             body.begin_time = info.begin_time;
             body.end_time = info.end_time;
             body.activity_bg_img = info.activity_bg_img;
+            body.phone_activity_bg_img = info.phone_activity_bg_img;
             body.award_bg_img = info.award_bg_img;
+            body.phone_award_bg_img = info.phone_award_bg_img;
             body.dial_bg_img = info.dial_bg_img;
+            body.phone_dial_bg_img = info.phone_dial_bg_img;
 
             List<OpAwardRuleInfo> rules = new List<OpAwardRuleInfo>();
             foreach (AwardRuleInfo em in info.rule_list) {
@@ -83,7 +88,13 @@ namespace JiuZhou.MySql
         public string activity_desc { set; get; }
 
         [DataMember]
+        public string phone_activity_desc { set; get; }
+
+        [DataMember]
         public string award_desc { set; get; }
+
+        [DataMember]
+        public string phone_award_desc { set; get; }
 
         [DataMember]
         public string begin_time { set; get; }
@@ -95,10 +106,19 @@ namespace JiuZhou.MySql
         public string award_bg_img { set; get; }
 
         [DataMember]
+        public string phone_award_bg_img { set; get; }
+
+        [DataMember]
         public string activity_bg_img { set; get; }
 
         [DataMember]
+        public string phone_activity_bg_img { set; get; }
+
+        [DataMember]
         public string dial_bg_img { set; get; }
+
+        [DataMember]
+        public string phone_dial_bg_img { set; get; }
 
         [DataMember]
         public List<OpAwardRuleInfo> rule_list { set; get; }

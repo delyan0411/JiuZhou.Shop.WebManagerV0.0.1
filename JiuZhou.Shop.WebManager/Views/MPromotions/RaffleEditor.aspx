@@ -88,17 +88,35 @@
   </tr>
     <tr>
     <td style="width:3%">&nbsp;</td>
+    <td class="lable">手机活动介绍<b>*</b></td>
+    <td class="inputText" colspan="2">
+      <textarea id="phoneactivitydesc" name="phoneactivitydesc" class="textarea" must="1" style="height:160px" ><%=Info.phone_activity_desc %></textarea>
+    </td>
+  </tr>
+    <tr>
+    <td style="width:3%">&nbsp;</td>
     <td class="lable">奖品介绍<b>*</b></td>
     <td class="inputText" colspan="2">
       <textarea id="awarddesc" name="awarddesc" class="textarea" must="1" style="height:160px" ><%=Info.award_desc%></textarea>
     </td>
   </tr>
+       <tr>
+    <td style="width:3%">&nbsp;</td>
+    <td class="lable">手机奖品介绍<b>*</b></td>
+    <td class="inputText" colspan="2">
+      <textarea id="phoneawarddesc" name="phoneawarddesc" class="textarea" must="1" style="height:160px" ><%=Info.phone_award_desc%></textarea>
+    </td>
+  </tr>
   <script type="text/javascript">
       var ckeditor1 = null;
       var ckeditor2 = null;
+      var ckeditor3 = null;
+      var ckeditor4 = null;
       $(function () {
           ckeditor1 = CKEDITOR.replace('activitydesc');
           ckeditor2 = CKEDITOR.replace('awarddesc');
+          ckeditor3 = CKEDITOR.replace('phoneactivitydesc');
+          ckeditor4 = CKEDITOR.replace('phoneawarddesc');
       });
       function setImage(path, fullPath, id, editor) {
           var html = '<img src="' + fullPath + '"/>';
@@ -147,6 +165,36 @@ function setImage1(path,fullPath){
   </tr>
     <tr>
     <td style="width:3%">&nbsp;</td>
+    <td class="lable">手机活动背景</td>
+    <td class="inputText" valign="top">
+      <input type="hidden" id="upload-image4" name="phoneactivitybgimg" value="<%=Info.phone_activity_bg_img %>" />
+      <div id="upload-image-box4" class="upload-image-box" style="width:160px;height:160px;line-height:160px;" onclick="ajaxUploadClick(this,Atai.$('#upload-image4'))">
+        暂无图片
+      </div>
+      <div class="upload-image-box-botton" style="color:#666;">
+      &nbsp;<input type="button" class="view-file" onclick="$('#upload-image-box4').click()" value="浏览..."/>
+      <br/><br/>
+      <p>&nbsp;<a href="javascript:;" onclick="showImageListBox(setImage10)" style="color:blue">从图片库中选择</a></p>
+      </div>
+<script type="text/javascript">
+    function setImage10(path, fullPath) {
+	Atai.$("#upload-image4").value=path;
+	var _uploadImageBox=Atai.$("#upload-image-box4");
+	var path=formatImageUrl(fullPath, 160, 160);
+	_uploadImageBox.style.background="url(" + path + ") center center no-repeat";
+	_uploadImageBox.innerHTML="";
+}//imageRootUrl
+<%if(!string.IsNullOrEmpty(Info.phone_activity_bg_img)){%>Atai.addEvent(window,"load",function(){
+    setImage10('<%=Info.phone_activity_bg_img%>', '<%=Info.phone_activity_bg_img%>');
+});<%}%>
+</script>
+    </td>
+    <td>
+      <span style="color:red">*注意：</span> 图片高为未知
+    </td>
+  </tr>
+    <tr>
+    <td style="width:3%">&nbsp;</td>
     <td class="lable">奖品背景<b>*</b></td>
     <td class="inputText" valign="top">
       <input type="hidden" id="upload-image2" name="awardbgimg" value="<%=Info.award_bg_img %>" />
@@ -173,6 +221,36 @@ function setImage2(path,fullPath,type){
     </td>
     <td>
        <span style="color:red">*注意：</span> 图片尺寸需为：450*450，12点方向为第一个商品，逆时针顺序排列商品
+    </td>
+  </tr>
+    <tr>
+    <td style="width:3%">&nbsp;</td>
+    <td class="lable">手机奖品背景<b>*</b></td>
+    <td class="inputText" valign="top">
+      <input type="hidden" id="upload-image5" name="phoneawardbgimg" value="<%=Info.phone_award_bg_img %>" />
+      <div id="upload-image-box5" class="upload-image-box" style="width:160px;height:160px;line-height:160px;" onclick="ajaxUploadClick(this,Atai.$('#upload-image5'))">
+        暂无图片
+      </div>
+      <div class="upload-image-box-botton" style="color:#666;">
+      &nbsp;<input type="button" class="view-file" onclick="$('#upload-image-box5').click()" value="浏览..."/>
+      <br/><br/>
+      <p>&nbsp;<a href="javascript:;" onclick="showImageListBox(setImage5)" style="color:blue">从图片库中选择</a></p>
+      </div>
+<script type="text/javascript">
+    function setImage5(path, fullPath, type) {
+	Atai.$("#upload-image5").value=path;
+	var _uploadImageBox=Atai.$("#upload-image-box5");
+	var path=formatImageUrl(fullPath, 160, 160);
+	_uploadImageBox.style.background="url(" + path + ") center center no-repeat";
+	_uploadImageBox.innerHTML="";
+}//imageRootUrl
+<%if(!string.IsNullOrEmpty(Info.phone_award_bg_img)){%>Atai.addEvent(window,"load",function(){
+	setImage5('<%=Info.phone_award_bg_img%>','<%=Info.phone_award_bg_img%>');
+});<%}%>
+</script>
+    </td>
+    <td>
+       <span style="color:red">*注意：</span> 图片尺寸需为：weizhi*weizhi，12点方向为第一个商品，逆时针顺序排列商品
     </td>
   </tr>
       <tr>
@@ -203,6 +281,36 @@ function setImage3(path,fullPath,type){
     </td>
     <td>
       <span style="color:red">*注意：</span> 图片尺寸需为：1000*826，奖品区位置离左边175px,离顶端107px
+    </td>
+  </tr>
+    <tr>
+    <td style="width:3%">&nbsp;</td>
+    <td class="lable">手机转盘背景<b>*</b></td>
+    <td class="inputText" valign="top">
+      <input type="hidden" id="upload-image6" name="phonedialbgimg" value="<%=Info.phone_dial_bg_img %>" />
+      <div id="upload-image-box6" class="upload-image-box" style="width:160px;height:160px;line-height:160px;" onclick="ajaxUploadClick(this,Atai.$('#upload-image6'))">
+        暂无图片
+      </div>
+      <div class="upload-image-box-botton" style="color:#666;">
+      &nbsp;<input type="button" class="view-file" onclick="$('#upload-image-box6').click()" value="浏览..."/>
+      <br/><br/>
+      <p>&nbsp;<a href="javascript:;" onclick="showImageListBox(setImage6)" style="color:blue">从图片库中选择</a></p>
+      </div>
+<script type="text/javascript">
+    function setImage6(path, fullPath, type) {
+	Atai.$("#upload-image6").value=path;
+	var _uploadImageBox=Atai.$("#upload-image-box6");
+	var path=formatImageUrl(fullPath, 160, 160);
+	_uploadImageBox.style.background="url(" + path + ") center center no-repeat";
+	_uploadImageBox.innerHTML="";
+}//imageRootUrl
+<%if(!string.IsNullOrEmpty(Info.phone_dial_bg_img)){%>Atai.addEvent(window,"load",function(){
+	setImage6('<%=Info.phone_dial_bg_img%>','<%=Info.phone_dial_bg_img%>');
+});<%}%>
+</script>
+    </td>
+    <td>
+      <span style="color:red">*注意：</span> 图片尺寸需为：未知*未知，奖品区位置离左边未知px,离顶端未知px
     </td>
   </tr>
   <tr>
@@ -624,6 +732,9 @@ function submitAwardActivityForm(form) {
     }
     $("#activitydesc").val(CKEDITOR.instances.activitydesc.getData());
     $("#awarddesc").val(CKEDITOR.instances.awarddesc.getData());
+    $("#phoneactivitydesc").val(CKEDITOR.instances.phoneactivitydesc.getData());
+    $("#phoneawarddesc").val(CKEDITOR.instances.phoneawarddesc.getData());
+
 
 	if(showLoadding) showLoadding();
 

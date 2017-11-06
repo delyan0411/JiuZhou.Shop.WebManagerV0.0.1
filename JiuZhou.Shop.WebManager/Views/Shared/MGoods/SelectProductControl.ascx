@@ -24,7 +24,7 @@
 	关键词:
 	<input type="text" v="sQuery" value="" class="input" onblur="searchProductForSelector()" style="height:26px;line-height:26px"/>
     &nbsp;<input type="submit" class="submit black" value="搜索"/>
-    &nbsp;&nbsp;
+    &nbsp;&nbsp;<a href="javascript:;"  onclick="selectAllProductSelector()">全选</a>
     已选择 <span v="count" style="color:#F00">0</span> 个商品
 </div>
 </form>
@@ -140,6 +140,8 @@ function searchProductForSelector(isonsale){
 	return false;
 }
 
+//全选
+
 function appendSearchResultForSelector(data, pageCount, pageIndex){
 	if(!_productSelector || !_productSelector.dialog)
 	    return false;
@@ -218,6 +220,44 @@ function selectForProductSelector(obj, p_id){
 	});
 	return false;
 }
+
+    //全选
+function selectAllProductSelector()
+{
+    if (!_productSelector || !_productSelector.dialog)
+        return false;
+    var allsel = $(_productSelector.dialog).find("div[v='data-list-options'] ul li").find(".op-link a");
+    var pidarray = [];
+    allsel.each(function (i) {
+        pidarray.push($(this).attr("v"));
+    });
+    if (pidarray.length == 0)
+    {
+        return false;
+    }
+    var pids = pidarray.join(',');
+    $.ajax({
+        url: "/MTools/GetProductList2?t=" + new Date().getTime()
+		, type: "get"
+		, data: {
+		    "ids": pids
+		}
+		, dataType: "json"
+		, success: function (json, textStatus) {
+		    for (var i = 0; i < json.length; i++) {
+		        var jsonObj = json[i];
+		        selectItemForProductSelector(jsonObj);
+		    }
+		    selectedCountForProductSelector();
+		}, error: function (http, textStatus, errorThrown) {
+		    jsonbox.error(errorThrown);
+		}
+    });
+  
+    
+    return false;
+}
+
 function selectedCountForProductSelector(){
 	var o=$(_productSelector.dialog);
 	$(o).find("span[v=count]").html(o.find("input[name=productId]").length);

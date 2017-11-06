@@ -78,7 +78,13 @@ namespace JiuZhou.MySql
         public string activity_desc { set; get; }
 
         [DataMember]
+        public string phone_activity_desc { set; get; }
+
+        [DataMember]
         public string award_desc { set; get; }
+
+        [DataMember]
+        public string phone_award_desc { set; get; }
 
         [DataMember]
         public string begin_time { set; get; }
@@ -96,10 +102,19 @@ namespace JiuZhou.MySql
         public string award_bg_img { set; get; }
 
         [DataMember]
+        public string phone_award_bg_img { set; get; }
+
+        [DataMember]
         public string activity_bg_img { set; get; }
 
         [DataMember]
+        public string phone_activity_bg_img { set; get; }
+
+        [DataMember]
         public string dial_bg_img { set; get; }
+
+        [DataMember]
+        public string phone_dial_bg_img { set; get; }
 
         [DataMember]
         public List<AwardRuleInfo> rule_list { set; get; }

@@ -2289,11 +2289,16 @@ namespace JiuZhou.Shop.WebManager.Controllers
             
             Info.activity_name = DoRequest.GetFormString("name");
             Info.activity_desc = DoRequest.GetFormString("activitydesc", false).Trim();
+            Info.phone_activity_desc = DoRequest.GetFormString("phoneactivitydesc", false).Trim();
             Info.award_desc = DoRequest.GetFormString("awarddesc", false).Trim();
+            Info.phone_award_desc = DoRequest.GetFormString("phoneawarddesc", false).Trim();
 
             Info.activity_bg_img = DoRequest.GetFormString("activitybgimg");
+            Info.phone_activity_bg_img = DoRequest.GetFormString("phoneactivitybgimg");
             Info.award_bg_img = DoRequest.GetFormString("awardbgimg");
+            Info.phone_award_bg_img = DoRequest.GetFormString("phoneawardbgimg");
             Info.dial_bg_img = DoRequest.GetFormString("dialbgimg");
+            Info.phone_dial_bg_img = DoRequest.GetFormString("phonedialbgimg");
 
             string sdate = DoRequest.GetFormString("sdate");
             int shour = DoRequest.GetFormInt("shours");
@@ -2347,7 +2352,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
             bool isError = false;
             string errorText = "";
             string xmlString = DoRequest.GetFormString("xml1", false);
-            #region 红包规则
+            #region 抽奖规则
             try
             {
                 XmlDataDocument xmlDoc = new XmlDataDocument();

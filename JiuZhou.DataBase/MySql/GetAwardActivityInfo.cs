@@ -10,21 +10,23 @@ namespace JiuZhou.MySql
     public class GetAwardActivityInfo
     {
         public static Response<AwardActivityInfo> Do(int id)
-       {
-           RequestRewardActivityBody body = new RequestRewardActivityBody();
+        {
+            RequestRewardActivityBody body = new RequestRewardActivityBody();
 
-           body.award_activity_id = id.ToString();
+            body.award_activity_id = id.ToString();
 
-           Request<RequestRewardActivityBody> request = new Request<RequestRewardActivityBody>();
-           request.Body = body;
-           request.Header = request.NewHeader();
-           request.Key = "GetAwardActivityInfo";
-           string requestStr = JsonHelper.ObjectToJson<Request<RequestRewardActivityBody>>(request);
-           string responseStr = HttpUtils.HttpPost(requestStr);
-           var response = JsonHelper.JsonToObject<Response<AwardActivityInfo>>(responseStr);
-      
-           return response;
-       }
+            Request<RequestRewardActivityBody> request = new Request<RequestRewardActivityBody>();
+            request.Body = body;
+            request.Header = request.NewHeader();
+            request.Key = "GetAwardActivityInfo";
+            string requestStr = JsonHelper.ObjectToJson<Request<RequestRewardActivityBody>>(request);
+            Logger.Log(requestStr);
+            string responseStr = HttpUtils.HttpPost(requestStr);
+            Logger.Log(responseStr);
+            var response = JsonHelper.JsonToObject<Response<AwardActivityInfo>>(responseStr);
+
+            return response;
+        }
     }
 
     [DataContract]

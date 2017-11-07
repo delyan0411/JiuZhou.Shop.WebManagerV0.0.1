@@ -21,9 +21,9 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="radio" name="mode" value="3" /> 轮播图
         <br />
-        <input type="radio" name="mode" value="4" /> 图片展示--%>
-
-		<input type="radio" name="mode" value="5" /> 商品楼层(新)
+        <input type="radio" name="mode" value="4" /> 图片展示
+        --%>
+		<input type="radio" name="mode" value="5" /> 商品楼层
 	</div>
 <br/>
 	<div class="box-button" style="position:absolute;top:200px;left:140px;"><input type="submit" class="submit" value="  确 定  " onclick="$('#moduleAdd-boxControl .close').click()"/></div>

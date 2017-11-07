@@ -198,8 +198,15 @@
                             string divhtml = "<div class=\"jz-fullScreen\" style=\"";
                             if (!string.IsNullOrEmpty(item.module_desc))
                             {
+                                if (item.module_desc.Length >= 7)
+                                {
+                                    if (item.module_desc.Substring(0, 7) == "http://")
+                                        divhtml += "background-image:url(" + item.module_desc + ");";
+                                    if (item.module_desc.Substring(0, 1) == "#" && item.module_desc.Length == 7)
+                                        divhtml += "background-color:" + item.module_desc + ";";
+                                }
                                 //item.allow_show_name 
-                                divhtml += "background-image:url(" + item.module_desc + ");";
+                                //divhtml += "background-image:url(" + item.module_desc + ");";
 
                             }
                             if (!string.IsNullOrEmpty(item.allow_show_name) && item.allow_show_name != "0")
@@ -215,6 +222,14 @@
                             divhtml += "\">";
                             Response.Write(divhtml);
                         %>
+                        <%
+                            var titlehtml = "";
+                            if (item.module_name != "")
+                            {
+                                titlehtml += "<p style=\"text-align: center; padding-bottom:30px\"><span style=\"font-size:26px;line-height:40px;\"><strong>" + item.module_name + "</strong></span></p>";
+                            } 
+                            Response.Write(titlehtml);
+                            %>
                         <ul class="product_list">
                             <%
                                 List<STItemInfo> items = item.topic_item_list;
@@ -225,8 +240,8 @@
                                     int imgSize = 350;
                                     for (int i = 0; i < items.Count; i++)
                                     {
-                                        if (i > 7)
-                                            break;
+                                        //if (i > 7)
+                                        //    break;
                                         STItemInfo sem = items[i];
                                         string url = config.UrlHome + sem.product_id + ".html";
                                         ShortProductInfo product = new ShortProductInfo();
@@ -251,7 +266,7 @@
 
                                         if (product.is_free_fare == 1 && DateTime.Parse(product.free_fare_stime) <= DateTime.Now && DateTime.Parse(product.free_fare_etime) >= DateTime.Now)
                                             isFreeFare = true;
-                                        if (i == 3 || i == 7)
+                                        if ((i+1)%4==0)
                                         {
                                             Response.Write("<li  style=\"margin-right:0px;\">");
                                         }

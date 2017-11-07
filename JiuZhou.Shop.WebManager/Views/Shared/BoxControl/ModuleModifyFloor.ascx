@@ -15,11 +15,11 @@
 	<div id="moduleModifyFloor-tips-text" class="tips-text" style="margin:2px auto">&nbsp;</div>
 <table>
   <tr>
-    <td class="left" style="width:60px">背景图(必填)：</td>
+    <td class="left" style="width:60px">背景图色(必填)：</td>
     <td><input type="text" id="module-backurl-list" name="backurl" class="input" value=""/>
-    &nbsp;
+    <br />背景图http开始 背景色 #ffffff格式
     </td>
-    <td class="left" style="width:60px">距离顶部高度(必填)：</td>
+    <td class="left" style="width:60px">距顶部高度(必填)：</td>
     <td><input type="text" id="fpadding" name="fpadding" class="input" value=""/>
     &nbsp;
     </td>
@@ -29,12 +29,13 @@
     <td><input type="text" id="fheight" name="fheight" class="input" value=""/>
     &nbsp;
     </td>
-    <td class="left" style="width:60px">楼层商品数量：</td>
+    <td class="left" style="width:60px">商品数量：</td>
     <td><select id="sum" name="sum" >
-    <option value="8">8</option>
-    <option value="11">11</option>
+    <option value="8">不限制</option>
+ <%--   <option value="11">11</option>
+        <option value="0"></option>--%>
     </select>
-    &nbsp;
+    &nbsp;楼层名称：<input type="text" id="floorname" name="floorname" style="width: 180px;" class="input" value=""/>
     </td>
   </tr>
 </table>
@@ -98,6 +99,7 @@
 		        $(__moduleModifyFloorDialog.dialog).find("input[name='backurl']").val(json.data.module_desc);
 		        $(__moduleModifyFloorDialog.dialog).find("input[name='fpadding']").val(json.data.is_full_screen);
 		        $(__moduleModifyFloorDialog.dialog).find("input[name='fheight']").val(json.data.allow_show_name);
+		        $(__moduleModifyFloorDialog.dialog).find("input[name='floorname']").val(json.data.module_name);
 		        $(__moduleModifyFloorDialog.dialog).find("input[name='sum']").val(json.data.cell_count);
 		        moduleInitFloorItem(json.items);
 		        moduleSelectFloorItemsCount();
@@ -277,8 +279,17 @@
              var style = "";
 //             $(__moduleModifyFloorDialog.dialog).find("input[name='fpadding']").val(json.data.module_content);
 //             $(__moduleModifyFloorDialog.dialog).find("input[name='fheight']").val(json.data.module_height);
-         if (json.module_desc != "") {
-             style += "background-image:url(" + json.module_desc + ");";
+             if (json.module_desc != "") {
+                 if (json.module_desc.substring(0, 7) == "http://") {
+                     style += "background-image:url(" + json.module_desc + ");";
+                 }
+                 else if (json.module_desc.substring(0, 1) == "#" && json.module_desc.length == 7) {
+                     style += "background-color:" + json.module_desc + ";";
+                 }
+                 else {
+                     alert("背景图或者背景色格式不正确");
+                     return false;
+                 }
          }
          if (json.allow_show_name != "0" || json.allow_show_name != "") {
              style += "height:" + json.allow_show_name + "px;";
@@ -286,12 +297,15 @@
          if (json.is_full_screen != "") {
              style += "padding-top:" + json.is_full_screen + "px;";
          }
-             html += "<div class=\"jz-fullScreen\" style="+style+" >";         
+         html += "<div class=\"jz-fullScreen\" style=" + style + " >";
+         var titlehtml = "";
+         if (json.module_name != "") {
+             titlehtml += "<p style=\"text-align: center; padding-bottom:30px\"><span style=\"font-size:26px;line-height:40px;\"><strong>" + json.module_name + "</strong></span></p>";
+         }
+         html += titlehtml;
              html += '<ul class=\"product_list\">';
              for (var i = 0; i < items.length; i++) {
-                 if (i > 7)
-                     break;
-                 if (i == 3 || i == 7) {
+                 if ((i + 1) % 4 == 0) {
                      html +="<li  style=\"margin-right:0px;\">";
                  }
                  else {
@@ -329,7 +343,11 @@
              $(__moduleModifyFloorDialog.dialog).find("#moduleModifyFloor-tips-text").html("距离顶部高度");
              return false;
          }
-
+         if (!($(form).find("input[name='backurl']").val().substring(0, 7) == "http://" || ($(form).find("input[name='backurl']").val().substring(0, 1) == "#" && $(form).find("input[name='backurl']").val().length == 7))) {
+             $(__moduleModifyFloorDialog.dialog).find("#moduleModifyFloor-tips-text").html("背景格式不正确");
+             return false;
+         }
+     
 
 //         var columnCount = $(form).find("input[name=columnCount]:checked").val();
 //         if (columnCount == undefined) {
@@ -347,8 +365,9 @@
          //             $(__moduleModifyFloorDialog.dialog).find("input[name='fpadding']").val(json.data.module_content);
          //             $(__moduleModifyFloorDialog.dialog).find("input[name='fheight']").val(json.data.module_height);
          if ($(form).find("input[name='fheight']").val())
-         var postData = {
-             "mid": $(form).find("input[name='mid']").val()
+             var postData = {
+                 "name": $(form).find("input[name='floorname']").val()
+        ,"mid": $(form).find("input[name='mid']").val()
         , "stid": $(form).find("input[name='tid']").val()
        	, "allowShowName": $(form).find("input[name='fheight']").val()
 		, "name2": $(form).find("input[name='backurl']").val()

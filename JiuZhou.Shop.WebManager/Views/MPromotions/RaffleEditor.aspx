@@ -160,7 +160,7 @@ function setImage1(path,fullPath){
 </script>
     </td>
     <td>
-      <span style="color:red">*注意：</span> 图片高为380px
+      <span style="color:red">*注意：</span> 图片为1920px*267px
     </td>
   </tr>
     <tr>

@@ -78,7 +78,7 @@
     <td class="lable" valign="top">专题目录<b>*</b></td>
     <td class="inputText" colspan="2">
     <input type="text" name="seoCode" value="<%=info.st_dir%>" class="input" style="width:160px"/>
-    2到30个字符，限数字、字母、中横线(-)，建议用拼音<br/>
+    2到30个字符，限数字、字母、中横线(-)，建议用拼音,不能重复<br/>
     示例：输入 <span style="color:#00F">zhongqiu</span> 
         
         则专题的网址为 <span style="color:#00F"><%=config.UrlHome%>hdzt/<%=DateTime.Now.ToString("yyyy")%>/zhongqiu/</span>

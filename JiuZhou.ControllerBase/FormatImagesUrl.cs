@@ -31,20 +31,12 @@ namespace JiuZhou.HttpTools
             if (filePath.ToLower().StartsWith("http://"))
             {
 
-
-                //   if (filePath.StartsWith("/")) filePath = filePath.Substring(1);
-                //string fileName = filePath.Substring(filePath.LastIndexOf('/') + 1);
-                
-
-                // UpLoadFile upload = new UpLoadFile(false);
-                // string uploadRoot = upload.GetUploadRoot.StartsWith("/") ? upload.GetUploadRoot.Substring(1) : upload.GetUploadRoot;
-
                 if (imageWidth < 0)
                 {
                     return filePath;
                 }
-
-                return name + "_" + imageWidth.ToString() + "_" + imageHeight.ToString() + fileExtention;
+                //return config.UrlImg + fname + "." + fileExtention + "@!" + imageWidth.ToString() + "_" + imageHeight.ToString();
+                return name + fileExtention + "@!" + imageWidth.ToString() + "_" + imageHeight.ToString();
             }
             else { 
                 if(imageWidth < 0){
@@ -58,10 +50,10 @@ namespace JiuZhou.HttpTools
                 }else{
                     if (name.IndexOf('/') == 0)
                     {
-                        return config.UrlImages + name.Substring(1) + "_" + imageWidth.ToString() + "_" + imageHeight.ToString() + fileExtention;
+                        return config.UrlImages + name.Substring(1) + fileExtention + "@!" + imageWidth.ToString() + "_" + imageHeight.ToString() ;
                     }
                     else {
-                        return config.UrlImages + name + "_" + imageWidth.ToString() + "_" + imageHeight.ToString() + fileExtention;
+                        return config.UrlImages + name + fileExtention + "@!" + imageWidth.ToString() + "_" + imageHeight.ToString();
                     }
             }
             }

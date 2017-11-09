@@ -235,17 +235,7 @@ height:224px;
  text-align:center;
 }
 
-.tshop-um-mokuai6  .product_list li .product-img img
-{
-width: 224px;
-height:224px;
-  transition: all 0.5s ease 0s;
-}
-.tshop-um-mokuai6  .product_list li .product-img:hover img {
-    width: 224px;
-    height: 224px;
-    margin-top: -10px;
-  }
+
 .tshop-um-mokuai6  .product_list    .spec
 {
 width: 244px;
@@ -253,46 +243,121 @@ text-align: center;
 height: 83px;
 }
 
-.tshop-um-mokuai6  .product_list  .name
-{
-font-size: 16px;
-color: black;
-display: block;
-line-height: 32px;
-width: 244px;
-height: 32px;
-overflow: hidden;
-font-weight: bolder;
-}
+  .tshop-um-mokuai6 .product_list .name {
+        font-size: 16px;
+        color: black;
+        display: block;
+        line-height: 32px;
+        width: 244px;
+        height: 32px;
+        overflow: hidden;
+        font-weight: bolder;
+        background: url("/images/maikuai6titlebg.png") right center no-repeat;
+    }
 
-.tshop-um-mokuai6  .product_list  .maidian
-{
-font-size: 16px;
-display: block;
-color: #424242;
-line-height: 22px;
-width: 244px;
-height: 22px;
-overflow: hidden;
-}
+  .tshop-um-mokuai6 .product_list .maidian {
+        font-size: 16px;
+        display: block;
+        /* color: #424242; */
+        color: #470A04;
+        font-weight: bolder;
+        line-height: 22px;
+        width: 244px;
+        height: 22px;
+        overflow: hidden;
+    }
 
 .tshop-um-mokuai6  .product_list  .thj
 {
-font-size: 16px;
-color:red;
-display: block;
-line-height: 32px;
-width: 244px;
-height: 32px;
-overflow: hidden;
+    font-size: 16px;
+    color: #c40000;
+    display: block;
+    line-height: 32px;
+    width: 244px;
+    height: 32px;
+    overflow: hidden;
+    text-align: left;
+    padding-left: 10px;
 }
 
-.tshop-um-mokuai6  .product_list  .thj b
+
+.tshop-um-mokuai6 .product_list .thj b {
+        font-family: arial;
+    }
+
+.tshop-um-mokuai6  .product_list  .thj .car
 {
-font-size: 30px;
-color:red;
-font-weight: bolder;
+    
+    width: 45px;
+    height: 22px;
+    overflow: hidden;
+    line-height: 1000px;
+    display: block;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    background: url("/images/maikuai6go.jpg") no-repeat;
+
+}
+.tshop-um-mokuai6 .product_list   li:hover .tl {
+    height: 2px;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+}
+.tshop-um-mokuai6 .product_list   li .tl {
+    height: 2px;
+    width: 0px;
+    left: 0px;
+    top: 0px;
+}
+.tshop-um-mokuai6 .product_list li:hover .rl {
+    width: 2px;
+    height: 100%;
+    top: 0px;
+    right: 0px;
 }
 
+.tshop-um-mokuai6 .product_list li .rl {
+    width: 2px;
+    height: 0px;
+    top: 0px;
+    right: 0px;
+}
+
+.tshop-um-mokuai6 .product_list li:hover .bl {
+    height: 2px;
+    width: 100%;
+    right: 0px;
+    bottom: 0px;
+}
+
+.tshop-um-mokuai6 .product_list li .bl {
+    height: 2px;
+    width: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.tshop-um-mokuai6 .product_list li:hover .ll {
+    width: 2px;
+    height: 100%;
+    bottom: 0px;
+    left: 0px;
+}
+
+
+.tshop-um-mokuai6 .product_list li .ll {
+    width: 2px;
+    height: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+.tshop-um-mokuai6 .product_list  li .abs {
+     background-color: #FA5A59;
+    transition: all 0.5s ease 0s;
+    z-index: 9;
+    position:absolute;
+}
 
 

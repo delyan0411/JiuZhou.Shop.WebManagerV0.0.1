@@ -237,7 +237,7 @@
                                     items = new List<STItemInfo>();
                                 if (items.Count > 0)
                                 {
-                                    int imgSize = 350;
+                                    int imgSize = 220;
                                     for (int i = 0; i < items.Count; i++)
                                     {
                                         //if (i > 7)
@@ -275,6 +275,10 @@
                                             Response.Write("<li>");
                                         }
                             %>
+                               <div class="tl abs">&nbsp;</div>
+                            <div class="rl abs">&nbsp;</div>
+                            <div class="bl abs">&nbsp;</div>
+                            <div class="ll abs">&nbsp;</div>
                             <a href="<%=url%>" target="_blank">
                                 <div class="product-img">
                                     <img src="<%=image %>" alt="<%=Info.st_subject%>" />
@@ -282,7 +286,7 @@
                                 <div class="spec">
                                     <span class="name">
                                         <%=product.product_name%></span> <span class="maidian">
-                                            <%=product.sales_promotion%></span><span class="thj">特惠价￥<b><%=price%></b></span>
+                                            <%=product.sales_promotion%></span><span class="thj">特惠价￥<b><%=price%></b><div class="car">GO</div></span>
                                 </div>
                             </a></li>
                             <%

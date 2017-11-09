@@ -1192,6 +1192,8 @@
     <Content Include="images\logo-26x26.png" />
     <Content Include="images\logo-32x32.png" />
     <Content Include="images\logo.jpg" />
+    <Content Include="images\maikuai6go.jpg" />
+    <Content Include="images\maikuai6titlebg.png" />
     <Content Include="images\net110.gif" />
     <Content Include="images\none.jpg" />
     <Content Include="images\phone\glass.jpg" />

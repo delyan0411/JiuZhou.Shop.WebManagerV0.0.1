@@ -389,7 +389,21 @@ function checksearch(form){
 
     function postCoupon(form) {
         var postDate = getPostDB(form);
-
+        if($(_couponBoxDialog.dialog).find("select[name='couponvalue']").val()==-1)
+        {
+            alert("请选择优惠券面值")
+            return false;
+        }
+        if($(_couponBoxDialog.dialog).find("input[name='couponname']").val()=="")
+        {
+            alert("请输入优惠券名称")
+            return false;
+        }
+        if(!Atai.isInt($(_couponBoxDialog.dialog).find("input[name='couponnum']").val()))
+        {
+            alert("请输入优惠券数量")
+            return false;
+        }
         $.ajax({
             url: "/Musers/PostCoupon"
 		, data: postDate 

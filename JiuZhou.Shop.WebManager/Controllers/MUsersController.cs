@@ -1086,10 +1086,12 @@ namespace JiuZhou.Shop.WebManager.Controllers
             string name = DoRequest.GetFormString("couponname");
             string price = DoRequest.GetFormString("couponvalue");
             int couponnum = DoRequest.GetFormInt("couponnum");
-            
-            if(price.Equals("-1"))
+            if (string.IsNullOrEmpty(name))
+                return Json(new { error = true, message = "请输入优惠券名称！" });
+            if (price.Equals("-1"))
                 return Json(new { error = true, message = "请选择赠送优惠券的面值！" });
-
+            if (couponnum <= 0)
+                return Json(new { error = true, message = "请输入优惠券数量！" });
             int returnValue = -1;
             var res = GiveUserCoupon.Do(userid, name, price, couponnum);
             if (res != null && res.Header != null && res.Header.Result != null && res.Header.Result.Code != null)

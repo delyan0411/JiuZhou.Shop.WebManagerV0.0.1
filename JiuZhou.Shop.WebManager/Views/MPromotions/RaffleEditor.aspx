@@ -604,7 +604,7 @@ function removeRules(obj) {
   <tr style="background-color:White">
     <th>奖品名</th>
     <th>类型</th>
-    <th>奖值</th>
+    <th>奖值(积分为积分数量,商品为商品ID)</th>
     <th>中奖率</th>
     <th>奖品数</th>
     <th>已发数量</th>

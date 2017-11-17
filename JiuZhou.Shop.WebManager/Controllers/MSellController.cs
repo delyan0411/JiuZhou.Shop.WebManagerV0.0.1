@@ -685,7 +685,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
                     break;
                 }
             }
-            if (HasPermission2(currResBody.res_id))
+            if (!HasPermission2(currResBody.res_id))
             {
                 return Json(new { error = true, message = "你没有这个权限" });
             }

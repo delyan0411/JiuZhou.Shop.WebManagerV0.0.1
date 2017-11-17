@@ -676,6 +676,15 @@ namespace JiuZhou.Shop.WebManager.Controllers
         [HttpPost]
         public ActionResult ResetOrderTransPrice()
         {
+            UserResBody currResBody = new UserResBody();
+            foreach (UserResBody item in base._userResBody)
+            {
+                if (item.res_path.Equals("0,1,102,148,608,"))
+                {
+                    currResBody = item;
+                    break;
+                }
+            }
             string orderNumber = DoRequest.GetFormString("orderNumber").Trim();
             decimal orderPrice = DoRequest.GetFormDecimal("orderPrice", -1);//订单价格
             decimal transPrice = DoRequest.GetFormDecimal("transPrice", -1);//运费

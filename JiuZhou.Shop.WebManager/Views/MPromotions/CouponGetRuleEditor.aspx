@@ -299,6 +299,7 @@
                                     </div>
                                 </div>
                             </th>
+                            <th style="width: 8%">价格</th>
                             <th style="width: 8%">操作</th>
                         </tr>
                     </thead>
@@ -357,6 +358,7 @@
                                     分类：<% =item.type_name%>
                                 </p>
                             </td>
+                             <td  style="font-family:Arial;color:#ff6600">¥<%=item.sale_price%></td>
                             <td><a href="javascript:;" onclick="removeMainProductSelectorData(this)">移除</a></td>
                         </tr>
                         <%}
@@ -444,6 +446,7 @@
                 arr.push('<p><a href="<%=config.UrlHome%>' + json.product_id + '.html" target="_blank">' + json.product_name + '</a></p>');
                 arr.push('<p class="pname" style="color:#999">编码：' + json.product_code + '</p>');
                 arr.push('<p style="color:#999">' + json.type_name + '</p></td>');
+                arr.push('<td style="font-family:Arial;color:#ff6600">￥' + json.sale_price + '</td>');
                 arr.push('<td><a href="javascript:;" onclick="removeMainProductSelectorData(this)">移除</a></td>');
                 arr.push('</tr>');
             }

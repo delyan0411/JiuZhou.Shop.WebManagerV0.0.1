@@ -9,6 +9,7 @@
 	<div class="clear">&nbsp;</div>
 <form action="" onsubmit="return postOrderTransPrice(this)">
 <input type="hidden" id="otp-orderNumber" name="orderNumber" value=""/>
+    <span>订单金额填-1就表示只改运费</span>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td class="left">&nbsp;</td>
@@ -29,7 +30,8 @@
 
   <tr>
     <td class="left" style="height:30px;">&nbsp;</td>
-    <td><input type="submit" class="submit" value="  保 存  " /></td>
+    <td><input type="submit" class="submit" value="  改价改运费  " />
+<%--        <input  type="button"  onclick="onlyPostOrderTransPrice()" class="submit" value="  只改运费  " />--%></td>
   </tr>
 </table>
 </form>
@@ -59,6 +61,36 @@ function postOrderTransPrice(form){
 			}
 	});
 	return false;
+}
+function onlyPostOrderTransPrice() {
+    //ordernumber:0223542987468703
+    //orderprice: 1639.00
+    //transprice: 12.00
+    var orderNumberval= $(_orderTransPriceBoxDialog.dialog).find("input[name='orderNumber']");
+    var transPriceval= $(_orderTransPriceBoxDialog.dialog).find("input[name='transPrice']");
+    $.ajax({
+        url: "/msell/ResetOrderTransPrice"
+			, data: { ordernumber: orderNumberval, orderprice: -1, transprice: transPriceval }
+            , type: "post"
+			, dataType: "json"
+			, success: function (json) {
+			    if (json.error) {
+			        $(_orderTransPriceBoxDialog.dialog).find("span[class='tips-text']").html(json.message);
+			    } else {
+			        if (_orderTransClickObject) {
+			            //$(_orderTransClickObject).parent("th").find("b[v='price']").html("￥" + json.order_money);
+			            //$(_orderTransClickObject).parent("th").find("span[v='farePrice']").html("(含运费 " + json.trans_money + " 元)");
+			            //$(_orderTransClickObject).attr("price", json.data.order_money).attr("farePrice", json.trans_money);
+			            //if(_orderTransPriceBoxDialog)_orderTransPriceBoxDialog.close();
+			            _orderTransPriceBoxDialog.close();
+			            jsbox.success(json.message, window.location.href);
+			        } else {
+			            window.location.href = window.location.href;
+			        }
+			    }
+			}
+    });
+    return false;
 }
 var _orderTransPriceBoxDialog = false;
 var _orderTransClickObject = false;

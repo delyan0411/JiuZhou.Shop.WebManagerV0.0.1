@@ -10,20 +10,20 @@ namespace JiuZhou.MySql
     public class CanVisitResouce
     {
         public static Response<ResponseBodyEmpty> Do(int resid)
-       {
-           RequestCanVisitResBody body = new RequestCanVisitResBody();
+        {
+            RequestCanVisitResBody body = new RequestCanVisitResBody();
 
-           body.res_id = resid.ToString();
+            body.res_id = resid.ToString();
 
-           Request<RequestCanVisitResBody> request = new Request<RequestCanVisitResBody>();
-           request.Body = body;
-           request.Header = request.NewHeader();
-           request.Key = "CanVisitResouce";
-           string requestStr = JsonHelper.ObjectToJson<Request<RequestCanVisitResBody>>(request);
-           string responseStr = HttpUtils.HttpPost(requestStr);
-           var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
-           return response;
-       }
+            Request<RequestCanVisitResBody> request = new Request<RequestCanVisitResBody>();
+            request.Body = body;
+            request.Header = request.NewHeader();
+            request.Key = "CanVisitResouce";
+            string requestStr = JsonHelper.ObjectToJson<Request<RequestCanVisitResBody>>(request);
+            string responseStr = HttpUtils.HttpPost(requestStr);
+            var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
+            return response;
+        }
     }
 
     [DataContract]

@@ -685,14 +685,13 @@ namespace JiuZhou.Shop.WebManager.Controllers
                     break;
                 }
             }
-            if (!HasPermission2(currResBody.res_id))
-            {
-                return Json(new { error = true, message = "你没有这个权限" });
-            }
             string orderNumber = DoRequest.GetFormString("orderNumber").Trim();
             decimal orderPrice = DoRequest.GetFormDecimal("orderPrice", -1);//订单价格
-            decimal transPrice = DoRequest.GetFormDecimal("transPrice", -1);//运费
-
+            decimal transPrice = DoRequest.GetFormDecimal("transPrice", -1);//运费            
+            if (!HasPermission2(608)&& orderPrice >= 0)
+            {
+                return Json(new { error = true, message = "你没有这个权限" });
+            }         
             if (orderPrice < 0 )
             {
                 orderPrice = -1;//需要超级管理权限, orderPrice小于0表示只改运费

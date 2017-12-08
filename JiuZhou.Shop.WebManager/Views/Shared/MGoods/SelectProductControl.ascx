@@ -19,16 +19,16 @@
 		<div class="atai-shade-close" v="atai-shade-close">&nbsp;</div>
 	</div>
 	<div class="atai-shade-contents">
-<form action="" onsubmit="return searchProductForSelector()">
+<form action="" onsubmit="return searchProductForSelector(1)">
 <div class="console" style="text-align:left">&nbsp;&nbsp;
 	关键词:
-	<input type="text" v="sQuery" value="" class="input" onblur="searchProductForSelector()" style="height:26px;line-height:26px"/>
+	<input type="text" v="sQuery" value="" class="input" onblur="searchProductForSelector(1)" style="height:26px;line-height:26px"/>
     &nbsp;<input type="submit" class="submit black" value="搜索"/>
     &nbsp;&nbsp;<a href="javascript:;"  onclick="selectAllProductSelector()">全选</a>
     已选择 <span v="count" style="color:#F00">0</span> 个商品
 </div>
 </form>
-<div v="data-list-options" style="width:49.5%;float:left"><ul class="data-box-list"></ul></div>
+<div v="data-list-options" style="width:49.5%;float:left"><div id="image-list-box-page-links" class="page-idx"></div><ul class="data-box-list"></ul></div>
 <div v="data-list-selected" style="width:49.5%;float:right"><ul class="data-box-list"></ul></div>
 		<div class="clear">&nbsp;</div>
 	</div>
@@ -78,7 +78,7 @@ function showProductSelector(callbackFunction, initList, disallowArray, allowSku
 		, formatData: function(){}
 	});
     _productSelector = _dialog;
-	searchProductForSelector(isonsale);
+	searchProductForSelector(1);
 	if(initList!=undefined) formatSelectedForSelector(initList);
 	//alert(_productSelector.dialog.attr("id"));
 }
@@ -116,7 +116,7 @@ function formatImageUrlForSelector(root, path, width, height){
 	return root + rVal;
 }
 
-function searchProductForSelector(isonsale){
+function searchProductForSelector(page){
 	if(!_productSelector || !_productSelector.dialog)
 		return false;
 	var query=$(_productSelector.dialog).find("input[v='sQuery']").val();
@@ -124,11 +124,10 @@ function searchProductForSelector(isonsale){
 		url: "/MTools/SeachProduct?t=" + new Date().getTime()
 		, type: "post"
 		, data: {
-			 size : 200
-			,page : 1
+			 size : 100
+			, page: page
 			,stype : 0
 			, q: query
-            ,isonsale:isonsale
 		}
 		, dataType: "json"
 		, success: function(json, textStatus){
@@ -140,9 +139,53 @@ function searchProductForSelector(isonsale){
 	return false;
 }
 
-//全选
+function ajaxChangePage(pageIndex) {
+    searchProductForSelector(pageIndex);
+}
+var _formatAjaxPageLinkCount = 0;
+function formatAjaxPageLink(pagecount, pageindex) {
+    _formatAjaxPageLinkCount++;
+    var arr = [];
+    var maxCount = 6;
+    var n = pageindex - (maxCount / 2);
+    if (n <= 0)
+        n = 1;
+    if (pageindex > 1) {
+        arr.push("		<a href=\"javascript:ajaxChangePage(1);\" title=\"首页\">&lt;&lt;</a>");
+        arr.push("		<a href=\"javascript:ajaxChangePage(" + (pageindex - 1) + ")\" title=\"上页\">&lt;</a>");
+    } else {
+        arr.push("		<strong>&lt;&lt;</strong>");
+        arr.push("		<strong>&lt;</strong>");
+    }
+    for (var k = n; k < (n + maxCount) ; k++) {
+        if (k <= pagecount) {
+            if (k == pageindex) {
+                arr.push("		<strong><span>" + k + "</span></strong>");
+            } else {
+                arr.push("		<a href=\"javascript:ajaxChangePage(" + k + ")\" title=\"第" + k + "页\">" + k + "</a>");
+            }
+        } else {
+            if (k == pageindex)
+                arr.push("		<strong><span>" + k + "</span></strong>");
+        }
+    }
+    if (pageindex < pagecount) {
+        arr.push("		<a href=\"javascript:ajaxChangePage(" + (pageindex + 1) + ")\" title=\"下页\">&gt;</a>");
+        arr.push("		<a href=\"javascript:ajaxChangePage(" + pagecount + ")\" title=\"末页\">&gt;&gt;</a>");
+    } else {
+        arr.push("		<strong>&gt;</strong>");
+        arr.push("		<strong>&gt;&gt;</strong>");
+    }
+    arr.push("		<strong class=\"txt\"><span>" + pageindex + "</span>/" + pagecount + "</strong>");
+    arr.push("		<strong class=\"goto\"><input id=\"goto-" + _formatAjaxPageLinkCount + "\" type=\"text\" value=\"" + (pageindex + 1 < pagecount ? (pageindex + 1) : pagecount) + "\" onclick=\"this.select()\"/></strong>");
+    arr.push("		<a href=\"javascript:;\" onclick=\"ajaxChangePage(Atai.$('#goto-" + _formatAjaxPageLinkCount + "').value)\" title=\"GO\">GO</a>");
+    return arr.join("\r\n");
+}
 
-function appendSearchResultForSelector(data, pageCount, pageIndex){
+//搜索
+
+function appendSearchResultForSelector(data, pageCount, pageIndex) {
+    var changeLinks = formatAjaxPageLink(pageCount, pageIndex);
 	if(!_productSelector || !_productSelector.dialog)
 	    return false;
 	var arr=[];
@@ -169,7 +212,8 @@ function appendSearchResultForSelector(data, pageCount, pageIndex){
 		arr.push('<p class="clear"></p>');
 		arr.push('</li>');
 	}
-	$(_productSelector.dialog).find("div[v='data-list-options'] ul").html(arr.join(""));
+    $(_productSelector.dialog).find("div[v='data-list-options'] ul").html(arr.join(""));
+    $(_productSelector.dialog).find("#image-list-box-page-links").html(changeLinks);
 }
 function selectItemForProductSelector(json){
 	if(!_productSelector || !_productSelector.dialog)
@@ -220,7 +264,6 @@ function selectForProductSelector(obj, p_id){
 	});
 	return false;
 }
-
     //全选
 function selectAllProductSelector()
 {
@@ -257,7 +300,6 @@ function selectAllProductSelector()
     
     return false;
 }
-
 function selectedCountForProductSelector(){
 	var o=$(_productSelector.dialog);
 	$(o).find("span[v=count]").html(o.find("input[name=productId]").length);

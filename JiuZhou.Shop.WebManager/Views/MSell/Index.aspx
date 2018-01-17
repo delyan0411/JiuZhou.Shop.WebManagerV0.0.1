@@ -96,6 +96,7 @@
                         <option value="4">虚拟账户支付</option>
                         <option value="5">平安健康支付</option>
                         <option value="6">可乐否订单</option>
+                        <option value="7">企健网</option>
                     </select>
                 </p>
                 <p>

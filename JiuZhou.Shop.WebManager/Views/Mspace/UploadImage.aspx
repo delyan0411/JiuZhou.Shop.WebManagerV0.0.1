@@ -436,12 +436,14 @@ jQuery(function () {
         }
     });
     */
-    uploader.on('uploadComplete', function (file,json) {//上传完成
-        if (json.error) {
-            jsbox.error(json.message);
-        } else {
-            jsbox.success(json.message);
-        }
+    uploader.on('uploadComplete', function (file) {//上传完成
+        //console.log(json);
+        //console.log(file);
+        //if (json.error) {
+        //    jsbox.error(json.message);
+        //} else {
+        //    jsbox.success(json.message);
+        //}
     });
 
     uploader.onUploadProgress = function (file, percentage) {

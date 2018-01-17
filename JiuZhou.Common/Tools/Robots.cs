@@ -377,6 +377,8 @@ namespace JiuZhou.Common.Tools
         #region 上传至远程服务器
         public string HttpUploadFile(string url, System.Web.HttpPostedFile file, NameValueCollection nvc, string paramName = "file")
         {
+            //测试log
+            //Logger.Log("上传至远程服务器");
             string returnValue = "";
             string boundary = "---------------------------" + DateTime.Now.Ticks.ToString("x");
             byte[] boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
@@ -437,6 +439,8 @@ namespace JiuZhou.Common.Tools
             {
                 wr = null;
             }
+            //测试log
+            //Logger.Log("上传至远程服务器结束");
             return returnValue;
         }
         #endregion

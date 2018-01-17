@@ -11,26 +11,26 @@ namespace JiuZhou.MySql
     public class RefundPartOrder
     {
         public static Response<ResponseBodyEmpty> Do(string orderno, int servicestate, string productids, string remark)
-       {
-           RequestRefundPartOrder body = new RequestRefundPartOrder();
+        {
+            RequestRefundPartOrder body = new RequestRefundPartOrder();
 
-           body.order_no = orderno;
-           body.service_state = servicestate.ToString();
-          // body.refund_money = money;
-           body.inner_remark = remark;
-           body.product_ids = productids.Split(',');
+            body.order_no = orderno;
+            body.service_state = servicestate.ToString();
+            // body.refund_money = money;
+            body.inner_remark = remark;
+            body.product_ids = productids.Split(',');
 
-           Request<RequestRefundPartOrder> request = new Request<RequestRefundPartOrder>();
-           request.Body = body;
-           request.Header = request.NewHeader();
-           request.Key = "RefundPartOrder";
-           string requestStr = JsonHelper.ObjectToJson<Request<RequestRefundPartOrder>>(request);
-           ;
-           string responseStr = HttpUtils.HttpPost(requestStr);
-           ;
-           var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
-           return response;
-       }
+            Request<RequestRefundPartOrder> request = new Request<RequestRefundPartOrder>();
+            request.Body = body;
+            request.Header = request.NewHeader();
+            request.Key = "RefundPartOrder";
+            string requestStr = JsonHelper.ObjectToJson<Request<RequestRefundPartOrder>>(request);
+            //Logger.Log(requestStr);
+            string responseStr = HttpUtils.HttpPost(requestStr);
+            //string responseStr = null;
+            var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
+            return response;
+        }
     }
 
     [DataContract]

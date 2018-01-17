@@ -210,6 +210,8 @@ namespace JiuZhou.Shop.WebManager.Controllers
             //Response.ContentType = "text/javascript";
             int typeId = DoRequest.GetFormInt("code");//图片分类编码
             string allow = DoRequest.GetFormString("allow").ToLower().Trim();//允许上传哪些后缀的图片,多个后缀使用逗号隔开，缺省为允许jpg/jpeg/gif/png/bmp
+            //测试log
+            //Logger.Log(DoRequest.GetFormString("name").ToLower().Trim());
             List<string> allowList = new List<string>();
             string[] arr = allow.Split(',');
             string _fullpath = "";
@@ -250,7 +252,11 @@ namespace JiuZhou.Shop.WebManager.Controllers
                 }
                 NameValueCollection myCol = new NameValueCollection();
                 robots = new Robots();
+                //测试log
+                //Logger.Log("进入上传");
                 string s = robots.HttpUploadFile(config.UrlImagesUpload, file, myCol, "file");
+                //测试log
+               // Logger.Log("上传完毕");
                 if (robots.IsError)
                 {
                     return this.formatJson(Json(new { error = true, message = robots.ErrorMsg }));
@@ -276,8 +282,12 @@ namespace JiuZhou.Shop.WebManager.Controllers
                 }
                 picfile.user_agent = DoRequest.UserAgent;
                 picfile.client_ip = DoRequest.ClientIP;
-                 var res = AddSysPicFile.Do(picfile);
-                  if (res != null && res.Header != null && res.Header.Result != null && res.Header.Result.Code != null)
+                //测试log
+                //Logger.Log("写入数据库");                
+                var res = AddSysPicFile.Do(picfile);
+                //测试log
+                //Logger.Log("写完数据库");
+                if (res != null && res.Header != null && res.Header.Result != null && res.Header.Result.Code != null)
                       returnValue = Utils.StrToInt(res.Header.Result.Code, -1);
                 #endregion    
             }

@@ -480,11 +480,14 @@ $(function(){
         if (od.order_state == 1 || (od.order_state == 2 && od.delivery_state == 0))
             Response.Write("<a href=\"javascript:;\" onclick=\"updateReceiveAddr('" + od.order_no + "', '" + od.receive_name + "', '" + od.province_name + "', '" + od.city_name + "', '" + od.county_name + "', '" + od.receive_addr + "', '" + od.receive_mobile_no + "', '" + od.receive_user_tel + "', '" + od.zip_code + "')\">修改收货地址</a><br/>");
                             %>
-                             <%   //if (order.pay_type == 53 && od.order_state == 2 && order.pay_state == 2 && od.delivery_state == 0)
-            if (order.pay_type == 53 && order.pay_state == 2 && od.order_state != 0 && od.order_state != 4 && od.order_state != 5)
-                                  {
-                                      Response.Write("<a href=\"javascript:;\" onclick=\"BalanceRefund('" + od.order_no + "','" + order.user_id + "')\" >退订子订单</a><br/>");
-                                  }%>
+                                <%    if (order.pay_type == 53 && order.pay_state == 2 && od.order_state != 0 && od.order_state != 4 && od.order_state != 5)//od.order_state == 0
+        {
+            Response.Write("<a href=\"javascript:;\" onclick=\"BalanceRefund('" + od.order_no + "','" + order.user_id + "',,'" + order.pay_type + "')\" >退订翰医子订单</a><br/>");
+        }
+         if (order.pay_type == 65 && order.pay_state == 2 && od.order_state != 0 && od.order_state != 4 && od.order_state != 5)//od.order_state == 0
+        {
+            Response.Write("<a href=\"javascript:;\" onclick=\"BalanceRefund('" + od.order_no + "','" + order.user_id + "','" + order.pay_type + "')\" >退订企健子订单</a><br/>");
+        }%>
                         </td>
                     </tr>
                     <%
@@ -661,10 +664,11 @@ $(function(){
             return false;
         }
         //退订瀚医子订单
-        function BalanceRefund(order_no, user_id) {
+        function BalanceRefund(order_no, user_id, pay_type) {
             var postData = {
                 "order_no": order_no
            , "user_id": user_id
+                                 , "pay_type": pay_type
             }
             jsbox.confirm('您确定要将订单 <span style="color:#ff6600">' + order_no + '</span> 退订吗？', function () {
                 $.ajax({

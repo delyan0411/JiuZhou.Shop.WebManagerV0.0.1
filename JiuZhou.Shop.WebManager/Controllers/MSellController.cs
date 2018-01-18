@@ -886,13 +886,14 @@ namespace JiuZhou.Shop.WebManager.Controllers
         }
         #endregion
 
-        #region BalanceRefund 瀚医退订
+        #region BalanceRefund 瀚医企健付退订
         [HttpPost]
         public ActionResult BalanceRefundStates()
         {
             
             string order_no = DoRequest.GetFormString("order_no").Trim();
             int buyer_id = DoRequest.GetFormInt("user_id");
+            int pay_type = DoRequest.GetFormInt("pay_type");
             Logger.Error(order_no + buyer_id);
             if (string.IsNullOrEmpty(order_no))
             {
@@ -903,7 +904,6 @@ namespace JiuZhou.Shop.WebManager.Controllers
                 return Json(new { error = true, message = "参数错误" });
             }
             int returnValue = -1;
-            int pay_type = 53;
             var res = BalanceRefund.Do(order_no, buyer_id, pay_type);
             if (res != null && res.Header != null && res.Header.Result != null && res.Header.Result.Code != null)
                 returnValue = Utils.StrToInt(res.Header.Result.Code, -1);

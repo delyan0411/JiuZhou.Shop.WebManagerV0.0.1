@@ -451,14 +451,14 @@ $(function(){
         Response.Write("<a href=\"javascript:;\" onclick=\"updateReceiveAddr('" + od.order_no + "', '" + od.receive_name + "', '" + od.province_name + "', '" + od.city_name + "', '" + od.county_name + "', '" + od.receive_addr + "', '" + od.receive_mobile_no + "', '" + od.receive_user_tel + "', '" + od.zip_code + "')\">修改收货地址</a><br/>");
                             %>
                             <%
-        if (order.pay_type == 53 && order.pay_state == 2 && od.order_state != 0 && od.order_state != 4 && od.order_state != 5)//od.order_state == 0
-        {
-            Response.Write("<a href=\"javascript:;\" onclick=\"BalanceRefund('" + od.order_no + "','" + order.user_id + "',,'" + order.pay_type + "')\" >退订翰医子订单</a><br/>");
-        }
-         if (order.pay_type == 65 && order.pay_state == 2 && od.order_state != 0 && od.order_state != 4 && od.order_state != 5)//od.order_state == 0
-        {
-            Response.Write("<a href=\"javascript:;\" onclick=\"BalanceRefund('" + od.order_no + "','" + order.user_id + "','" + order.pay_type + "')\" >退订企健子订单</a><br/>");
-        }
+                                if (order.pay_type == 53 && order.pay_state == 2 && od.order_state != 0 && od.order_state != 4 && od.order_state != 5)//od.order_state == 0
+                                {
+                                    Response.Write("<a href=\"javascript:;\" onclick=\"BalanceRefund('" + od.order_no + "','" + order.user_id + "','" + order.pay_type + "')\" >退订翰医子订单</a><br/>");
+                                }
+                                // if (order.pay_type == 65 && order.pay_state == 2 && od.order_state != 0 && od.order_state != 4 && od.order_state != 5)//od.order_state == 0
+                                //{
+                                //    Response.Write("<a href=\"javascript:;\" onclick=\"BalanceRefund('" + od.order_no + "','" + order.user_id + "','" + order.pay_type + "')\" >退订企健子订单</a><br/>");
+                                //}
                                  %>
                         </td>
                     </tr>

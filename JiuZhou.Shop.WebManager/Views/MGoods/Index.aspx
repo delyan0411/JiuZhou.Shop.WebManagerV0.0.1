@@ -357,15 +357,15 @@ var changeOrderBy=function(ocol,ot){
                                 if (info.modify_time != null && !info.modify_time.Equals(""))
                                     modifytime = DateTime.Parse(info.modify_time).ToString("yyyy-MM-dd HH:mm");%>
                             <td><%=modifytime%><div style="height: 8px; line-height: 8px; font-size: 1px; overflow: hidden;">&nbsp;</div>
-                                <%if (info.allow_ebaolife == 1)
+                                <%if (info.allow_qj == 1)
                                     {
-                                        // Response.Write("<a href=\"javascript:;\" val='0' onclick=\"resetAllowYBLife2(this," + info.product_id + ")\">医卡通支付 √</a>");
-                                        //Response.Write("<span style=\"color:green\">医卡通可支付");
+                                        //Response.Write("<a href=\"javascript:;\" val='0' onclick=\"resetAllowYBLife2(this," + info.product_id + ")\">医卡通支付 √</a>");
+                                        Response.Write("<span style=\"color:green\">企健可支付");
                                     }
-                                    else if (info.allow_ebaolife == 0)
+                                    else if (info.allow_qj == 0)
                                     {
-                                        //  Response.Write("<a href=\"javascript:;\" val='1' onclick=\"resetAllowYBLife2(this," + info.product_id + ")\" style=\"color:#999\">医卡通支付 ×</a>");
-                                        //Response.Write("医卡通不可支付");
+                                        //Response.Write("<a href=\"javascript:;\" val='1' onclick=\"resetAllowYBLife2(this," + info.product_id + ")\" style=\"color:#999\">医卡通支付 ×</a>");
+                                        Response.Write("企健不可支付");
                                     }
 
                                 %>

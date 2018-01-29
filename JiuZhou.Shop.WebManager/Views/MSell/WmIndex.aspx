@@ -53,7 +53,7 @@
             <div class="position">
                 当前位置： <a href="/" title="管理首页">管理首页</a> &gt;&gt; <span>订单列表</span> &nbsp;&nbsp;&nbsp;
             </div>
-            <form id="sForm" action="/msell" method="get" onsubmit="checksearch(this)">
+            <form id="sForm" action="/msell/Wmindex" method="get" onsubmit="checksearch(this)">
             <input type="hidden" name="status" value="<%=status%>" />
             <input type="hidden" name="size" value="<%=DoRequest.GetQueryInt("size", 60)%>" />
             <input type="hidden" name="ocol" value="<%=DoRequest.GetQueryString("ocol")%>" />
@@ -87,20 +87,6 @@
                     </select>
                 </p>
                 <p>
-                    <select id="paytypeStatus" name="payType" style="width: 80px">
-                        <option value="-1" init="true">全部</option>
-                        <%--支付状态--%>
-                        <option value="1">医卡通</option>
-                        <option value="2">弥康</option>
-                        <option value="3">瀚医支付</option>
-                        <option value="4">虚拟账户支付</option>
-                        <option value="5">平安健康支付</option>
-                        <option value="6">可乐否订单</option>
-                        <option value="7">企健网</option>
-                        <option value="8">微脉订单</option>
-                    </select>
-                </p>
-                <p>
                     <%
                         DateTime date = DateTime.Now.AddDays(-15);
                     %><input type="text" name="sdate" value="<%=DoRequest.GetQueryDate("sDate", date).ToString("yyyy-MM-dd")%>"
@@ -115,9 +101,6 @@
                 <p>
                     <input type="submit" value=" 搜索 " class="submit" />
                 </p>
-                <p>
-                    <a href="javascript:;" onclick="changeOrderBy('TOTALMoney','<%=otype=="asc"?"desc":"asc"%>')">
-                        按价格排序</a></p>
             </div>
             </form>
             <script type="text/javascript">
@@ -134,17 +117,6 @@ var changeOrderBy=function(ocol,ot){
 	url=formatUrl("ot",ot);
 	window.location.href=url;
 };
-/*$(function(){
-	var obj=$("#sQuery");
-	obj.focus(function(){
-		$("#sLabel").css({"visibility":"hidden"});
-	}).blur(function(){
-		if(obj.val()=='') $("#sLabel").css({"visibility":"visible"});
-	});
-	if(obj.val()!=''){
-		$("#sLabel").css({"visibility":"hidden"});
-	}
-});*/
 var dropSType=dropOStatus=droppaytypeStatus=false;
 Atai.addEvent(window,"load",function(){
 	dropSType=new _DropListUI({
@@ -157,10 +129,6 @@ Atai.addEvent(window,"load",function(){
 	});dropOStatus.maxHeight="260px";dropOStatus.width="100px";
 	dropOStatus.init();dropOStatus.setDefault("<%=status%>");
 
-    	droppaytypeStatus=new _DropListUI({
-		input: Atai.$("#paytypeStatus")
-	});droppaytypeStatus.maxHeight="260px";droppaytypeStatus.width="80px";
-	droppaytypeStatus.init();droppaytypeStatus.setDefault("<%=paytype%>");
 });
 function checksearch(form){	
 	$("#sForm input[name='status']").val($("#oStatus option:selected").val());
@@ -194,16 +162,7 @@ $(function(){
             %>
             <%
                 foreach (OrderPayInfo order in orderList)
-                {
-                    /*		List<OrderInfo> _orderList = children.FindAll(
-                                delegate(OrderInfo o){
-                                    return o.GroupOrderNumber.Trim()==order.order_no.Trim();
-                            });
-                            DateTime addTime = order.add_date;
-                            int expiredMinutes = order.ExpiredMinutes;
-                            DateTime expiredTime=addTime.AddMinutes(expiredMinutes);
-                            if(expiredMinutes>240) expiredTime=DateTime.Now.AddDays(1);*/
-		
+                {		
             %>
             <table class="order-list" v="order-list" cellpadding="0" cellspacing="0">
                 <thead>
@@ -225,63 +184,10 @@ $(function(){
                                 元 优惠
                                 <%=order.pay_total_money - order.pay_order_money %><%--这两个都是不含运费pay_trans_money 但是pay_order_money减了优惠金额--%>
                                 元)</span> <span>
-                                    <%=(order.pay_type==0 && order.pay_state > 0)?"医卡通":order.pay_type_name%></span>
-                            &nbsp; <a href="/msell?status=-1&stype=4&q=<%=order.user_id%>" target="_blank">查看用户订单</a>
-                            <%
-                    if ((order.pay_order_state == 1) && order.pay_state == 0 && order.is_delete != 1)
-                    {
-                        Response.Write("&nbsp;<a href=\"javascript:;\"");
-                        Response.Write(" price=\"" + order.pay_order_money + "\"");
-                        Response.Write(" farePrice=\"" + order.pay_trans_money + "\"");
-
-                        //if (su._superUser.Contains(su._currUser.UserName)){
-                        Response.Write(" onclick=\"orderTransPriceBox(this,'" + order.pay_order_no + "',true)\"");
-                        Response.Write(" style=\"color:#00f\">改价/改运费</a>");
-                        //}else{
-                        //		Response.Write(" onclick=\"orderTransPriceBox(this,'"+order.pay_order_no+"',false)\"");
-                        //		Response.Write(" style=\"color:#00f\">改运费</a>");
-                        //	}
-                    }
-                            %>
+                                    <%=(order.pay_type==0 && order.pay_state > 0)?"医卡通":order.pay_type_name%></span>                          
                         </th>
                         <th style="width: 12%;">
-                            <%
-
-        if ((order.pay_order_state == 1) && order.pay_state == 0 && order.is_delete != 1
-        )
-        {
-            Response.Write("<a href=\"javascript:;\" count=\"" + order.send_msg_count + "\" onclick=\"sendMobileMessageBox(this,'" + order.pay_order_no + "')\" style=\"color:#00f\">提醒买家付款<span>(" + order.send_msg_count + ")</span></a>");
-        }
-
-        var servicestate = "";
-        if (order.pay_service_state == 2)
-        {
-            servicestate = "处理完毕";
-        }
-        else
-        {
-            if (order.pay_service_state == 1)
-            {
-                servicestate = "正在处理";
-            }
-            else
-            {
-                servicestate = "无售后";
-            }
-        }
-        if ((((order.pay_order_state == 2 && (order.pay_state == 2 || order.pay_type == 18) && order.pay_delivery_state == 0) || (order.pay_order_state == 1 && order.pay_state == 1)) && order.is_delete == 0) || (order.pay_order_state == 4 && (order.pay_service_state == 1 || order.pay_service_state == 0)))
-        {
-            if (order.pay_type != 53&&order.pay_type !=65)
-            {
-                 
-                Response.Write("<a href=\"javascript:;\" onclick=\"resetOrderStyleBox('" + order.pay_order_no + "','" + order.pay_service_state + "')\" >退订(<span style=\"color:#555\">" + servicestate + "</span>)</a><br/>");
-            }
-        }
-        if ((((order.pay_order_state == 2 && order.pay_delivery_state > 0) || order.pay_order_state == 3) && order.is_delete == 0 && order.pay_type == 0) || (order.pay_order_state == 5 && (order.pay_service_state == 1 || order.pay_service_state == 0)))
-        {
-            Response.Write("<a href=\"javascript:;\" onclick=\"returnOrderStyleBox('" + order.pay_order_no + "','" + order.pay_service_state + "')\">退货(<span style=\"color:#555\">" + servicestate + "</span>)</a><br/>");
-        }  
-                            %>
+                            
                         </th>
                     </tr>
                 </thead>
@@ -371,8 +277,8 @@ $(function(){
                                                 <%=_itemstate%></span><br />
                                         规格：<%=p_spec%><%=string.IsNullOrEmpty(item.sku_name)?"":"&nbsp;/&nbsp;"%><%=item.sku_name%><br />
                                         编码：<%=item.product_code%>
-                                        <a href="javascript:;" onclick="resetCode(<%=od.order_id %>,<%=item.product_id %>,'<%=item.product_code %>','<%=item.product_name %>')">
-                                            修改</a>
+                                     <%--   <a href="javascript:;" onclick="resetCode(<%=od.order_id %>,<%=item.product_id %>,'<%=item.product_code %>','<%=item.product_name %>')">
+                                            修改</a>--%>
                                     </div>
                                     <div class="unit-price">
                                         <%if (item.sale_price > item.deal_price)
@@ -443,24 +349,11 @@ $(function(){
                             %>
                         </td>
                         <td class="op">
-                            <a href="/msell/orderItem?id=<%=od.order_id%>&orderNumber=<%=od.order_no %>" target="_blank">
+                           <%-- <a href="/msell/orderItem?id=<%=od.order_id%>&orderNumber=<%=od.order_no %>" target="_blank">
                                 查看详情</a><br />
                             <a href="javascript:;" onclick="updateRemarkBox('#remark-<%=od.order_id%>', '<%=od.order_no%>')">
-                                订单备注</a><br />
-                            <% 
-    if (od.order_state == 1 || (od.order_state == 2 && od.delivery_state == 0))
-        Response.Write("<a href=\"javascript:;\" onclick=\"updateReceiveAddr('" + od.order_no + "', '" + od.receive_name + "', '" + od.province_name + "', '" + od.city_name + "', '" + od.county_name + "', '" + od.receive_addr + "', '" + od.receive_mobile_no + "', '" + od.receive_user_tel + "', '" + od.zip_code + "')\">修改收货地址</a><br/>");
-                            %>
-                            <%
-                                if (order.pay_type == 53 && order.pay_state == 2 && od.order_state != 0 && od.order_state != 4 && od.order_state != 5)//od.order_state == 0
-                                {
-                                    Response.Write("<a href=\"javascript:;\" onclick=\"BalanceRefund('" + od.order_no + "','" + order.user_id + "','" + order.pay_type + "')\" >退订翰医子订单</a><br/>");
-                                }
-                                if (order.pay_type == 65 && order.pay_state == 2 && od.order_state != 0 && od.order_state != 4 && od.order_state != 5)//od.order_state == 0
-                                {
-                                    Response.Write("<a href=\"javascript:;\" onclick=\"BalanceRefund('" + od.order_no + "','" + order.user_id + "','" + order.pay_type + "')\" >退订企健子订单</a><br/>");
-                                }
-                                 %>
+                                订单备注</a><br />--%>
+                            
                         </td>
                     </tr>
                     <%
@@ -479,7 +372,6 @@ $(function(){
         </div>
     </div>
     <script type="text/javascript">
-
         function showItems(obj) {
             var td = $(obj).parent("div").parent("div").parent("td");
             if (td.hasClass("show")) {
@@ -505,125 +397,6 @@ $(function(){
                 }
             });
         });
-    </script>
-    <%Html.RenderPartial("MSell/SendMobileMessageControl"); %>
-    <%Html.RenderPartial("MSell/OrderTransPriceControl"); %>
-    <%Html.RenderPartial("MSell/AppendDeliveryControl"); %>
-    <%Html.RenderPartial("MSell/OrderRefundControl"); %>
-    <%Html.RenderPartial("MSell/RefundOrderControl"); %>
-    <%Html.RenderPartial("MSell/RefundPartOrderControl"); %>
-    <%Html.RenderPartial("MSell/ReturnPartOrderControl"); %>
-    <%Html.RenderPartial("MSell/ReturnOrderControl"); %>
-    <%Html.RenderPartial("MSell/UpdataReceiveAddrControl"); %>
-    <%Html.RenderPartial("MSell/ResetProductCodeControl"); %>
-    <div id="updateRemark-boxControl" class="moveBox" style="height: 260px; width: 520px;">
-        <div class="name">
-            设置订单备注
-            <div class="close" v="atai-shade-close" title="关闭">
-                &nbsp;</div>
-        </div>
-        <div class="clear">
-            &nbsp;</div>
-        <form action="" onsubmit="return postOrderRemark(this)">
-        <input type="hidden" id="updateRemark-orderNumber" name="orderNumber" value="" />
-        <table width="100%" border="0" cellspacing="4" cellpadding="0">
-            <tr>
-                <td class="left">
-                    &nbsp;
-                </td>
-                <td>
-                    <span class="tips-text" style="color: #ff6600">&nbsp;</span>
-                </td>
-            </tr>
-            <tr>
-                <td class="left" style="height: 36px;" valign="top">
-                    订 单 号：
-                </td>
-                <td>
-                    <input type="text" id="oupdateRemark-orderNumber" class="input" value="" disabled="disabled" />
-                </td>
-            </tr>
-            <tr>
-                <td class="left" style="height: 36px;" valign="top">
-                    备&nbsp;&nbsp;注：
-                </td>
-                <td>
-                    <textarea id="updateRemark-textarea" name="remark"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td class="left" style="height: 30px;">
-                    &nbsp;
-                </td>
-                <td>
-                    <input type="submit" class="submit" value="  保 存  " />
-                </td>
-            </tr>
-        </table>
-        </form>
-    </div>
-    <script type="text/javascript">
-        function postOrderRemark(form) {
-            var postData = getPostDB(form);
-            $.ajax({
-                url: "/msell/updateRemark"
-			, data: postData
-            , type: "post"
-			, dataType: "json"
-			, success: function (json) {
-			    if (json.error) {
-			        $(_oupdateRemarkBoxDialog.dialog).find("span[class='tips-text']").html(json.message);
-			    } else {
-			        window.location.href = window.location.href;
-			    }
-			}
-            });
-            return false;
-        }
-        var _oupdateRemarkBoxDialog = false;
-        function updateRemarkBox(obj, orderNumber) {
-
-            var boxId = "#updateRemark-boxControl";
-            var box = Atai.$(boxId);
-            var _dialog = false;
-            if (!_dialog)
-                _dialog = new AtaiShadeDialog();
-            _dialog.init({
-                obj: boxId
-		    , sure: function () { }
-		    , CWCOB: false
-            });
-            _oupdateRemarkBoxDialog = _dialog;
-            $(_oupdateRemarkBoxDialog.dialog).find("#updateRemark-orderNumber").val(orderNumber);
-            $(_oupdateRemarkBoxDialog.dialog).find("#oupdateRemark-orderNumber").val(orderNumber);
-            return false;
-        }
-
-        //退订瀚医子订单
-        function BalanceRefund(order_no, user_id, pay_type) {
-            var postData = {
-                "order_no": order_no
-           , "user_id": user_id
-                 , "pay_type": pay_type
-            }
-            jsbox.confirm('您确定要将订单 <span style="color:#ff6600">' + order_no + '</span> 退订吗？', function () {
-                $.ajax({
-                    url: "/MSell/BalanceRefundStates"
-			, data: postData
-            , type: "post"
-			, dataType: "json"
-			, success: function (json) {
-			    if (json.error) {
-			        alert(json.message);
-			    } else {
-			        jsbox.success(json.message, window.location.href);
-			    }
-			}
-                });
-            });
-            return false;
-        }
-
     </script>
     <br />
     <br />

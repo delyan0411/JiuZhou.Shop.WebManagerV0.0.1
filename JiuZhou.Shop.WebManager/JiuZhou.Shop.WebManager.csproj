@@ -1462,6 +1462,7 @@
     <Content Include="Views\Home\QuerySql.aspx" />
     <Content Include="Views\Home\DownLoadPage.aspx" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Logion\wmlogin.aspx" />
     <Content Include="Views\Logion\Index.aspx" />
     <Content Include="Views\MAnalysis\ProductView.aspx" />
     <Content Include="Views\MAnalysis\CategoryPieView.aspx" />
@@ -1528,6 +1529,7 @@
     <Content Include="Views\MPromotions\RedPackList.aspx" />
     <Content Include="Views\MSell\Comments.aspx" />
     <Content Include="Views\MSell\ClickFarming.aspx" />
+    <Content Include="Views\MSell\WmIndex.aspx" />
     <Content Include="Views\MSell\StoreEditor.aspx" />
     <Content Include="Views\MSell\Index.aspx" />
     <Content Include="Views\MSell\ReChargeList.aspx" />

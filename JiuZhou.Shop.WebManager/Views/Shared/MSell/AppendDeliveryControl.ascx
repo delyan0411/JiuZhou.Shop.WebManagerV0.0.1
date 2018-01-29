@@ -8,7 +8,7 @@
 	</div>
 	<div class="clear">&nbsp;</div>
 <form action="" onsubmit="return postDeliveryData(this)">
-<input type="hidden" id="otp-orderNumber" name="orderNumber" value=""/>
+<input type="hidden"  name="orderNumber" value=""/>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td class="left">&nbsp;</td>

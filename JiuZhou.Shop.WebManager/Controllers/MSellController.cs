@@ -16,7 +16,6 @@ namespace JiuZhou.Shop.WebManager.Controllers
         #region 订单列表
         public ActionResult Index()
         {
-
             UserResBody currResBody = new UserResBody();
             foreach (UserResBody item in base._userResBody)
             {
@@ -1861,6 +1860,107 @@ namespace JiuZhou.Shop.WebManager.Controllers
             return View();
         }
         #endregion
+        #endregion
+
+        #region 微脉订单列表
+        public ActionResult WmIndex()
+        {
+            UserResBody currResBody = new UserResBody();
+            foreach (UserResBody item in base._userResBody)
+            {
+                if (item.res_path.Equals("0,1,102,148,609,"))
+                {
+                    currResBody = item;
+                    break;
+                }
+            }
+            HasPermission(currResBody.res_id);
+
+            ViewData["currResBody"] = currResBody;//当前菜单
+            string position = "";
+            ViewData["pageTitle"] = base.FormatPageTile(currResBody, ref position);
+            ViewData["position"] = position;//页面位置
+
+            int pagesize = DoRequest.GetQueryInt("size", 20);
+            int pageindex = DoRequest.GetQueryInt("page", 1);
+            int status = DoRequest.GetQueryInt("status", -1);
+            int sType = DoRequest.GetQueryInt("stype", 0);
+            int payType = 8;
+            DateTime date = DateTime.Now.AddDays(-15);
+            DateTime sDate = DoRequest.GetQueryDate("sDate", date);
+            DateTime eDate = DoRequest.GetQueryDate("eDate", DateTime.Now).AddDays(1);
+
+            string ocol = DoRequest.GetQueryString("ocol").Trim();
+            string otype = DoRequest.GetQueryString("ot");
+
+            if (ocol.Equals(""))
+                ocol = "ADDTIME";
+
+            string ot = "DESC";
+            if (otype.ToLower().Trim() == "asc")
+            {
+                ot = "ASC";
+            }
+
+            string q = DoRequest.GetQueryString("q").Trim();
+            string sKey = "";
+            #region 处理查询关键词中的空格
+            string[] qList = q.Split(' ');
+            for (int i = 0; i < qList.Length; i++)
+            {
+                if (string.IsNullOrEmpty(qList[i].Trim()))
+                    continue;
+                if (i > 0)
+                    sKey += " ";
+                sKey += qList[i];
+            }
+            q = sKey;
+            #endregion
+
+            #region 订单列表
+            int dataCount = 0;
+            int pageCount = 0;
+            List<OrderPayInfo> infoList = new List<OrderPayInfo>();
+                var res = QueryOrderList.Do(pagesize, pageindex
+                    , status
+                    , sDate.ToString("")
+                    , eDate.ToString("")
+                    , sType
+                    , payType
+                    , sKey
+                    , ocol
+                    , ot
+                    , ref dataCount
+                    , ref pageCount);
+
+            if (res != null && res.Body != null && res.Body.order_pay_list != null)
+            {
+                infoList = res.Body.order_pay_list;
+            }
+            ViewData["infoList"] = infoList;//订单列表
+            System.Text.StringBuilder currPageUrl = new System.Text.StringBuilder();//拼接当前页面URL
+            currPageUrl.Append("/msell/Wmindex?");
+            currPageUrl.Append("status=" + status);
+            currPageUrl.Append("&stype=" + sType);
+            currPageUrl.Append("&size=" + pagesize);
+            currPageUrl.Append("&sdate=" + sDate.ToString("yyyy-MM-dd"));
+            currPageUrl.Append("&edate=" + eDate.AddDays(-1).ToString("yyyy-MM-dd"));
+            currPageUrl.Append("&ocol=" + ocol);
+            currPageUrl.Append("&ot=" + otype);
+
+            currPageUrl.Append("&q=" + DoRequest.UrlEncode(q));
+            currPageUrl.Append("&page=" + pageindex);
+            ViewData["currPageUrl"] = currPageUrl;//当前页面的URL
+            ViewData["pagesize"] = pagesize;
+            ViewData["pageindex"] = pageindex;
+            ViewData["dataCount"] = dataCount;
+
+            ViewData["pageIndexLink"] = this.FormatPageIndex(dataCount, pagesize, pageindex, currPageUrl.ToString());
+            ViewData["pageIndexLink2"] = this.FormatPageIndex(dataCount, pagesize, pageindex, currPageUrl.ToString());
+            #endregion
+
+            return View();
+        }
         #endregion
     }
 }

@@ -248,5 +248,10 @@ namespace JiuZhou.MySql
 
         [DataMember]
         public int coupon_flag { set; get; }
+
+
+        [DataMember]
+        public int allow_qj { set; get; }
+        
     } 
 }

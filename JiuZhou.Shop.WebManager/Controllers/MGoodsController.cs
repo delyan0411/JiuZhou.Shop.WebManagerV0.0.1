@@ -14,6 +14,8 @@ using JiuZhou.HttpTools;
 using JiuZhou.Model;
 using JiuZhou.Common;
 using JiuZhou.Cache;
+using Aspose.Cells;
+using JiuZhou.Common.Tools;
 
 namespace JiuZhou.Shop.WebManager.Controllers
 {
@@ -22,6 +24,102 @@ namespace JiuZhou.Shop.WebManager.Controllers
     {
         //
         // GET: /MGoods/
+        #region 导出商品excel
+        public ActionResult Export()
+        {
+            UserResBody currResBody = new UserResBody();
+            foreach (UserResBody item in base._userResBody)
+            {
+                if (item.res_path.Equals("0,1,101,127,128,"))
+                {
+                    currResBody = item;
+                    break;
+                }
+            }
+            HasPermission(currResBody.res_id);
+            
+            //ViewData["currResBody"] = currResBody;//当前菜单
+            //string position = "";
+            //ViewData["pageTitle"] = base.FormatPageTile(currResBody, ref position);
+            //ViewData["position"] = position;//页面位置
+            int pagesize = 30;
+            int pageindex = 1;
+            int isVisible = 1;
+            int classid = DoRequest.GetQueryInt("classid", -1);
+            int shopid = DoRequest.GetQueryInt("shopid", -1);
+            int ison = 1;
+            int sType = DoRequest.GetQueryInt("stype");
+            int promotion = DoRequest.GetQueryInt("promotion", -1);
+            string ocol = DoRequest.GetQueryString("ocol").Trim().ToLower();
+            if (ocol == "")
+            {
+                ocol = "modifytime";
+            }
+            string otype = DoRequest.GetQueryString("ot").ToLower().Trim();
+            if (otype == "")
+            {
+                otype = "desc";
+            }
+            string q = DoRequest.GetQueryString("q").Trim();
+            string sKey = "";
+            #region 处理查询关键词中的空格
+            string[] qList = q.Split(' ');
+            for (int i = 0; i < qList.Length; i++)
+            {
+                if (string.IsNullOrEmpty(qList[i].Trim()))
+                    continue;
+                if (i > 0)
+                    sKey += " ";
+                sKey += qList[i];
+            }
+            q = sKey;
+            #endregion
+            int dataCount = 0;
+            int pageCount = 0;
+            List<ProductsInfo> _table = new List<ProductsInfo>();            
+            var resp = QueryProductInfo.Do(pagesize, pageindex
+                , 0
+                , shopid
+                , classid
+                , sType
+                , promotion
+                , ison
+                , isVisible
+                , sKey
+                , ocol
+                , otype
+                , ref dataCount
+                , ref pageCount);
+            if (resp != null && resp.Body != null && resp.Body.product_list != null&& dataCount<60000)
+            {
+                //ExportDo
+                List<ProductsInfoExport> _tableexp = new List<ProductsInfoExport>();
+                var respexp = QueryProductInfo.ExportDo(dataCount, 1
+                    , 0
+                    , shopid
+                    , classid
+                    , sType
+                    , promotion
+                    , ison
+                    , isVisible
+                    , sKey
+                    , ocol
+                    , otype
+                    , ref dataCount
+                    , ref pageCount);
+                if (respexp != null && respexp.Body != null && respexp.Body.product_list != null)
+                {
+                    _tableexp = respexp.Body.product_list;
+                    Workbook workbookret = new Workbook(); //工作簿 
+                    Worksheet sheet = workbookret.Worksheets[0]; //工作表 
+                    Exceloperate.SetExcelList(_tableexp, sheet);
+                    return File(workbookret.SaveToStream().ToArray(), "application/ms-excel", "商品列表.xls");
+                }
+            }
+            return Content("出现了错误");            
+        }
+        #endregion
+       
 
         #region 在售商品列表
         public ActionResult Index()

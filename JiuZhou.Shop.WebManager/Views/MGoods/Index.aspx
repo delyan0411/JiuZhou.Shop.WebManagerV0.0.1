@@ -20,10 +20,10 @@
 </head>
 <body>
     <%
-        int classid = DoRequest.GetQueryInt("classid");
-        int sType = DoRequest.GetQueryInt("sType");
-        int shopid = DoRequest.GetQueryInt("shopid");
-        int promotion = DoRequest.GetQueryInt("promotion");
+        int classid = DoRequest.GetQueryInt("classid",-1);
+        int sType = DoRequest.GetQueryInt("sType",0);
+        int shopid = DoRequest.GetQueryInt("shopid",-1);
+        int promotion = DoRequest.GetQueryInt("promotion",-1);
         List<TypeList> tList = new List<TypeList>();
         DoCache chche = new DoCache();
         if (chche.GetCache("typelist") == null)
@@ -145,10 +145,13 @@
 
                     </p>
                     &nbsp;
-                    <p>
+                   
+                     <p>
+                        <a href="/mgoods/export?classid=<%=classid %>&sType=<%=sType %>&shopid=<%=shopid %>&promotion=<%=promotion %>" style="font-size: 20px" target="_blank">导出商品</a>
+                    </p>
+                     <p>
                         <a href="/mgoods/editor?classid=0&id=0" style="font-size: 20px" target="_blank">添加商品</a>
                     </p>
-
                 </div>
             </form>
             <script type="text/javascript">

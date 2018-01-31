@@ -47,6 +47,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=7.2.1.0, Culture=neutral, PublicKeyToken=304f5aa34aff2288, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\Aspose.Cells.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -95,6 +99,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Aspose.Cells.dll" />
     <Content Include="bin\JiuZhou.Common.dll" />
     <Content Include="bin\JiuZhou.Common.pdb" />
     <Content Include="bin\JiuZhou.ControllerBase.dll" />
@@ -372,6 +377,7 @@
     <Content Include="ckeditor\skins\moono\images\lock.png" />
     <Content Include="ckeditor\skins\moono\images\refresh.png" />
     <Content Include="ckeditor\styles.js" />
+    <Content Include="dll\Aspose.Cells.dll" />
     <Content Include="dll\System.Web.Mvc.dll" />
     <Content Include="dll\ThoughtWorks.QRCode.dll" />
     <Content Include="echarts-2.2.6\build\dist\chart\bar.js" />
@@ -1462,7 +1468,6 @@
     <Content Include="Views\Home\QuerySql.aspx" />
     <Content Include="Views\Home\DownLoadPage.aspx" />
     <Content Include="Views\Home\Index.aspx" />
-    <Content Include="Views\Logion\wmlogin.aspx" />
     <Content Include="Views\Logion\Index.aspx" />
     <Content Include="Views\MAnalysis\ProductView.aspx" />
     <Content Include="Views\MAnalysis\CategoryPieView.aspx" />

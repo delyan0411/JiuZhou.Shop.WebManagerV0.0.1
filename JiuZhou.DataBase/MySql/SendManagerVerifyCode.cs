@@ -20,7 +20,7 @@ namespace JiuZhou.MySql
            request.Key = "SendManagerVerifyCode";
            string requestStr = JsonHelper.ObjectToJson<Request<RequestSendCode>>(request);
            string responseStr = HttpUtils.HttpPost(requestStr);
-           var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
+            var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
            return response;
        }
     }

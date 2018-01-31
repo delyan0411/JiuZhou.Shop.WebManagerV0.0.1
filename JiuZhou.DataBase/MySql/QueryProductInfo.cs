@@ -49,6 +49,46 @@ namespace JiuZhou.MySql
 
             return response;
         }
+        public static Response<ResponseExportBody> ExportDo(int pagesize, int pageindex, int checktype, int shopid, int classid, int _stype, int promotion, int isonsale, int isVisible, string _skey, string _ocol, string _ot, ref int dataCount, ref int pageCount)
+        {
+            RequestSearchBody search = new RequestSearchBody();
+
+            search.page_size = pagesize.ToString();
+            search.page_no = pageindex.ToString();
+            search.product_type_id = classid.ToString();
+            search.search_type = _stype.ToString();
+            search.promotion = promotion.ToString();
+            search.is_on_sale = isonsale.ToString();
+            search.is_visible = isVisible.ToString();
+            search.key_word = _skey;
+            search.sort_column = _ocol;
+            search.sort_type = _ot;
+            search.shop_id = shopid.ToString();
+            search.check_state = checktype.ToString();
+
+            Request<RequestSearchBody> request = new Request<RequestSearchBody>();
+            request.Body = search;
+            request.Header = request.NewHeader();
+            request.Key = "QueryProductList";
+            string requestStr = JsonHelper.ObjectToJson<Request<RequestSearchBody>>(request);
+            string responseStr = HttpUtils.HttpPost(requestStr);
+            var response = JsonHelper.JsonToObject<Response<ResponseExportBody>>(responseStr);
+
+            if (response != null && response.Body != null && response.Body.rec_num != null)
+            {
+                dataCount = int.Parse(response.Body.rec_num);
+                if (dataCount % pagesize == 0)
+                {
+                    pageCount = dataCount / pagesize;
+                }
+                else
+                {
+                    pageCount = dataCount / pagesize + 1;
+                }
+            }
+
+            return response;
+        }
     }
 
     [DataContract]
@@ -99,6 +139,51 @@ namespace JiuZhou.MySql
         public List<ProductsInfo> product_list { set; get; }
     }
 
+    [DataContract]
+    public class ResponseExportBody
+    {
+        [DataMember]
+        public string rec_num { set; get; }
+
+        [DataMember]
+        public List<ProductsInfoExport> product_list { set; get; }
+    }
+    [DataContract]
+    public class ProductsInfoExport
+    {
+        [DataMember]
+        public int product_id { set; get; }
+
+        [DataMember]
+        public string product_code { set; get; }
+
+        [DataMember]
+        public string product_name { set; get; }    
+
+        [DataMember]
+        public string product_brand { set; get; }
+
+        [DataMember]
+        public string search_key { set; get; }
+
+        [DataMember]
+        public decimal market_price { set; get; }
+
+        [DataMember]
+        public decimal sale_price { set; get; }
+
+        [DataMember]
+        public decimal mobile_price { set; get; }
+  
+        [DataMember]
+        public string manu_facturer { set; get; }
+
+        [DataMember]
+        public string product_spec { set; get; }
+
+        [DataMember]
+        public decimal product_weight { set; get; }
+    }
     [DataContract]
     public class ProductsInfo
     {

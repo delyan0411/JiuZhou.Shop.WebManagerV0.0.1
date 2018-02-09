@@ -983,8 +983,15 @@ function submitProductForm(form) {
 				skuMinPrice2=parseFloat(skuMobilePrice);
 			if(parseFloat(skuMobilePrice)>skuMaxPrice2)
 				skuMaxPrice2=parseFloat(skuMobilePrice);
-        }
-if (Atai.isNumber(skuPromotionPrice)) {    if (parseFloat(skuPromotionPrice) < skuMinPromotion)        skuMinPromotion = parseFloat(skuPromotionPrice);    if (parseFloat(skuPromotionPrice) > skuMaxPromotion)        skuMaxPromotion = parseFloat(skuPromotionPrice);}
+
+        }
+
+if (Atai.isNumber(skuPromotionPrice)) {
+    if (parseFloat(skuPromotionPrice) < skuMinPromotion)
+        skuMinPromotion = parseFloat(skuPromotionPrice);
+    if (parseFloat(skuPromotionPrice) > skuMaxPromotion)
+        skuMaxPromotion = parseFloat(skuPromotionPrice);
+}
 
 		if(Atai.isInt(skuStock)){
 			skuStockCount += parseInt(skuStock);

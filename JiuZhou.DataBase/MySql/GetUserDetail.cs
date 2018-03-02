@@ -18,14 +18,12 @@ namespace JiuZhou.MySql
            request.Body = body;
            request.Header = request.NewHeader();
            request.Key = "GetUserDetail";
-           string requestStr = JsonHelper.ObjectToJson<Request<RequestUserDetailBody>>(request);
-           string responseStr = HttpUtils.HttpPost(requestStr);
-           var response = JsonHelper.JsonToObject<Response<UserInfo>>(responseStr);
-      
-           return response;
+            string requestStr = JsonHelper.ObjectToJson<Request<RequestUserDetailBody>>(request);
+            string responseStr = HttpUtils.HttpPost(requestStr);
+            var response = JsonHelper.JsonToObject<Response<UserInfo>>(responseStr);
+            return response;
        }
     }
-
     [DataContract]
     public class RequestUserDetailBody
     {
@@ -110,5 +108,8 @@ namespace JiuZhou.MySql
 
         [DataMember]
         public int user_integral { set; get; }
+
+        [DataMember]
+        public string acc_money { set; get; }
     } 
 }

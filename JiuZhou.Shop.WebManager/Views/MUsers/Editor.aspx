@@ -67,13 +67,14 @@
               <tr>
                  <td>邮箱：<%=string.IsNullOrEmpty(Info.user_email)?"未填写邮箱地址":Info.user_email%></td>
                  <td>总积分：<strong><%=Info.total_user_integral%></strong></td>
-                 <td>可用积分：<strong><%=Info.user_integral%></strong><a href="javascript:;" onclick="updateintelgral('<%=Info.user_id %>')" style="color:green">赠送积分</a></td>
+                 <td>可用积分：<strong><%=Info.user_integral%></strong>&nbsp;&nbsp;<a href="javascript:;" onclick="updateintelgral('<%=Info.user_id %>')" style="color:green">赠送积分</a></td>
               </tr>
               <tr>
-                 <td colspan="3">
-                 手机：<span name="phone" ><%=string.IsNullOrEmpty(Info.mobile_no)?"未填写手机号":Info.mobile_no%></span>
+                 <td colspan="2" >
+                 手机：<span name="phone"  ><%=string.IsNullOrEmpty(Info.mobile_no)?"未填写手机号":Info.mobile_no%></span>
                  &nbsp;<a href="javascript:;" onclick="resetmobile('<%=Info.user_id %>','<%=Info.mobile_no==null?"":Info.mobile_no %>','<%=Info.user_name %>')" style="color:green">修改绑定手机</a>
                  </td>
+                   <td>用户余额：<strong><%=Info.acc_money%></strong></td>
               </tr>
               <tr>
                  <td colspan="2" style="height:30px">上次访问：<%=Info.last_login_time%></td>

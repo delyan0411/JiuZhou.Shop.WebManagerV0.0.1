@@ -83,6 +83,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Logger.cs" />
     <Compile Include="Controllers\MGoodsController.cs" />
+    <Compile Include="Controllers\MInsuranceController.cs" />
     <Compile Include="Controllers\MToolsController.cs" />
     <Compile Include="Controllers\MPolymericController.cs" />
     <Compile Include="Controllers\MUsersController.cs" />
@@ -1504,6 +1505,8 @@
     <Content Include="Views\MGoods\SeoRule.aspx" />
     <Content Include="Views\MGoods\SeoRuleEditor.aspx" />
     <Content Include="Views\MGoods\SeoClassRuleEditor.aspx" />
+    <Content Include="Views\MInsurance\Editor.aspx" />
+    <Content Include="Views\MInsurance\List.aspx" />
     <Content Include="Views\MPolymeric\Add.aspx" />
     <Content Include="Views\MPolymeric\CategSet.aspx" />
     <Content Include="Views\MPolymeric\Index.aspx" />
@@ -1534,6 +1537,7 @@
     <Content Include="Views\MPromotions\RedPackList.aspx" />
     <Content Include="Views\MSell\Comments.aspx" />
     <Content Include="Views\MSell\ClickFarming.aspx" />
+    <Content Include="Views\MSell\WmSearchList.aspx" />
     <Content Include="Views\MSell\WmIndex.aspx" />
     <Content Include="Views\MSell\StoreEditor.aspx" />
     <Content Include="Views\MSell\Index.aspx" />

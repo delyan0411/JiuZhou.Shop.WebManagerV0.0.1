@@ -28,10 +28,8 @@ namespace JiuZhou.MySql
            request.Body = body;
            request.Header = request.NewHeader();
            request.Key = "OpArticle";
-           string requestStr = JsonHelper.ObjectToJson<Request<RequestOpArticleBody>>(request);
-           ;
-           string responseStr = HttpUtils.HttpPost(requestStr);
-           ;
+           string requestStr = JsonHelper.ObjectToJson<Request<RequestOpArticleBody>>(request);           
+           string responseStr = HttpUtils.HttpPost(requestStr);           
            var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
            return response;
        }

@@ -1962,6 +1962,74 @@ namespace JiuZhou.Shop.WebManager.Controllers
             return View();
         }
         #endregion
-    }
+
+        #region 微脉搜索历史
+        public ActionResult WmSearchList()
+        {
+            UserResBody currResBody = new UserResBody();
+            foreach (UserResBody item in base._userResBody)
+            {
+                if (item.res_path.Equals("0,1,102,148,610,"))
+                {
+                    currResBody = item;
+                    break;
+                }
+            }
+            HasPermission(currResBody.res_id);
+            ViewData["currResBody"] = currResBody;//当前菜单
+            string position = "";
+            ViewData["pageTitle"] = base.FormatPageTile(currResBody, ref position);
+            ViewData["position"] = position;//页面位置
+            int pagesize = DoRequest.GetQueryInt("size", 20);
+            int pageindex = DoRequest.GetQueryInt("page", 1);            
+            DateTime date = DateTime.Now.AddDays(-15);
+            DateTime sDate = DoRequest.GetQueryDate("sDate", date);
+            DateTime eDate = DoRequest.GetQueryDate("eDate", DateTime.Now).AddDays(1);
+            string q = DoRequest.GetQueryString("q").Trim();
+            string sKey = "";
+            #region 处理查询关键词中的空格
+            string[] qList = q.Split(' ');
+            for (int i = 0; i < qList.Length; i++)
+            {
+                if (string.IsNullOrEmpty(qList[i].Trim()))
+                    continue;
+                if (i > 0)
+                    sKey += " ";
+                sKey += qList[i];
+            }
+            q = sKey;
+            #endregion
+            #region 查询列表
+            int dataCount = 0;
+            int pageCount = 0;
+            List<WmWordsInfo> infoList = new List<WmWordsInfo>();
+            var res = QueryWmWordsList.Do(pagesize, pageindex
+                , q, sDate.ToString("")
+                    , eDate.ToString("")
+                , ref dataCount
+                , ref pageCount);
+            if (res != null && res.Body != null && res.Body.word_list != null)
+            {
+                infoList = res.Body.word_list;
+            }
+            ViewData["infoList"] = infoList;//订单列表
+            System.Text.StringBuilder currPageUrl = new System.Text.StringBuilder();//拼接当前页面URL
+            currPageUrl.Append("/msell/WmSearchList?");
+            currPageUrl.Append("size=" + pagesize);
+            currPageUrl.Append("&sdate=" + sDate.ToString("yyyy-MM-dd"));
+            currPageUrl.Append("&edate=" + eDate.AddDays(-1).ToString("yyyy-MM-dd"));
+            currPageUrl.Append("&q=" + DoRequest.UrlEncode(q));
+            currPageUrl.Append("&page=" + pageindex);
+            ViewData["currPageUrl"] = currPageUrl;//当前页面的URL
+            ViewData["pagesize"] = pagesize;
+            ViewData["pageindex"] = pageindex;
+            ViewData["dataCount"] = dataCount;
+            ViewData["pageIndexLink"] = this.FormatPageIndex(dataCount, pagesize, pageindex, currPageUrl.ToString());
+            ViewData["pageIndexLink2"] = this.FormatPageIndex(dataCount, pagesize, pageindex, currPageUrl.ToString());
+            #endregion
+            return View();
+        }
+         #endregion
+        }
 }
  

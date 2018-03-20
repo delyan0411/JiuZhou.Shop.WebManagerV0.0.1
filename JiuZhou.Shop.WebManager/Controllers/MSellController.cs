@@ -1828,14 +1828,14 @@ namespace JiuZhou.Shop.WebManager.Controllers
             int pagesize = 100;
             int pageindex = DoRequest.GetQueryInt("page", 1);
             string q = DoRequest.GetQueryString("q");
-
+            int searchtype = DoRequest.GetQueryInt("searchtype");
 
             int dataCount = 0;
             int pageCount = 0;
             List<RechargeInfo> infoList = new List<RechargeInfo>();
 
             //todo
-            var res = QueryReChargeList.Do(pagesize, pageindex
+            var res = QueryReChargeList.Do(pagesize, pageindex, searchtype
                  , q
                  , ref dataCount, ref pageCount);
             if (res != null && res.Body != null && res.Body.recharge_list != null)
@@ -1850,6 +1850,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
             currPageUrl.Append("/msell/ReChargeList?");
             currPageUrl.Append("page=" + pageindex);
             currPageUrl.Append("&q=" + q);
+            currPageUrl.Append("&searchtype=" + searchtype);
             ViewData["currPageUrl"] = currPageUrl;//当前页面的URL
             ViewData["pagesize"] = pagesize;
             ViewData["pageindex"] = pageindex;

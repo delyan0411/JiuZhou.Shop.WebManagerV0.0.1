@@ -6,14 +6,14 @@ namespace JiuZhou.MySql
 {
     public class QueryReChargeList
     {
-        public static Response<ResponseReChargeReqBody> Do(int pagesize, int pageindex, string _skey, ref int dataCount, ref int pageCount)
+        public static Response<ResponseReChargeReqBody> Do(int pagesize, int pageindex,int searchtype, string _skey, ref int dataCount, ref int pageCount)
         {
             RequestQueryReChargeReqBody search = new RequestQueryReChargeReqBody();
 
             search.page_size = pagesize.ToString();
             search.page_no = pageindex.ToString();
             search.keyword = _skey;
-            search.searchtype = "1";
+            search.searchtype = searchtype.ToString();
             Request<RequestQueryReChargeReqBody> request = new Request<RequestQueryReChargeReqBody>();
             request.Body = search;
             request.Header = request.NewHeader();
@@ -88,7 +88,6 @@ namespace JiuZhou.MySql
     {
         [DataMember]
         public string page_size { set; get; }
-
         [DataMember]
         public string page_no { set; get; }
         [DataMember]

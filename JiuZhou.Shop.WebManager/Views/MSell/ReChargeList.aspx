@@ -17,6 +17,7 @@
     <%Html.RenderPartial("Base/_SimplePageTopControl"); %>
     <%
         ConfigInfo config = (ConfigInfo)(ViewData["config"]);
+         int searchtype = DoRequest.GetQueryInt("searchtype", 1);
     %>
 
     <div id="container-syscp">
@@ -36,12 +37,26 @@
                     <p>
                         <input type="text" id="sQuery" name="q" value="<%=DoRequest.GetQueryString("q")%>" class="input" autocomplete="off" style="width: 390px; height: 24px; line-height: 24px;" />
                     </p>
+                      <p>
+                       <select id="searchtype" name="searchtype" style="width: 80px">
+                        <option value="0" init="true">充值</option>
+                        <option value="1">消费</option>
+                        <option value="2">退款</option>
+                    </select>
+                    </p>
                     <p>
                         <input type="submit" value=" 搜索 " class="submit" />&nbsp;&nbsp;
                     </p>
                 </div>
             </form>
             <script type="text/javascript">
+                var dropOStatus=false;
+                Atai.addEvent(window, "load", function () {
+                    dropOStatus = new _DropListUI({
+                        input: Atai.$("#searchtype")
+                    }); dropOStatus.maxHeight = "260px"; dropOStatus.width = "100px";
+                    dropOStatus.init(); dropOStatus.setDefault("<%=searchtype%>");
+                });
                 var qInitValue = "请输入关键词";
                 Atai.addEvent(window, "load", function () {
                     var sQuery = Atai.$("#sQuery");
@@ -98,7 +113,7 @@
                             <th style="width: 14%">金额</th>
                             <th style="width: 10%">支付类型</th>
                             <th style="width: 10%">用户ID</th>
-                            <th style="width: 10%">充值时间</th>
+                            <th style="width: 10%">充值\消费\退款时间</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,7 +129,7 @@
                             <td>
                                 <%=item.add_time %></td>
                             <td>
-                            <%=(item.serialno.Substring(0,2)=="cp")?"  充值":"虚拟支付" %> </td>
+                            <%=(item.serialno.Substring(0,2)=="cp")?"充值":((item.serialno.Substring(0,2)=="xf")?"消费": ((item.serialno.Substring(0,2)=="tk")?"退款": "未知")) %> </td>
                                  <td>
                               <%=(item.serialno.Substring(0,2)=="cp")?(item.pay_state=="1"?"已充值":"未充值"):"---" %></td>
                             <td><%=item.total_money %>

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MySql\GetInsusertype.cs" />
     <Compile Include="MySql\OpInsuranceInfo.cs" />
     <Compile Include="MySql\AuditOrder.cs" />
     <Compile Include="MySql\BalanceRefund.cs" />

@@ -13,6 +13,7 @@ namespace JiuZhou.MySql
             search.page_size = pagesize.ToString();
             search.page_no = pageindex.ToString();
             search.keyword = _skey;
+            search.searchtype = "1";
             Request<RequestQueryReChargeReqBody> request = new Request<RequestQueryReChargeReqBody>();
             request.Body = search;
             request.Header = request.NewHeader();
@@ -92,6 +93,8 @@ namespace JiuZhou.MySql
         public string page_no { set; get; }
         [DataMember]
         public string keyword { set; get; }
+        [DataMember]
+        public string searchtype { set; get; }
     }
 
     [DataContract]

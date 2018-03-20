@@ -45,7 +45,6 @@
     <Compile Include="MySql\AuditOrder.cs" />
     <Compile Include="MySql\BalanceRefund.cs" />
     <Compile Include="MySql\DeleteStore.cs" />
-    <Compile Include="MySql\GetInsuranceInfo.cs" />
     <Compile Include="MySql\GetStoreInfo.cs" />
     <Compile Include="MySql\GetRedPackInfo.cs" />
     <Compile Include="MySql\GetUserResource.cs" />

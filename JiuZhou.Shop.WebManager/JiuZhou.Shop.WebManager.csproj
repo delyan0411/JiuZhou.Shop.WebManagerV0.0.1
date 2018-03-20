@@ -83,7 +83,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Logger.cs" />
     <Compile Include="Controllers\MGoodsController.cs" />
-    <Compile Include="Controllers\MInsuranceController.cs" />
     <Compile Include="Controllers\MToolsController.cs" />
     <Compile Include="Controllers\MPolymericController.cs" />
     <Compile Include="Controllers\MUsersController.cs" />

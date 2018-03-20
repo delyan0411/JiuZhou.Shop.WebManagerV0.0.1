@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MySql\OpInsuranceInfo.cs" />
     <Compile Include="MySql\AuditOrder.cs" />
     <Compile Include="MySql\BalanceRefund.cs" />
     <Compile Include="MySql\DeleteStore.cs" />
@@ -53,7 +52,6 @@
     <Compile Include="MySql\OpStore.cs" />
     <Compile Include="MySql\OpRedPackInfo.cs" />
     <Compile Include="MySql\OpTopicPhoneModuleItems.cs" />
-    <Compile Include="MySql\QueryInsuranceList.cs" />
     <Compile Include="MySql\QueryWmWordsList.cs" />
     <Compile Include="MySql\QueryReChargeList.cs" />
     <Compile Include="MySql\QueryStoreOrderList.cs" />

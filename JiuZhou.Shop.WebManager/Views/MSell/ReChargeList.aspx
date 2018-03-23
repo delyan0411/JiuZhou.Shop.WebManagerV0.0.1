@@ -17,7 +17,7 @@
     <%Html.RenderPartial("Base/_SimplePageTopControl"); %>
     <%
         ConfigInfo config = (ConfigInfo)(ViewData["config"]);
-         int searchtype = DoRequest.GetQueryInt("searchtype", 1);
+         int searchtype = DoRequest.GetQueryInt("searchtype", 0);
     %>
 
     <div id="container-syscp">
@@ -38,8 +38,8 @@
                         <input type="text" id="sQuery" name="q" value="<%=DoRequest.GetQueryString("q")%>" class="input" autocomplete="off" style="width: 390px; height: 24px; line-height: 24px;" />
                     </p>
                       <p>
-                       <select id="searchtype" name="searchtype" style="width: 80px">
-                        <option value="0" init="true">充值</option>
+                       <select id="searchtype" name="searchtype" style="width: 120px;height: 26px;" >
+                        <option value="0"  init="true" >充值</option>
                         <option value="1">消费</option>
                         <option value="2">退款</option>
                     </select>
@@ -50,13 +50,9 @@
                 </div>
             </form>
             <script type="text/javascript">
-                var dropOStatus=false;
-                Atai.addEvent(window, "load", function () {
-                    dropOStatus = new _DropListUI({
-                        input: Atai.$("#searchtype")
-                    }); dropOStatus.maxHeight = "260px"; dropOStatus.width = "100px";
-                    dropOStatus.init(); dropOStatus.setDefault("<%=searchtype%>");
-                });
+                $(function () {
+                    $("#searchtype option[value='<%=searchtype%>']").attr("selected", true);
+                })
                 var qInitValue = "请输入关键词";
                 Atai.addEvent(window, "load", function () {
                     var sQuery = Atai.$("#sQuery");
@@ -112,7 +108,7 @@
                             <th style="width: 10%">支付状态</th>
                             <th style="width: 14%">金额</th>
                             <th style="width: 10%">支付类型</th>
-                            <th style="width: 10%">用户ID</th>
+                            <th style="width: 10%">用户/操作者ID</th>
                             <th style="width: 10%">充值\消费\退款时间</th>
                         </tr>
                     </thead>

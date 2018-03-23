@@ -19,7 +19,9 @@ namespace JiuZhou.MySql
             request.Header = request.NewHeader();
             request.Key = "QueryRechargeList";
             string requestStr = JsonHelper.ObjectToJson<Request<RequestQueryReChargeReqBody>>(request);
+            Logger.Log(requestStr);
             string responseStr = HttpUtils.HttpPost(requestStr);
+            Logger.Log(responseStr);
             var response = JsonHelper.JsonToObject<Response<ResponseReChargeReqBody>>(responseStr);
             if (response != null && response.Body != null && response.Body.recharge_list != null)
             {

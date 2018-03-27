@@ -484,10 +484,15 @@ $(function(){
                                     {
                                         Response.Write("<a href=\"javascript:;\" onclick=\"BalanceRefund('" + od.order_no + "','" + order.user_id + "','" + order.pay_type + "')\" >退订翰医子订单</a><br/>");
                                     }
-                                    // if (order.pay_type == 65 && order.pay_state == 2 && od.order_state != 0 && od.order_state != 4 && od.order_state != 5)//od.order_state == 0
-                                    //{
-                                    //    Response.Write("<a href=\"javascript:;\" onclick=\"BalanceRefund('" + od.order_no + "','" + order.user_id + "','" + order.pay_type + "')\" >退订企健子订单</a><br/>");
-                                    //}%>
+                                     if (order.pay_type == 65 && order.pay_state == 2 && od.order_state != 0 && od.order_state != 4 && od.order_state != 5)//od.order_state == 0
+                                    {
+                                        Response.Write("<a href=\"javascript:;\" onclick=\"BalanceRefund('" + od.order_no + "','" + order.user_id + "','" + order.pay_type + "')\" >退订企健子订单</a><br/>");
+                                    }
+                                        if (order.pay_type == 66 && order.pay_state == 2 && od.order_state != 0 && od.order_state != 4 && od.order_state != 5)//od.order_state == 0
+                                {
+                                    Response.Write("<a href=\"javascript:;\" onclick=\"BalanceRefund('" + od.order_no + "','" + order.user_id + "','" + order.pay_type + "')\" >退订可乐否子订单</a><br/>");
+                                }
+                                     %>
                         </td>
                     </tr>
                     <%

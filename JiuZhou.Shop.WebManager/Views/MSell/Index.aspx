@@ -271,7 +271,7 @@ $(function(){
         }
         if ((((order.pay_order_state == 2 && (order.pay_state == 2 || order.pay_type == 18) && order.pay_delivery_state == 0) || (order.pay_order_state == 1 && order.pay_state == 1)) && order.is_delete == 0) || (order.pay_order_state == 4 && (order.pay_service_state == 1 || order.pay_service_state == 0)))
         {
-            if (order.pay_type != 53&&order.pay_type !=65)
+            if (order.pay_type != 53&&order.pay_type !=65&&order.pay_type !=66)
             {                 
                 Response.Write("<a href=\"javascript:;\" onclick=\"resetOrderStyleBox('" + order.pay_order_no + "','" + order.pay_service_state + "')\" >退订(<span style=\"color:#555\">" + servicestate + "</span>)</a><br/>");
             }

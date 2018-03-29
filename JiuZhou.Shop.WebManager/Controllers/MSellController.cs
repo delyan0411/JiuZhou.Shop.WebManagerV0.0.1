@@ -1834,7 +1834,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
             int pageCount = 0;
             List<RechargeInfo> infoList = new List<RechargeInfo>();
 
-            //todo
+          
             var res = QueryReChargeList.Do(pagesize, pageindex, searchtype
                  , q
                  , ref dataCount, ref pageCount);

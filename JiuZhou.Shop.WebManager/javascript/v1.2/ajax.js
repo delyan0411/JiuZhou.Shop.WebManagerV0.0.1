@@ -44,7 +44,7 @@ function formatLocalAddress(){
 }
 $(function(){
 	if(__localAddress==""){
-		loadIpAddress();
+		//loadIpAddress();
 	}
 });
 function ajax(form, url, objId, gotoUrl){

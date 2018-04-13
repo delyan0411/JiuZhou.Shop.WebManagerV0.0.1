@@ -566,7 +566,7 @@
 		    if (json.error) {
 		        jsbox.error(json.message);
 		    } else {
-		        jsbox.success(json.message, window.location.href);
+		        jsbox.success(json.message);
 		    }
 		    if (closeLoadding) closeLoadding();
 		}

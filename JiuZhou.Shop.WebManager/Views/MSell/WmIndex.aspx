@@ -43,6 +43,12 @@
         {
             shopList = (List<ShopList>)chche.GetCache("shoplist");
         }
+        List<BrustInfo> BrustInfoList = new List<BrustInfo>();
+        Response<BrustInfoList> bilist = GetBrustInfo.Do();
+        if (bilist != null && bilist.Body != null && bilist.Body.brust_list != null)
+        {
+            BrustInfoList = bilist.Body.brust_list;
+        }
         JiuZhou.ControllerBase.ForeBaseController su = new JiuZhou.ControllerBase.ForeBaseController();
     %>
     <div id="container-syscp">
@@ -54,104 +60,105 @@
                 当前位置： <a href="/" title="管理首页">管理首页</a> &gt;&gt; <span>订单列表</span> &nbsp;&nbsp;&nbsp;
             </div>
             <form id="sForm" action="/msell/Wmindex" method="get" onsubmit="checksearch(this)">
-            <input type="hidden" name="status" value="<%=status%>" />
-            <input type="hidden" name="size" value="<%=DoRequest.GetQueryInt("size", 60)%>" />
-            <input type="hidden" name="ocol" value="<%=DoRequest.GetQueryString("ocol")%>" />
-            <input type="hidden" name="ot" value="<%=DoRequest.GetQueryString("ot")%>" />
-            <div class="div-tab-h1" style="font-weight: 100; color: #333; font-size: 12px; height: 36px">
-                <p>
-                    <select id="stype" name="stype" style="width: 80px">
-                        <option value="0" init="true">默认搜索</option>
-                        <option value="1">订单号</option>
-                        <option value="2">收货人</option>
-                        <option value="3">联系电话</option>
-                        <option value="4">用户ID</option>
-                        <option value="5">快递单号</option>
-                        <option value="6">商品名称</option>
-                        <option value="7">用户名</option>
-                    </select>
-                </p>
-                <p>
-                    <select id="oStatus" style="width: 80px">
-                        <option value="-1" init="true">全部状态</option>
-                        <%--订单状态,支付状态,发货状态--%>
-                        <option value="1">等待买家付款</option>
-                        <option value="2">等待卖家发货</option>
-                        <option value="3">等待确认收货</option>
-                        <option value="4">待评价</option>
-                        <option value="5">订单成功</option>
-                        <option value="6">订单退订</option>
-                        <option value="7">订单退货</option>
-                        <option value="8">订单关闭</option>
-                        <option value="9">货到付款</option>
-                    </select>
-                </p>
-                <p>
-                    <%
-                        DateTime date = DateTime.Now.AddDays(-15);
-                    %><input type="text" name="sdate" value="<%=DoRequest.GetQueryDate("sDate", date).ToString("yyyy-MM-dd")%>"
-                        readonly="readonly" class="date" onclick="WdatePicker()" />
-                    至
+                <input type="hidden" name="status" value="<%=status%>" />
+                <input type="hidden" name="size" value="<%=DoRequest.GetQueryInt("size", 60)%>" />
+                <input type="hidden" name="ocol" value="<%=DoRequest.GetQueryString("ocol")%>" />
+                <input type="hidden" name="ot" value="<%=DoRequest.GetQueryString("ot")%>" />
+                <div class="div-tab-h1" style="font-weight: 100; color: #333; font-size: 12px; height: 36px">
+                    <p>
+                        <select id="stype" name="stype" style="width: 80px">
+                            <option value="0" init="true">默认搜索</option>
+                            <option value="1">订单号</option>
+                            <option value="2">收货人</option>
+                            <option value="3">联系电话</option>
+                            <option value="4">用户ID</option>
+                            <option value="5">快递单号</option>
+                            <option value="6">商品名称</option>
+                            <option value="7">用户名</option>
+                        </select>
+                    </p>
+                    <p>
+                        <select id="oStatus" style="width: 80px">
+                            <option value="-1" init="true">全部状态</option>
+                            <%--订单状态,支付状态,发货状态--%>
+                            <option value="1">等待买家付款</option>
+                            <option value="2">等待卖家发货</option>
+                            <option value="3">等待确认收货</option>
+                            <option value="4">待评价</option>
+                            <option value="5">订单成功</option>
+                            <option value="6">订单退订</option>
+                            <option value="7">订单退货</option>
+                            <option value="8">订单关闭</option>
+                            <option value="9">货到付款</option>
+                        </select>
+                    </p>
+                    <p>
+                        <%
+                            DateTime date = DateTime.Now.AddDays(-15);
+                        %><input type="text" name="sdate" value="<%=DoRequest.GetQueryDate("sDate", date).ToString("yyyy-MM-dd")%>"
+                            readonly="readonly" class="date" onclick="WdatePicker()" />
+                        至
                     <input type="text" name="edate" value="<%=DoRequest.GetQueryDate("eDate", DateTime.Now).ToString("yyyy-MM-dd")%>"
                         readonly="readonly" class="date" onclick="WdatePicker()" />
-                </p>
-                <p style="position: relative">
-                    <input type="text" id="sQuery" name="q" value="<%=DoRequest.GetQueryString("q")%>"
-                        class="input" autocomplete="off" style="height: 26px; width: 260px; line-height: 26px;" /></p>
-                <p>
-                    <input type="submit" value=" 搜索 " class="submit" />
-                </p>
-            </div>
+                    </p>
+                    <p style="position: relative">
+                        <input type="text" id="sQuery" name="q" value="<%=DoRequest.GetQueryString("q")%>"
+                            class="input" autocomplete="off" style="height: 26px; width: 260px; line-height: 26px;" />
+                    </p>
+                    <p>
+                        <input type="submit" value=" 搜索 " class="submit" />
+                    </p>
+                </div>
             </form>
             <script type="text/javascript">
-var _currUrl="<%=ViewData["currPageUrl"]%>";
-function formatUrl(ocol, val, url){
-	if(!url) url=_currUrl;
-	var reg = ocol + "=[^-]*";
-	var reg = new RegExp(ocol + "=[^&\.]*");
-	url = url.replace(reg, ocol + "=" + val);
-	return url;
-}
-var changeOrderBy=function(ocol,ot){
-	_currUrl=formatUrl("ocol",ocol);
-	url=formatUrl("ot",ot);
-	window.location.href=url;
-};
-var dropSType=dropOStatus=droppaytypeStatus=false;
-Atai.addEvent(window,"load",function(){
-	dropSType=new _DropListUI({
-		input: Atai.$("#stype")
-	});dropSType.maxHeight="260px";dropSType.width="80px";
-	dropSType.init();dropSType.setDefault("<%=sType%>");
+                var _currUrl = "<%=ViewData["currPageUrl"]%>";
+                function formatUrl(ocol, val, url) {
+                    if (!url) url = _currUrl;
+                    var reg = ocol + "=[^-]*";
+                    var reg = new RegExp(ocol + "=[^&\.]*");
+                    url = url.replace(reg, ocol + "=" + val);
+                    return url;
+                }
+                var changeOrderBy = function (ocol, ot) {
+                    _currUrl = formatUrl("ocol", ocol);
+                    url = formatUrl("ot", ot);
+                    window.location.href = url;
+                };
+                var dropSType = dropOStatus = droppaytypeStatus = false;
+                Atai.addEvent(window, "load", function () {
+                    dropSType = new _DropListUI({
+                        input: Atai.$("#stype")
+                    }); dropSType.maxHeight = "260px"; dropSType.width = "80px";
+                    dropSType.init(); dropSType.setDefault("<%=sType%>");
 
-	dropOStatus=new _DropListUI({
-		input: Atai.$("#oStatus")
-	});dropOStatus.maxHeight="260px";dropOStatus.width="100px";
-	dropOStatus.init();dropOStatus.setDefault("<%=status%>");
+	dropOStatus = new _DropListUI({
+	    input: Atai.$("#oStatus")
+	}); dropOStatus.maxHeight = "260px"; dropOStatus.width = "100px";
+	dropOStatus.init(); dropOStatus.setDefault("<%=status%>");
 
 });
-function checksearch(form){	
-	$("#sForm input[name='status']").val($("#oStatus option:selected").val());
+function checksearch(form) {
+    $("#sForm input[name='status']").val($("#oStatus option:selected").val());
 }
-var _currUrl="<%=ViewData["currPageUrl"]%>";
-function formatUrl(ocol, val, url){
-	if(!url) url=_currUrl;
-	var reg = ocol + "=[^-]*";
-	var reg = new RegExp(ocol + "=[^&\.]*");
-	url = url.replace(reg, ocol + "=" + val);
-	return url;
+var _currUrl = "<%=ViewData["currPageUrl"]%>";
+function formatUrl(ocol, val, url) {
+    if (!url) url = _currUrl;
+    var reg = ocol + "=[^-]*";
+    var reg = new RegExp(ocol + "=[^&\.]*");
+    url = url.replace(reg, ocol + "=" + val);
+    return url;
 }
-var changeOrderBy=function(ocol,ot){
-	_currUrl=formatUrl("ocol",ocol);
-	url=formatUrl("ot",ot);
-	window.location.href=url;
+var changeOrderBy = function (ocol, ot) {
+    _currUrl = formatUrl("ocol", ocol);
+    url = formatUrl("ot", ot);
+    window.location.href = url;
 };
-$(function(){
-	$("table[v='order-list']").mouseenter(function(){
-		$(this).addClass("table-hover");
-	}).mouseleave(function(){
-		$(this).removeClass("table-hover");
-	});
+$(function () {
+    $("table[v='order-list']").mouseenter(function () {
+        $(this).addClass("table-hover");
+    }).mouseleave(function () {
+        $(this).removeClass("table-hover");
+    });
 });
             </script>
             <%=ViewData["pageIndexLink"]%>
@@ -162,7 +169,7 @@ $(function(){
             %>
             <%
                 foreach (OrderPayInfo order in orderList)
-                {		
+                {
             %>
             <table class="order-list" v="order-list" cellpadding="0" cellspacing="0">
                 <thead>
@@ -171,12 +178,12 @@ $(function(){
                             <strong>合并单号：<%=order.pay_order_no%>
                                 &nbsp;<%=DateTime.Parse(order.add_time).ToString("yyyy-MM-dd HH:mm:ss")%>
                                 <%
-                    if (order.order_type == 2)
-                    {
-                        Response.Write("<img src=\"/images/icon/phone-1.png\" align=\"absmiddle\" alt\"手机订单\"/>");
-                    }
-                    if (order.expired_minute <= 240)
-                        Response.Write("&nbsp;<img src=\"/images/icon/clock2.png\" align=\"absmiddle\" alt\"限时秒杀\"/>");
+                                    if (order.order_type == 2)
+                                    {
+                                        Response.Write("<img src=\"/images/icon/phone-1.png\" align=\"absmiddle\" alt\"手机订单\"/>");
+                                    }
+                                    if (order.expired_minute <= 240)
+                                        Response.Write("&nbsp;<img src=\"/images/icon/clock2.png\" align=\"absmiddle\" alt\"限时秒杀\"/>");
                                 %>
                             </strong><b v="price">￥<%=order.pay_order_money + order.pay_trans_money%></b> <span
                                 v="farePrice">(含运费
@@ -184,34 +191,32 @@ $(function(){
                                 元 优惠
                                 <%=order.pay_total_money - order.pay_order_money %><%--这两个都是不含运费pay_trans_money 但是pay_order_money减了优惠金额--%>
                                 元)</span> <span>
-                                    <%=(order.pay_type==0 && order.pay_state > 0)?"医卡通":order.pay_type_name%></span>                          
+                                    <%=(order.pay_type==0 && order.pay_state > 0)?"医卡通":order.pay_type_name%></span>
                         </th>
-                        <th style="width: 12%;">
-                            
-                        </th>
+                        <th style="width: 12%;"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <%
-    List<OrderInfo> oList = order.order_list;
-    int _orderCount = 0;
-    foreach (OrderInfo od in oList)
-    {
-        List<OrderItemsInfo> items = od.item_list; //订单明细
-        string className = " class=\"bg\"";
-        if (_orderCount % 2 == 0)
-        {
-            className = "";
-        }
-        _orderCount++;
-        ShopList shop = new ShopList();
-        foreach (ShopList sh in shopList)
-        {
-            if (sh.shop_id == od.shop_id)
-            {
-                shop = sh; break;
-            }
-        }
+                        List<OrderInfo> oList = order.order_list;
+                        int _orderCount = 0;
+                        foreach (OrderInfo od in oList)
+                        {
+                            List<OrderItemsInfo> items = od.item_list; //订单明细
+                            string className = " class=\"bg\"";
+                            if (_orderCount % 2 == 0)
+                            {
+                                className = "";
+                            }
+                            _orderCount++;
+                            ShopList shop = new ShopList();
+                            foreach (ShopList sh in shopList)
+                            {
+                                if (sh.shop_id == od.shop_id)
+                                {
+                                    shop = sh; break;
+                                }
+                            }
                     %>
                     <tr <%=className%>>
                         <td class="data-list show">
@@ -229,25 +234,27 @@ $(function(){
                                 </div>
                                 <div>
                                     <%=od.province_name%>,<%=od.city_name%>,<%=od.county_name%>,<%=od.receive_addr%>,<%=od.receive_name%>,<%
-    Response.Write(od.receive_mobile_no);
-    if (!string.IsNullOrEmpty(od.receive_user_tel) && !string.IsNullOrEmpty(od.receive_mobile_no))
-    {
-        Response.Write(",");
-        Response.Write(od.receive_user_tel);
-    }
-                                    %></div>
+                            Response.Write(od.receive_mobile_no);
+                            if (!string.IsNullOrEmpty(od.receive_user_tel) && !string.IsNullOrEmpty(od.receive_mobile_no))
+                            {
+                                Response.Write(",");
+                                Response.Write(od.receive_user_tel);
+                            }
+                                    %>
+                                </div>
                                 <div id="remark-<%=od.order_id%>" style="background-color: #ccc">
-                                    <%=od.inner_remark%></div>
+                                    <%=od.inner_remark%>
+                                </div>
                             </div>
                             <dl>
                                 <%
-                                         if (items == null)
-                                             items = new List<OrderItemsInfo>();
-                                         for (int i = 0; i < items.Count; i++)
-                                         {
-                                             OrderItemsInfo item = items[i];
+                                    if (items == null)
+                                        items = new List<OrderItemsInfo>();
+                                    for (int i = 0; i < items.Count; i++)
+                                    {
+                                        OrderItemsInfo item = items[i];
 
-                                             string p_spec = item.product_spec.Length > 20 ? (Utils.CutString(item.product_spec, 0, 16) + "...") : item.product_spec;
+                                        string p_spec = item.product_spec.Length > 20 ? (Utils.CutString(item.product_spec, 0, 16) + "...") : item.product_spec;
                                 %>
                                 <dd>
                                     <a href="<%=config.UrlHome%><%=item.product_id%>.html" target="_blank" class="img">
@@ -255,34 +262,42 @@ $(function(){
                                     </a>
                                     <div class="text">
                                         <%
-                string _itemstate = "";
-                switch (item.item_state)
-                {
-                    case 0:
-                        _itemstate = "";
-                        break;
-                    case 4:
-                        _itemstate = "(已退订)";
-                        break;
-                    case 5:
-                        _itemstate = "(已退货)";
-                        break;
-                    default:
-                        _itemstate = "";
-                        break;
-                }
+          string _itemstate = "";
+          switch (item.item_state)
+          {
+              case 0:
+                  _itemstate = "";
+                  break;
+              case 4:
+                  _itemstate = "(已退订)";
+                  break;
+              case 5:
+                  _itemstate = "(已退货)";
+                  break;
+              default:
+                  _itemstate = "";
+                  break;
+          }
                                         %>
                                         <a href="<%=config.UrlHome%><%=item.product_id%>.html" target="_blank">
                                             <%=item.product_name%></a> <span style="color: Blue">
                                                 <%=_itemstate%></span><br />
-                                        规格：<%=p_spec%><%=string.IsNullOrEmpty(item.sku_name)?"":"&nbsp;/&nbsp;"%><%=item.sku_name%><br />
+                                        规格：<%=p_spec%><%=string.IsNullOrEmpty(item.sku_name) ? "" : "&nbsp;/&nbsp;"%><%=item.sku_name%><br />
                                         编码：<%=item.product_code%>
-                                     <%--   <a href="javascript:;" onclick="resetCode(<%=od.order_id %>,<%=item.product_id %>,'<%=item.product_code %>','<%=item.product_name %>')">
+                                        <%--   <a href="javascript:;" onclick="resetCode(<%=od.order_id %>,<%=item.product_id %>,'<%=item.product_code %>','<%=item.product_name %>')">
                                             修改</a>--%>
                                     </div>
+                                    <%if (BrustInfoList.Any(t => t.product_id == item.product_id)){ %>
+                                    <span><%=BrustInfoList.First(t=>t.product_id== item.product_id).brust_intro %></span>
+                                    <a href="javascript:;" style="color:rebeccapurple;" onclick="removeBrust('<%=item.product_id%>')">删除每日爆款</a>
+                                    <%}
+                                    else
+                                    { %>
+                                    <a href="javascript:;" style="color:rebeccapurple;" onclick="addBrustBox('#brust-<%=item.product_id%>','<%=item.product_id%>')">设为每日爆款</a>
+                                    <%}  %>
                                     <div class="unit-price">
                                         <%if (item.sale_price > item.deal_price)
-                                          {%><del>￥<%=item.sale_price%></del><br />
+                                            {%><del>￥<%=item.sale_price%></del><br />
                                         <%}%>
                                         ￥<%=item.deal_price%>
                                         ×
@@ -290,66 +305,65 @@ $(function(){
                                     </div>
                                 </dd>
                                 <%
-            }
+                                    }
                                 %>
                             </dl>
                         </td>
-                        <td class="price">
-                            ￥<%=od.total_money%>
+                        <td class="price">￥<%=od.total_money%>
                         </td>
                         <td class="status">
                             <%
-            string _statusString = "未知状态";
-            if ((od.order_state == 1) && (order.pay_state == 0))
-            {
-                _statusString = "<span style=\"color:#f00\">等待买家付款</span>";
-            }
-            if ((od.order_state == 1) && (order.pay_state == 1))
-            {
-                _statusString = "<span style=\"color:#f00\">等待买家付款</br>(已部分付款)</span>";
-            }
-            if (od.order_state == 2 && order.pay_state == 2 && od.delivery_state == 0)
-            {
-                _statusString = "<a href=\"javascript:;\" onclick=\"appendDeliveryBox(event,'" + od.order_no + "')\" style=\"color:#00f\">等待卖家发货</a>";
-            }
-            //货到付款
-            if (od.order_state == 2 && order.pay_state == 0 && od.delivery_state == 0)
-            {
-                _statusString = "<span style=\"color:#f00\">货到付款</span>";
-            }
-            if (od.order_state == 2 && order.pay_state == 2 && od.delivery_state == 1)
-            {
-                _statusString = "<span style=\"color:#00f\">等待确认收货</span>";
-            }
-            if (od.order_state == 2 && order.pay_state == 2 && od.delivery_state == 2)
-            {
-                _statusString = "<span style=\"color:#00f\">待评价</span>";
-            }
-            if (od.order_state == 3 && order.pay_state == 2)
-            {
-                _statusString = "<span style='color:#00f'>交易成功</span>";
-            }
-            if (od.order_state == 0)
-            {
-                _statusString = "<span style='color:#999'>订单取消</span>";//AppendDeliveryControl
-            }
-            if (od.order_state == 4)
-            {
-                _statusString = "<span style='color:#999'>订单退订</span>";//AppendDeliveryControl
-            }
-            if (od.order_state == 5)
-            {
-                _statusString = "<span style='color:#999'>订单退货</span>";//AppendDeliveryControl
-            }
-            if (od.order_state == 9 && order.pay_state == 0)
-            {
-                _statusString = "<span style='color:#999'>订单过期</span>";
-            }
-            Response.Write(_statusString);
+                                string _statusString = "未知状态";
+                                if ((od.order_state == 1) && (order.pay_state == 0))
+                                {
+                                    _statusString = "<span style=\"color:#f00\">等待买家付款</span>";
+                                }
+                                if ((od.order_state == 1) && (order.pay_state == 1))
+                                {
+                                    _statusString = "<span style=\"color:#f00\">等待买家付款</br>(已部分付款)</span>";
+                                }
+                                if (od.order_state == 2 && order.pay_state == 2 && od.delivery_state == 0)
+                                {
+                                    _statusString = "<a href=\"javascript:;\" onclick=\"appendDeliveryBox(event,'" + od.order_no + "')\" style=\"color:#00f\">等待卖家发货</a>";
+                                }
+                                //货到付款
+                                if (od.order_state == 2 && order.pay_state == 0 && od.delivery_state == 0)
+                                {
+                                    _statusString = "<span style=\"color:#f00\">货到付款</span>";
+                                }
+                                if (od.order_state == 2 && order.pay_state == 2 && od.delivery_state == 1)
+                                {
+                                    _statusString = "<span style=\"color:#00f\">等待确认收货</span>";
+                                }
+                                if (od.order_state == 2 && order.pay_state == 2 && od.delivery_state == 2)
+                                {
+                                    _statusString = "<span style=\"color:#00f\">待评价</span>";
+                                }
+                                if (od.order_state == 3 && order.pay_state == 2)
+                                {
+                                    _statusString = "<span style='color:#00f'>交易成功</span>";
+                                }
+                                if (od.order_state == 0)
+                                {
+                                    _statusString = "<span style='color:#999'>订单取消</span>";//AppendDeliveryControl
+                                }
+                                if (od.order_state == 4)
+                                {
+                                    _statusString = "<span style='color:#999'>订单退订</span>";//AppendDeliveryControl
+                                }
+                                if (od.order_state == 5)
+                                {
+                                    _statusString = "<span style='color:#999'>订单退货</span>";//AppendDeliveryControl
+                                }
+                                if (od.order_state == 9 && order.pay_state == 0)
+                                {
+                                    _statusString = "<span style='color:#999'>订单过期</span>";
+                                }
+                                Response.Write(_statusString);
                             %>
                         </td>
                         <td class="op">
-                           <%-- <a href="/msell/orderItem?id=<%=od.order_id%>&orderNumber=<%=od.order_no %>" target="_blank">
+                            <%-- <a href="/msell/orderItem?id=<%=od.order_id%>&orderNumber=<%=od.order_no %>" target="_blank">
                                 查看详情</a><br />
                             <a href="javascript:;" onclick="updateRemarkBox('#remark-<%=od.order_id%>', '<%=od.order_no%>')">
                                 订单备注</a><br />--%>
@@ -357,7 +371,7 @@ $(function(){
                         </td>
                     </tr>
                     <%
-}
+                        }
                     %>
                 </tbody>
             </table>
@@ -371,7 +385,98 @@ $(function(){
             <br />
         </div>
     </div>
+    <div id="updateBrustBox" class="moveBox" style="height: 260px; width: 520px;">
+        <div class="name">
+            设置爆款推荐语
+            <div class="close" v="atai-shade-close" title="关闭">
+                &nbsp;
+            </div>
+        </div>
+        <div class="clear">
+            &nbsp;
+        </div>
+        <form action="" onsubmit="return postBrust(this)">
+            <input type="hidden" id="postBrust-proid" name="postBrust-proid" value="" />
+            <table width="100%" border="0" cellspacing="4" cellpadding="0">
+                <tr>
+                    <td class="left">&nbsp;
+                    </td>
+                    <td>
+                        <span class="tips-text" style="color: #ff6600">&nbsp;</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left" style="height: 36px;" valign="top">备&nbsp;&nbsp;注：
+                    </td>
+                    <td>
+                        <textarea id="postBrust-textarea" name="postBrust-textarea"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left" style="height: 30px;">&nbsp;
+                    </td>
+                    <td>
+                        <input type="submit" class="submit" value="  保 存  " />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
     <script type="text/javascript">
+        function postBrust(form) {
+            var postData = getPostDB(form);
+            $.ajax({
+                url: "/msell/AddBrust"
+			, data: postData
+            , type: "post"
+			, dataType: "json"
+			, success: function (json) {
+			    if (json.error) {
+			        $(_oupBrustBoxDialog.dialog).find("span[class='tips-text']").html(json.message);
+			    } else {
+			        window.location.href = window.location.href;
+			    }
+			}
+            });
+            return false;
+        }
+        function removeBrust(proid) {
+            $.ajax({
+                url: "/msell/DelBrust"
+			, data: { productid: proid }
+            , type: "post"
+			, dataType: "json"
+			, success: function (json) {
+			    if (json.error) {
+			        alert("删除失败");
+			        //$(_oupBrustBoxDialog.dialog).find("span[class='tips-text']").html(json.message);
+			    } else {
+			        window.location.href = window.location.href;
+			    }
+			}
+            });
+            return false;
+        }
+        var _oupBrustBoxDialog = false;
+        function addBrustBox(obj, proid) {
+            var boxId = "#updateBrustBox";
+            var box = Atai.$(boxId);
+            var _dialog = false;
+            if (!_dialog)
+                _dialog = new AtaiShadeDialog();
+            _dialog.init({
+                obj: boxId
+		    , sure: function () { }
+		    , CWCOB: false
+            });
+            _oupBrustBoxDialog = _dialog;
+            $(_oupBrustBoxDialog.dialog).find("#postBrust-proid").val(proid);
+            return false;
+        }
+
+
+
+
         function showItems(obj) {
             var td = $(obj).parent("div").parent("div").parent("td");
             if (td.hasClass("show")) {
@@ -397,6 +502,7 @@ $(function(){
                 }
             });
         });
+
     </script>
     <br />
     <br />

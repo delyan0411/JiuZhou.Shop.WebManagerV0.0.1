@@ -10,18 +10,17 @@ namespace JiuZhou.MySql
     public class GetUserType
     {
         public static Response<UserType> Do()
-       {
+        {
             RequestBodyEmpty typeBody = new RequestBodyEmpty();
-
-           Request<RequestBodyEmpty> request = new Request<RequestBodyEmpty>();
-           request.Body = typeBody;
-           request.Header = request.NewHeader();
-           request.Key = "GetUserType";
-           string requestStr = JsonHelper.ObjectToJson<Request<RequestBodyEmpty>>(request);
-           string responseStr = HttpUtils.HttpPost(requestStr);
-           var response = JsonHelper.JsonToObject<Response<UserType>>(responseStr);
-           return response;
-       }
+            Request<RequestBodyEmpty> request = new Request<RequestBodyEmpty>();
+            request.Body = typeBody;
+            request.Header = request.NewHeader();
+            request.Key = "GetUserType";
+            string requestStr = JsonHelper.ObjectToJson<Request<RequestBodyEmpty>>(request);
+            string responseStr = HttpUtils.HttpPost(requestStr);
+            var response = JsonHelper.JsonToObject<Response<UserType>>(responseStr);
+            return response;
+        }
     }
 
     [DataContract]

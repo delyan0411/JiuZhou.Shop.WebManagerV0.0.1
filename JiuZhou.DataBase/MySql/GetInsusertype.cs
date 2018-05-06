@@ -16,8 +16,8 @@ namespace JiuZhou.MySql
             Request<RequestInsurancetypeInfoBody> request = new Request<RequestInsurancetypeInfoBody>();
             request.Body = body;
             request.Header = request.NewHeader();
-            request.Key = "GetInsurancetypeInfo";
-            string requestStr = JsonHelper.ObjectToJson<Request<RequestInsuranceInfoBody>>(request);
+            request.Key = "GetInsusertype";
+            string requestStr = JsonHelper.ObjectToJson<Request<RequestInsurancetypeInfoBody>>(request);
             Logger.Log(requestStr);
             string responseStr = HttpUtils.HttpPost(requestStr);
             Logger.Log(responseStr);

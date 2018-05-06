@@ -12,16 +12,17 @@
 <%Html.RenderPartial("Base/_SimplePageTopControl"); %>
 <%
 	string nodeIndex= DoRequest.GetQueryString("node");
+    	int insurancetype= DoRequest.GetQueryInt("insurancetype");
     ConfigInfo config = (ConfigInfo)(ViewData["config"]);
-   PayTypeList ptlistinfo = new PayTypeList();
-        var respPt = GetPayType.Do();
+   InsuranceList insurancelist = new InsuranceList();
+        var respPt = GetInsuranceList.Do();
         if (respPt == null || respPt.Body == null)
         {
-            ptlistinfo = new PayTypeList();
+            insurancelist = new InsuranceList();
         }
         else
         {
-            ptlistinfo = respPt.Body;
+            insurancelist = respPt.Body;
         }
 %>
 
@@ -32,7 +33,7 @@
 	<div class="container-right">
 <div class="position">
 当前位置：
-<a href="/" title="管理首页">管理首页</a> &gt;&gt; <span>商保列表</span>
+<a href="/" title="管理首页">管理首页</a> &gt;&gt; <span>商保用户类别列表</span>
 </div>
 
 <script type="text/javascript">
@@ -55,16 +56,16 @@ var changeOrderBy=function(ocol,ot){
 <table id="tab-category" class="table" cellpadding="0" cellspacing="0">
 <thead>
   <tr>
-    <th style="width:3%"><input type="checkbox" onclick="checkAll(this.form,this)" name="chkall" title="选中/取消选中"/></th>
     <th style="">商保名称</th>
-    <th style="width:20%">商保类型</th>
-      <th style="width:7%">操作</th>
+    <th style="width:20%">用户类型</th>
+      <th style="width:20%">添加时间</th>
+      <th style="width:27%">操作</th>
   </tr>
 </thead>
 <tbody>
 <%
-    List<InsuranceInfo> infoList = (List<InsuranceInfo>)ViewData["infoList"];
-    foreach (InsuranceInfo item in infoList)
+    List<InsurancetypeInfo> infoList = (List<InsurancetypeInfo>)ViewData["infoList"];
+    foreach (InsurancetypeInfo item in infoList)
     {
         //      DateTime addTime = DateTime.Parse(item.add_time);
         //      string classPath = "";
@@ -80,13 +81,15 @@ var changeOrderBy=function(ocol,ot){
         //tList
 %>
   <tr>
-    <td><input type="checkbox" onclick="selectOne(this)" name="visitid" value="<%=item.insurance_id%>" /></td>
-    <td><%=item.insurance_name%></td>   
-    <td><%=ptlistinfo.pay_type_list.FirstOrDefault(t=>t.pay_type_id==item.paytype).pay_type_name %></td>
+    <td><%=insurancelist.insurance_list.FirstOrDefault(t=>t.insurance_id==item.insurancetype).insurance_name %></td>   
+    <td><%=item.usertype %></td>
+        <td><%=item.addtime %></td>
     <td>
-    <a href="/minsurance/editor?insurance_id=<%=item.insurance_id%>" target="_blank">编辑</a>
+    <a href="/minsurance/TypeEditor?id=<%=item.id%>&insurancetype=<%=insurancetype%>" >编辑</a>
     &nbsp;
- <%--   <a href="javascript:;" onclick="return deleteList(<%=item.help_id%>)">删除</a>--%>
+    <a href="javascript:;" onclick="return deleteList(<%=item.id%>)">删除</a>
+         &nbsp;
+         <a href="/minsurance/ProductEditor?id=<%=item.id%>&insurancetype=<%=insurancetype%>">编辑商品列表</a>
     </td>
   </tr>
 <%
@@ -98,7 +101,7 @@ var changeOrderBy=function(ocol,ot){
 <%=ViewData["pageIndexLink2"]%>
 			<div class="console">
             	<%--<a href="javascript:;" onclick="deleteList(Atai.$('#post-form'), 0)">批量删除</a>--%>
-                <a href="/minsurance/editor">新增</a>
+                <a href="/MInsurance/TypeEditor?insurancetype=<%=insurancetype%>">新增商保用户类别</a>
 			</div>
 <br/><br/><br/><br/>
 </div>
@@ -107,6 +110,27 @@ var changeOrderBy=function(ocol,ot){
 <br/><br/>
 <br/><br/><br/>
 <script type="text/javascript">
+    function deleteList(id) {
+
+        var postData = "id=" + id;
+       
+        jsbox.confirm('您确定要删除这些数据吗？', function () {
+            $.ajax({
+                url: "/MInsurance/DeleteInsTypeAction"
+			, data: postData
+            , type: "post"
+			, dataType: "json"
+			, success: function (json) {
+			    if (json.error) {
+			        jsbox.error(json.message); return false;
+			    } else {
+			        window.location.href = window.location.href;
+			    }
+			}
+            });
+        });
+        return false;
+    }
 </script>
 <%Html.RenderPartial("Base/_PageFootControl"); %>
 </body>

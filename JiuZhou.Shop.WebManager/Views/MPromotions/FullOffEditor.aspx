@@ -451,6 +451,13 @@ function submitForm(form){
         if(i>0) postids2+=",";
         postids2+=postids[i];
     }
+    var typeids = [];
+    $(".selecedtype ul li").each(function () {
+        var rule_item_id = $(this).attr("rule_item_id");
+        var typeid = $(this).attr("typeid");
+        var node = '<item rule_item_id="' + rule_item_id + '" elment_id="1"  seo_elment_code="' + typeid + '"></item>';
+        nodes.push(node);
+    });
 	$.ajax({
 	    url: "/MPromotions/PostFullOffItems"
 		, data: postData + "&ids=" + postids2

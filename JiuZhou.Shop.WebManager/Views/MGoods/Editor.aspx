@@ -793,7 +793,7 @@ foreach (FareTempInfo temp in tempList)
 	<p>
 	<input type="radio" name="faretempid" value="<%=temp.template_id%>"<%if((Info.is_free_fare==1&&temp.is_system==1)||(temp.template_id==Info.fare_temp_id)){Response.Write(" checked=\"checked\"");}%>/>
     &nbsp;<%=temp.template_name%>
-    </p>
+    </p>111
 <%
 }
 %>
@@ -801,6 +801,26 @@ foreach (FareTempInfo temp in tempList)
     </tr>
 </tbody>
 </table>
+<table class="table" cellpadding="0" cellspacing="0">
+<thead>
+  <tr>
+    <th colspan="4">税费设置</th>
+  </tr>
+</thead>
+<tbody>
+    <tr>
+    <td style="width:3%">&nbsp;</td>
+    <td class="lable">免税</td>
+    <td colspan="2">
+    <input type="radio" name="isFreeFare" value="0"<%=(Info.is_free_fare<1 || Info.is_free_fare>2)?" checked=\"checked\"":""%>/> 不包邮
+    &nbsp;|&nbsp;
+    <input type="radio" name="isFreeFare" value="1"<%=(Info.is_free_fare==1)?" checked=\"checked\"":""%>/> 包邮
+    <span class="tips-text" id="tips-fare">&nbsp;</span>
+    </td>
+  </tr>
+</tbody>
+</table>
+
 <br/>
 <table class="table" cellpadding="0" cellspacing="0">
 <thead>

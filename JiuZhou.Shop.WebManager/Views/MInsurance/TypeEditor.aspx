@@ -18,22 +18,23 @@
     <%Html.RenderPartial("Base/_SimplePageTopControl"); %>
     <%
         ConfigInfo config = (ConfigInfo)(ViewData["config"]);
-        PayTypeList ptlistinfo = new PayTypeList();
-        var respPt = GetPayType.Do();
+         InsuranceList insurancelist = new InsuranceList();
+        var respPt = GetInsuranceList.Do();
         if (respPt == null || respPt.Body == null)
         {
-            ptlistinfo = new PayTypeList();
+            insurancelist = new InsuranceList();
         }
         else
         {
-            ptlistinfo = respPt.Body;
+            insurancelist = respPt.Body;
         }
-        InsuranceInfo Info = new InsuranceInfo();
-        int insurance_id = DoRequest.GetQueryInt("insurance_id");
-        var resp = GetInsuranceInfo.Do(insurance_id);
+        InsurancetypeInfo Info = new InsurancetypeInfo();
+        int id = DoRequest.GetQueryInt("id",0);
+          int insurancetype = DoRequest.GetQueryInt("insurancetype");
+        var resp = GetInsusertype.Do(id);
         if (resp == null || resp.Body == null)
         {
-            Info = new InsuranceInfo();
+            Info = new InsurancetypeInfo();
         }
         else
         {
@@ -47,10 +48,10 @@
         </div>
         <div class="container-right">
             <div class="editor-box-head">
-                商保用户编辑
+                商保用户类别编辑
             </div>
             <form method="post" action="" onsubmit="return submitForm(this)">
-                <input type="hidden" name="insurance_id" value="<%=Info.insurance_id%>" />
+                <input type="hidden" name="id" value="<%=Info.id%>" />
                 <div class="div-tab">
                     <table id="tab-category" class="table" cellpadding="0" cellspacing="0">
                         <thead>
@@ -64,17 +65,19 @@
                         <tbody>
                             <tr>
                                 <td style="width: 3%">&nbsp;</td>
-                                <td class="lable">商保名称<b>*</b></td>
+                                <td class="lable">商保用户类别<b>*</b></td>
                                 <td class="inputText" colspan="2">
-                                    <input type="text" name="insurance_name" value="<%=Info.insurance_name%>" class="input" style="width: 520px" />
+                                    <input type="text" name="usertype" value="<%=Info.usertype%>" class="input" style="width: 520px" />
                                     &nbsp;&nbsp;
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width: 3%">&nbsp;</td>
-                                <td class="lable" valign="top">支付方式</td>
+                                <td class="lable" valign="top">商保名称</td>
                                 <td colspan="2" class="inputText">
-                                    <select name="paytype">                                                                               
+                                    <input type="text" name="insurancetypename" disabled="disabled" value="<%=insurancelist.insurance_list.FirstOrDefault(t=>t.insurance_id==insurancetype).insurance_name %>" class="input" style="width: 520px" />
+                                           <input  name="insurancetype" type="hidden" value="<%=insurancetype%>"  />
+                                   <%-- <select name="paytype">                                                                               
                                         <%if (insurance_id == 0) {%>
                                          <%foreach (var item in ptlistinfo.pay_type_list){%>
                                         <option value="<%=item.pay_type_id %>" ><%=item.pay_type_name %></option>
@@ -84,7 +87,7 @@
                                         <option value="<%=item.pay_type_id %>"   <%=(Info.paytype==item.pay_type_id)?"selected=\"selected\"":""%> ><%=item.pay_type_name %></option>
                                         <% }%>
                                         <%} %>
-                                    </select>
+                                    </select>--%>
                                 </td>
                             </tr>
                             <tr>
@@ -123,7 +126,7 @@
             if (showLoadding) showLoadding();
             var postData = getPostDB(form);
             $.ajax({
-                url: "/MInsurance/PostInsuranceData"
+                url: "/MInsurance/PostInsuranceTypeData"
                 , data: postData
                 , type: "post"
                 , dataType: "json"

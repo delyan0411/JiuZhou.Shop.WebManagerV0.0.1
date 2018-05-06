@@ -55,10 +55,9 @@ var changeOrderBy=function(ocol,ot){
 <table id="tab-category" class="table" cellpadding="0" cellspacing="0">
 <thead>
   <tr>
-    <th style="width:3%"><input type="checkbox" onclick="checkAll(this.form,this)" name="chkall" title="选中/取消选中"/></th>
     <th style="">商保名称</th>
     <th style="width:20%">商保类型</th>
-      <th style="width:7%">操作</th>
+      <th style="width:20%">操作</th>
   </tr>
 </thead>
 <tbody>
@@ -80,13 +79,12 @@ var changeOrderBy=function(ocol,ot){
         //tList
 %>
   <tr>
-    <td><input type="checkbox" onclick="selectOne(this)" name="visitid" value="<%=item.insurance_id%>" /></td>
     <td><%=item.insurance_name%></td>   
     <td><%=ptlistinfo.pay_type_list.FirstOrDefault(t=>t.pay_type_id==item.paytype).pay_type_name %></td>
     <td>
-    <a href="/minsurance/editor?insurance_id=<%=item.insurance_id%>" target="_blank">编辑</a>
+    <a href="/minsurance/editor?insurance_id=<%=item.insurance_id%>">编辑</a>
     &nbsp;
- <%--   <a href="javascript:;" onclick="return deleteList(<%=item.help_id%>)">删除</a>--%>
+     <a href="/minsurance/TypeList?insurancetype=<%=item.insurance_id%>" >查看商保用户类别</a>
     </td>
   </tr>
 <%
@@ -102,7 +100,6 @@ var changeOrderBy=function(ocol,ot){
 			</div>
 <br/><br/><br/><br/>
 </div>
-
 </div>
 <br/><br/>
 <br/><br/><br/>

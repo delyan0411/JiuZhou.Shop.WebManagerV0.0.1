@@ -31,7 +31,6 @@ namespace JiuZhou.MySql
            request.Header = request.NewHeader();
            request.Key = "OpFullOff";
            string requestStr = JsonHelper.ObjectToJson<Request<RequestOpFullOff>>(request);
-           ;
             /*
            string responseStr = "";
            Logger.Error(requestStr);
@@ -60,7 +59,6 @@ namespace JiuZhou.MySql
            }
              * */
            string responseStr = HttpUtils.HttpPost(requestStr);
-           ;
            var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
 
            return response;

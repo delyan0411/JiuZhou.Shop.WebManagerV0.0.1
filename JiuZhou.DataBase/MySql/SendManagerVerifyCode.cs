@@ -19,7 +19,9 @@ namespace JiuZhou.MySql
            request.Header = request.NewHeader();
            request.Key = "SendManagerVerifyCode";
            string requestStr = JsonHelper.ObjectToJson<Request<RequestSendCode>>(request);
+            Logger.Log(requestStr);
            string responseStr = HttpUtils.HttpPost(requestStr);
+            Logger.Log(responseStr);
             var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
            return response;
        }

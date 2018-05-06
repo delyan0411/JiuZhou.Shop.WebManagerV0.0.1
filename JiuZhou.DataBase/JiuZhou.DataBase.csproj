@@ -43,10 +43,12 @@
   <ItemGroup>
     <Compile Include="MySql\AuditOrder.cs" />
     <Compile Include="MySql\BalanceRefund.cs" />
+    <Compile Include="MySql\DeleteBrust.cs" />
     <Compile Include="MySql\DeleteStore.cs" />
     <Compile Include="MySql\GetStoreInfo.cs" />
     <Compile Include="MySql\GetRedPackInfo.cs" />
     <Compile Include="MySql\GetUserResource.cs" />
+    <Compile Include="MySql\GetBrustInfo.cs" />
     <Compile Include="MySql\Logger.cs" />
     <Compile Include="MySql\ModifyUserIntelgral.cs" />
     <Compile Include="MySql\OpStore.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="MySql\GetOrderStatisticsInfo.cs" />
     <Compile Include="MySql\QueryOrderList.cs" />
     <Compile Include="MySql\UpdateNeedReceiveAddr.cs" />
+    <Compile Include="MySql\OpBrust.cs" />
     <Compile Include="MySql\UpdateNeedRemark.cs" />
     <Compile Include="MySql\UpdateOrderRemark.cs" />
     <Compile Include="MySql\AddDeliveryInfo.cs" />

@@ -1725,6 +1725,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
         {
             string key = DoRequest.GetQueryString("key").Trim();
             string url = "http://m.dada360.com/activity/20170828/activity.jsp";
+            //string url = "http://m.dada360.com";
             //string url = "http://m.dada360.com/festival/mendianzhuanqu.html";
             #region
             QRCodeEncoder qrCodeEncoder = new QRCodeEncoder();
@@ -2030,7 +2031,61 @@ namespace JiuZhou.Shop.WebManager.Controllers
             #endregion
             return View();
         }
-         #endregion
+        #endregion
+
+        #region updateNeedRemark 设置为微脉爆款
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult AddBrust()
+        {
+            string product_id = DoRequest.GetFormString("postBrust-proid").Trim();
+            string brust_intro = DoRequest.GetFormString("postBrust-textarea");
+
+            if (string.IsNullOrEmpty(product_id))
+            {
+                return Json(new { error = true, message = "参数错误" });
+            }
+            if (brust_intro.Length > 80)
+            {
+                return Json(new { error = true, message = "推荐语不能超过80个字符" });
+            }
+            int returnValue = -1;
+            var res = OpBrust.Do(product_id, brust_intro);
+            if (res != null && res.Header != null && res.Header.Result != null && res.Header.Result.Code != null)
+                returnValue = Utils.StrToInt(res.Header.Result.Code, -1);
+
+            if (returnValue == 0)
+            {
+                return Json(new { error = false, message = "操作成功!" });
+            }
+
+            return Json(new { error = true, message = "操作失败" });
         }
+        #endregion
+
+        #region  删除微脉爆款
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult DelBrust()
+        {
+            string product_id = DoRequest.GetFormString("productid").Trim();
+            if (string.IsNullOrEmpty(product_id))
+            {
+                return Json(new { error = true, message = "参数错误" });
+            }
+            int returnValue = -1;
+            var res = DeleteBrust.Do(product_id);
+            if (res != null && res.Header != null && res.Header.Result != null && res.Header.Result.Code != null)
+                returnValue = Utils.StrToInt(res.Header.Result.Code, -1);
+
+            if (returnValue == 0)
+            {
+                return Json(new { error = false, message = "操作成功!" });
+            }
+
+            return Json(new { error = true, message = "操作失败" });
+        }
+        #endregion
+    }
 }
  

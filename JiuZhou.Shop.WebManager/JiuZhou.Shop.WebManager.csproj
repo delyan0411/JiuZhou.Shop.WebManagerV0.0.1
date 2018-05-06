@@ -83,6 +83,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Logger.cs" />
     <Compile Include="Controllers\MGoodsController.cs" />
+    <Compile Include="Controllers\MInsuranceController.cs" />
     <Compile Include="Controllers\MToolsController.cs" />
     <Compile Include="Controllers\MPolymericController.cs" />
     <Compile Include="Controllers\MUsersController.cs" />
@@ -1173,6 +1174,7 @@
     <Content Include="echarts-2.2.6\test\performance\p.html" />
     <Content Include="echarts-2.2.6\test\performance\p.js" />
     <Content Include="Global.asax" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="images\bg-1.gif" />
     <Content Include="images\bg-1.png" />
     <Content Include="images\cal.gif" />
@@ -1504,6 +1506,11 @@
     <Content Include="Views\MGoods\SeoRule.aspx" />
     <Content Include="Views\MGoods\SeoRuleEditor.aspx" />
     <Content Include="Views\MGoods\SeoClassRuleEditor.aspx" />
+    <Content Include="Views\MInsurance\Editor.aspx" />
+    <Content Include="Views\MInsurance\List.aspx" />
+    <Content Include="Views\MInsurance\ProductEditor.aspx" />
+    <Content Include="Views\MInsurance\TypeEditor.aspx" />
+    <Content Include="Views\MInsurance\TypeList.aspx" />
     <Content Include="Views\MPolymeric\Add.aspx" />
     <Content Include="Views\MPolymeric\CategSet.aspx" />
     <Content Include="Views\MPolymeric\Index.aspx" />
@@ -1625,7 +1632,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\MInsurance\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JiuZhou.Common\JiuZhou.Common.csproj">

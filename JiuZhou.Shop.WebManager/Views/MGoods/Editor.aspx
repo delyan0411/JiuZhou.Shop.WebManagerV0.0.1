@@ -793,7 +793,7 @@ foreach (FareTempInfo temp in tempList)
 	<p>
 	<input type="radio" name="faretempid" value="<%=temp.template_id%>"<%if((Info.is_free_fare==1&&temp.is_system==1)||(temp.template_id==Info.fare_temp_id)){Response.Write(" checked=\"checked\"");}%>/>
     &nbsp;<%=temp.template_name%>
-    </p>
+    </p>111
 <%
 }
 %>

@@ -1625,7 +1625,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\MInsurance\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JiuZhou.Common\JiuZhou.Common.csproj">

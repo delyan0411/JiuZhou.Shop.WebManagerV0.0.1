@@ -390,7 +390,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
                 }
             }
 
-            HasPermission(currResBody.res_id);
+            //HasPermission(currResBody.res_id);
 
             ViewData["currResBody"] = currResBody;//当前菜单
             string position = "";

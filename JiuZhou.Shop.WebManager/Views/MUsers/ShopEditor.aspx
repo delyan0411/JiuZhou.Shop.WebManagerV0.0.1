@@ -154,7 +154,24 @@ $(function(){
     <input type="text" id="deliveryintro" name="deliveryintro" value="<%=shop.delivery_intro %>" class="input"/>
     </td>
   </tr>
-
+      <tr>
+  <td style="width:3%">&nbsp;</td>
+    <td class="lable">商家类型</td>
+    <td colspan="2" class="inputText">
+    <select id="shoptype" name="shoptype">
+        <%if (shop.shop_type == 0)
+            {%>
+        <option value="0" selected="selected">普通商家</option>
+        <option value="1">海外购商家</option>
+        <%}
+            else
+            { %>
+          <option value="0" >普通商家</option>
+        <option value="1" selected="selected">海外购商家</option>
+        <%} %>
+    </select>
+    </td>
+  </tr>
   <tr>
     <td style="width:3%">&nbsp;</td>
     <td class="lable" valign="top">售后服务</td>

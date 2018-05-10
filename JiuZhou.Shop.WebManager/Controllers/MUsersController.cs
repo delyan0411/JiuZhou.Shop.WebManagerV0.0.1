@@ -418,7 +418,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
             shop.notice_etime = endDate.ToString("yyyy-MM-dd HH:mm:ss");
             shop.shop_notice = DoRequest.GetFormString("shopnotice", false);
             shop.shop_remark = DoRequest.GetFormString("remarks");
-
+            shop.shop_type = DoRequest.GetFormInt("shoptype");
             #region Checking
             if (shop.shop_name.Length < 1)
             {

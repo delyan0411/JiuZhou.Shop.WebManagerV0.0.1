@@ -44,11 +44,15 @@
     <Compile Include="MySql\AuditOrder.cs" />
     <Compile Include="MySql\BalanceRefund.cs" />
     <Compile Include="MySql\DeleteStore.cs" />
+    <Compile Include="MySql\GetOverseasProductId.cs" />
+    <Compile Include="MySql\QueryCountry.cs" />
+    <Compile Include="MySql\QueryTaxrate.cs" />
     <Compile Include="MySql\GetStoreInfo.cs" />
     <Compile Include="MySql\GetRedPackInfo.cs" />
     <Compile Include="MySql\GetUserResource.cs" />
     <Compile Include="MySql\Logger.cs" />
     <Compile Include="MySql\ModifyUserIntelgral.cs" />
+    <Compile Include="MySql\OpProductOverseas.cs" />
     <Compile Include="MySql\OpStore.cs" />
     <Compile Include="MySql\OpRedPackInfo.cs" />
     <Compile Include="MySql\OpTopicPhoneModuleItems.cs" />

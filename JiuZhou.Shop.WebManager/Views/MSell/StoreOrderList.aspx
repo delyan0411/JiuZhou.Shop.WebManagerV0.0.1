@@ -111,7 +111,7 @@
                                 <input type="checkbox" onclick="selectOne(this)" name="visitid" value="<%=item.id%>" /></td>
                             <td><%=item.store_name %>
                             </td>
-                            <td><%=item.order_no %>
+                            <td><a href="/msell/orderItem?orderNumber=<%=item.order_no %>"><%=item.order_no %></a>
                             </td>
                             <td><%=addTime.ToString("yyyy-MM-dd HH:mm")%></td>
                             <td>

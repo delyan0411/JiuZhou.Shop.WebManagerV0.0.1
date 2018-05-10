@@ -37,34 +37,39 @@ namespace JiuZhou.MySql
         [DataMember]
         public List<ShopList> shop_list { set; get; }
     }
-   [DataContract]
+    [DataContract]
     public class ShopList
-   {
-       [DataMember] 
-       public int shop_id { set; get; }
+    {
+        [DataMember]
+        public int shop_id { set; get; }
 
-       [DataMember]
-       public string shop_name { set; get; }
+        [DataMember]
+        public string shop_name { set; get; }
 
-       [DataMember]
-       public int shop_state { set; get; }
+        [DataMember]
+        public int shop_state { set; get; }
 
-       [DataMember]
-       public string shop_addr { set; get; }
+        [DataMember]
+        public string shop_addr { set; get; }
 
-       [DataMember]
-       public string company_name { set; get; }
+        [DataMember]
+        public string company_name { set; get; }
 
-       [DataMember]
-       public string home_url { set; get; }
+        [DataMember]
+        public string home_url { set; get; }
 
-       [DataMember]
-       public string link_way { set; get; }
+        [DataMember]
+        public string link_way { set; get; }
 
-       [DataMember]
-       public string shop_remark { set; get; }
+        [DataMember]
+        public string shop_remark { set; get; }
 
-       [DataMember]
-       public int area_id { set; get; }
-   } 
+        [DataMember]
+        public int area_id { set; get; }
+        /// <summary>
+        /// 是否海外购商家 0 普通商家 1跨境商家
+        /// </summary>
+        [DataMember]
+        public int shop_type { set; get; }
+    }
 }

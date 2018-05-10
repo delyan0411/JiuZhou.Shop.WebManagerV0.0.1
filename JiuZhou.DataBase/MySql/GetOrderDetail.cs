@@ -18,7 +18,7 @@ namespace JiuZhou.MySql
            Request<RequestOrderInfoBody> request = new Request<RequestOrderInfoBody>();
            request.Body = search;
            request.Header = request.NewHeader();
-           request.Key = "GetOrderInfo";
+           request.Key = "GetPayOrderDetail";
            string requestStr = JsonHelper.ObjectToJson<Request<RequestOrderInfoBody>>(request);
            string responseStr = HttpUtils.HttpPost(requestStr);
            var response = JsonHelper.JsonToObject<Response<OrderDetail>>(responseStr);

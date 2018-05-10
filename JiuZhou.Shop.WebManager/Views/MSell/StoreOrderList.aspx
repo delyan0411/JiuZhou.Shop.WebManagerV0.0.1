@@ -103,15 +103,16 @@
                         <%
                             List<FullStoreOrderInfo> infoList = (List<FullStoreOrderInfo>)ViewData["infoList"];
                             foreach (FullStoreOrderInfo item in infoList)
-                            {
+                            {                                
                                 DateTime addTime = DateTime.Parse(item.create_time);
+                                
                         %>
                         <tr>
                             <td>
                                 <input type="checkbox" onclick="selectOne(this)" name="visitid" value="<%=item.id%>" /></td>
                             <td><%=item.store_name %>
                             </td>
-                            <td><%=item.order_no %>
+                            <td><a target="_blank" href="/msell/StoreOrderItem?payorderNumber=<%=item.order_no %>"><%=item.order_no %></a>
                             </td>
                             <td><%=addTime.ToString("yyyy-MM-dd HH:mm")%></td>
                             <td>

@@ -49,6 +49,7 @@
     <Compile Include="MySql\GetInsuranceInfo.cs" />
     <Compile Include="MySql\GetInsuranceList.cs" />
     <Compile Include="MySql\GetInsusertype.cs" />
+    <Compile Include="MySql\GetPayOrderDetail.cs" />
     <Compile Include="MySql\GetStoreInfo.cs" />
     <Compile Include="MySql\GetRedPackInfo.cs" />
     <Compile Include="MySql\GetUserResource.cs" />

@@ -400,8 +400,9 @@ namespace JiuZhou.Shop.WebManager.Controllers
             int orderid = DoRequest.GetQueryInt("id");
             string orderNumber = DoRequest.GetQueryString("orderNumber");
             OrderDetail order = null;
-            var res = GetOrderDetail.Do(orderNumber);
-            if(res == null || res.Body == null){
+            
+            var res = GetOrderDetail.Do(orderNumber);            
+            if (res == null || res.Body == null){
                 order = new OrderDetail();
             }else{
                 order = res.Body;}
@@ -1804,10 +1805,33 @@ namespace JiuZhou.Shop.WebManager.Controllers
 
         #endregion
 
+        #region 分销订单详情
+        public ActionResult StoreOrderItem()
+        {
+            string payorderNumber = DoRequest.GetQueryString("payorderNumber");
+            PayOrderInfo order = null;
+
+            var res = GetPayOrderDetail.Do(payorderNumber);
+            if (res == null || res.Body == null)
+            {
+                order = new PayOrderInfo();
+            }
+            else
+            {
+                order = res.Body;
+            }
+
+            ViewData["payOrderInfo"] = order;
+
+            return View();
+        }
+
         #endregion
 
-        #region 充值列表
-        #region  RechargeList 充值列表
+            #endregion
+
+            #region 充值列表
+            #region  RechargeList 充值列表
         public ActionResult RechargeList()
         {
             UserResBody currResBody = new UserResBody();

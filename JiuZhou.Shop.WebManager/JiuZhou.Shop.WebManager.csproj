@@ -1541,6 +1541,7 @@
     <Content Include="Views\MPromotions\RedPackList.aspx" />
     <Content Include="Views\MSell\Comments.aspx" />
     <Content Include="Views\MSell\ClickFarming.aspx" />
+    <Content Include="Views\MSell\StoreOrderItem.aspx" />
     <Content Include="Views\MSell\WmSearchList.aspx" />
     <Content Include="Views\MSell\WmIndex.aspx" />
     <Content Include="Views\MSell\StoreEditor.aspx" />

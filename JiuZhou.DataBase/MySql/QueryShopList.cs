@@ -84,6 +84,9 @@ namespace JiuZhou.MySql
         public string link_way { set; get; }
 
         [DataMember]
+        public int shop_type { set; get; }
+
+        [DataMember]
         public int shop_state { set; get; }
     } 
 }

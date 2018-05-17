@@ -1745,10 +1745,10 @@ namespace JiuZhou.Shop.WebManager.Controllers
             {
                 categs = res.Body.type_list;
             }
-          
+
             ProductInfo product = null;
             TypeList categ = categs.Find(
-                    delegate(TypeList t)
+                    delegate (TypeList t)
                     {
                         return (t.product_type_id == classId);
                     });//分类信息
@@ -1777,7 +1777,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
             {
                 shopList = resshop.Body.shop_list;
             }
-            
+
             List<BrandInfo> brandlist = new List<BrandInfo>();
             int datacount = 0;
             int pagecount = 0;
@@ -1790,13 +1790,16 @@ namespace JiuZhou.Shop.WebManager.Controllers
             string shopname = DoRequest.GetFormString("shopname");
             string brandname = DoRequest.GetFormString("brandname");
             int shopid = 0;
+            int shop_type = 0;
             foreach (ShopList item in shopList)
             {
                 if (item.shop_name.Equals(shopname) && item.shop_state == 0)
                 {
                     shopid = item.shop_id;
+                    shop_type = item.shop_type;
                 }
             }
+
             int brandid = 0;
             foreach (BrandInfo item in brandlist)
             {
@@ -1914,7 +1917,8 @@ namespace JiuZhou.Shop.WebManager.Controllers
             product.product_type_path = categ.product_type_path;
 
             product.brand_id = brandid;
-
+            //海外购商品
+            product.sea_flag = DoRequest.GetFormInt("sea_flag");
             #region Checking
             if (product.product_type_id < 1)
             {
@@ -1965,6 +1969,10 @@ namespace JiuZhou.Shop.WebManager.Controllers
             if (product.mobile_price < 0.01m)
             {
                 return Json(new { error = true, input = "message", message = "手机专享价不能小于0.01元" });
+            }
+            if (shop_type != product.sea_flag)
+            {
+                return Json(new { error = true, input = "message", message = "海外购商品必须选择海仓商家" });
             }
             #endregion
 
@@ -2180,6 +2188,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
 
                 var returnValue1 = -1;
                 var returnValue2 = -1;
+                var returnValue3 = -1;
                 if (proId == 0)
                 {
                     Session["protypeid"] = product.product_type_id;
@@ -2228,6 +2237,63 @@ namespace JiuZhou.Shop.WebManager.Controllers
                 if (updateList.Count > 0)
                     res1 = OpProductSku.Do(product.product_id, updateList);//更新
                 #endregion
+
+                #region 处理海外购商品信息  判断是不是海外购商家 
+                if (product.sea_flag == 1)
+                {
+                    OverseasInfo oversea = new OverseasInfo();
+                    //var resoversea = GetOverseasProductId.Do(product.product_id);//海外购商品信息 
+                    //if (DoRequest.GetFormString("overseaid").Trim() == "0")
+                    //{
+                    //    oversea.id = "0";
+                    //}
+                    //else { 
+                    //    if (resoversea != null && resoversea.Body != null)
+                    //        oversea = resoversea.Body;
+                    //}
+                    oversea.id = DoRequest.GetFormInt("overseaid");
+                    oversea.countrycode = DoRequest.GetFormString("sel_code").Trim();
+                    oversea.hscode = DoRequest.GetFormString("tx_hscode").Trim();
+                    oversea.isfreetax = DoRequest.GetFormInt("isfreetax");
+                    oversea.product_id = product.product_id.ToString();
+                    oversea.taxrate = DoRequest.GetFormString("sel_taxrate").Trim();
+                    oversea.freestarttime = "2010-01-01 00:00:00";
+                    oversea.freeendtime = "2010-01-01 23:59:59";
+                    
+                    if (oversea.isfreetax == 1)
+                    {
+                        string ftsDate = DoRequest.GetFormString("ftsdate").Trim();
+                        int ftsHours = DoRequest.GetFormInt("ftshours");
+                        int ftsMinutes = DoRequest.GetFormInt("ftsminutes");
+                        if (Utils.IsDateString(ftsDate))
+                        {
+                            if (ftsHours < 0 || ftsHours > 23) ftsHours = 0;
+                            if (ftsMinutes < 0 || ftsMinutes > 59) ftsMinutes = 0;
+
+                            oversea.freestarttime = ftsDate + " " + ftsHours + ":" + ftsMinutes + ":00";
+                        }
+                        string fteDate = DoRequest.GetFormString("ftedate").Trim();
+                        int fteHours = DoRequest.GetFormInt("ftehours");
+                        int fteMinutes = DoRequest.GetFormInt("fteminutes");
+                        if (Utils.IsDateString(fteDate))
+                        {
+                            if (fteHours < 0 || fteHours > 23) fteHours = 0;
+                            if (fteMinutes < 0 || fteMinutes > 59) fteMinutes = 0;
+
+                            oversea.freeendtime = fteDate + " " + fteHours + ":" + fteMinutes + ":00";
+                        }
+                    }
+                    var res3 = OpProductOverseas.Do(oversea);
+                    if (res3 != null && res3.Header != null && res3.Header.Result != null && res3.Header.Result.Code != null)
+                    {
+                        returnValue3 = Utils.StrToInt(res3.Header.Result.Code, -1);
+                        if (returnValue3 != 0)
+                            msgText = res3.Header.Result.Msg;
+                    }
+                }
+
+               
+                #endregion
                 if (deleteCount > 0 || addList.Count > 0 || updateList.Count > 0)
                 {
                     if (res1 != null && res1.Header != null && res1.Header.Result != null && res1.Header.Result.Code != null)
@@ -2242,10 +2308,10 @@ namespace JiuZhou.Shop.WebManager.Controllers
                     returnValue2 = Utils.StrToInt(res2.Header.Result.Code, -1);
                     if (returnValue2 != 0)
                         msgText = res2.Header.Result.Msg;
-                }
+                }               
             }
 
-            return Json(new { error = (returnValue == 0 && returnValue == 0 && returnValue == 0) ? false : true, input = "message", message = msgText, returnValue = returnValue }, JsonRequestBehavior.AllowGet);
+            return Json(new { error = (returnValue == 0) ? false : true, input = "message", message = msgText, returnValue = returnValue }, JsonRequestBehavior.AllowGet);
          
         }
         #endregion

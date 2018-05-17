@@ -44,6 +44,7 @@
     <th style="width:10%">发货地址</th>
     <th style="width:25%">联系方式</th>
     <th>备注</th>
+    <th style="width:15%">商家类型</th>
     <th style="width:14%">操作</th>
   </tr>
 </thead>
@@ -58,6 +59,7 @@
     <td><%=item.shop_addr%></td>
     <td><%=item.link_way%></td>
     <td><%=item.shop_remark.Replace("\n","<br/>")%></td>
+      <td><%=(item.shop_type==1)?"海外购商家":"普通商家" %></td>
     <td>
     <a href="/musers/shopeditor?shopid=<%=item.shop_id%>" target="_blank">编&nbsp;&nbsp;辑</a>
     <a href="javascript:;" onclick="resetShopState(<%=item.shop_id%>,<%=item.shop_state==0?1:0 %>)"><%=item.shop_state==0?"已 显 示":"<span style='color:red'>已 隐 藏</span>"%></a><br />

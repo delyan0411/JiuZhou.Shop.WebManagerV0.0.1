@@ -46,6 +46,9 @@
     <Compile Include="MySql\DeleteBrust.cs" />
     <Compile Include="MySql\DeleteInsType.cs" />
     <Compile Include="MySql\DeleteStore.cs" />
+    <Compile Include="MySql\GetOverseasProductId.cs" />
+    <Compile Include="MySql\QueryCountry.cs" />
+    <Compile Include="MySql\QueryTaxrate.cs" />
     <Compile Include="MySql\GetInsuranceInfo.cs" />
     <Compile Include="MySql\GetInsuranceList.cs" />
     <Compile Include="MySql\GetInsusertype.cs" />
@@ -56,6 +59,7 @@
     <Compile Include="MySql\GetBrustInfo.cs" />
     <Compile Include="MySql\Logger.cs" />
     <Compile Include="MySql\ModifyUserIntelgral.cs" />
+    <Compile Include="MySql\OpProductOverseas.cs" />
     <Compile Include="MySql\OpInsProductInfo.cs" />
     <Compile Include="MySql\OpInsuranceInfo.cs" />
     <Compile Include="MySql\OpInsuranceTypeInfo.cs" />

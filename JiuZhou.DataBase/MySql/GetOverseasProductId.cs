@@ -32,5 +32,31 @@ namespace JiuZhou.MySql
         [DataMember]
         public string product_id { set; get; }
     }
+    [DataContract]
+    public class OverseasInfo
+    {
+        [DataMember]
+        public int id { set; get; }
 
+        [DataMember]
+        public string product_id { set; get; }
+
+        [DataMember]
+        public string countrycode { set; get; }
+
+        [DataMember]
+        public string hscode { set; get; }
+
+        [DataMember]
+        public string taxrate { set; get; }
+
+        [DataMember]
+        public int isfreetax { set; get; }
+
+        [DataMember]
+        public string freestarttime { set; get; }
+
+        [DataMember]
+        public string freeendtime { set; get; }
+    }
 }

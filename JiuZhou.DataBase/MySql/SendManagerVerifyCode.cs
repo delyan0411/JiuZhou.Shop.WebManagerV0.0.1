@@ -11,18 +11,18 @@ namespace JiuZhou.MySql
     public class SendManagerVerifyCode
     {
         public static Response<ResponseBodyEmpty> Do(int type)
-       {
-           RequestSendCode body = new RequestSendCode();
-           body.send_type = type.ToString();
-           Request<RequestSendCode> request = new Request<RequestSendCode>();
-           request.Body = body;
-           request.Header = request.NewHeader();
-           request.Key = "SendManagerVerifyCode";
-           string requestStr = JsonHelper.ObjectToJson<Request<RequestSendCode>>(request);
-           string responseStr = HttpUtils.HttpPost(requestStr);
+        {
+            RequestSendCode body = new RequestSendCode();
+            body.send_type = type.ToString();
+            Request<RequestSendCode> request = new Request<RequestSendCode>();
+            request.Body = body;
+            request.Header = request.NewHeader();
+            request.Key = "SendManagerVerifyCode";
+            string requestStr = JsonHelper.ObjectToJson<Request<RequestSendCode>>(request);
+            string responseStr = HttpUtils.HttpPost(requestStr);
             var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
-           return response;
-       }
+            return response;
+        }
     }
 
     [DataContract]

@@ -12,11 +12,20 @@ namespace JiuZhou.MySql
     {
         public static Response<ResponseBodyEmpty> Do(OverseasInfo overseasinfo)
         {
-            Request<OverseasInfo> request = new Request<OverseasInfo>();
-            request.Body = overseasinfo;
+            ReqOverseasInfo reqproductinfo = new ReqOverseasInfo();
+            Request<ReqOverseasInfo> request = new Request<ReqOverseasInfo>();
+            reqproductinfo.id = overseasinfo.id.ToString();
+            reqproductinfo.product_id = overseasinfo.product_id;
+            reqproductinfo.countrycode = overseasinfo.countrycode;
+            reqproductinfo.hscode = overseasinfo.hscode;
+            reqproductinfo.taxrate = overseasinfo.taxrate;
+            reqproductinfo.isfreetax = overseasinfo.isfreetax.ToString();
+            reqproductinfo.freestarttime = overseasinfo.freestarttime;
+            reqproductinfo.freeendtime = overseasinfo.freeendtime;
+            request.Body = reqproductinfo;
             request.Header = request.NewHeader();
             request.Key = "OpProductOverseas";
-            string requestStr = JsonHelper.ObjectToJson<Request<OverseasInfo>>(request);
+            string requestStr = JsonHelper.ObjectToJson<Request<ReqOverseasInfo>>(request);
             Logger.Log(requestStr);
             string responseStr = HttpUtils.HttpPost(requestStr);
             Logger.Log(responseStr);
@@ -25,7 +34,7 @@ namespace JiuZhou.MySql
         }
     }
     [DataContract]
-    public class OverseasInfo
+    public class ReqOverseasInfo
     {
         [DataMember]
         public string id  { set; get; }

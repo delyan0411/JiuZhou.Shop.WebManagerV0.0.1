@@ -129,7 +129,10 @@
         ProductInfo Info = new ProductInfo();
         var respro = GetProductInfo.Do(proId);
         if (respro != null && respro.Body != null)
+        {
             Info = respro.Body;
+        }
+
         if (Info.product_id < 1)
         {
             Info.promotion_bdate = "2012-01-01 00:00:00";
@@ -949,11 +952,6 @@
                             {
                                 rsinfo = reovp.Body;
                             }
-                            else
-                            {
-                                rsinfo = new OverseasInfo();
-                                rsinfo.id = "0";
-                            }
                         %>
                         <tbody>
                             <input type="hidden" value="<%=rsinfo.id %>" name="overseaid" id="overseaid" />
@@ -961,15 +959,15 @@
                                 <td style="width: 3%">&nbsp;</td>
                                 <td class="lable">免税</td>
                                 <td colspan="2">
-                                    <input type="radio" name="isfreetax" value="0" <%=(rsinfo.isfreetax=="0")?" checked=\"checked\"":""%> />
+                                    <input type="radio" name="isfreetax" value="0" <%=(rsinfo.isfreetax==0)?" checked=\"checked\"":""%> />
                                     不免税
     &nbsp;|&nbsp;
-    <input type="radio" name="isfreetax" value="1" <%=(rsinfo.isfreetax=="1")?" checked=\"checked\"":""%> />
+    <input type="radio" name="isfreetax" value="1" <%=(rsinfo.isfreetax==1)?" checked=\"checked\"":""%> />
                                     商家免税
     <span class="tips-text" id="tips-freetax">&nbsp;</span>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr>                                
                                 <td style="width: 3%">&nbsp;</td>
                                 <td class="lable">商家免税时间</td>
                                 <td colspan="2">

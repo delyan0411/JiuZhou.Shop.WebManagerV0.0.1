@@ -2251,16 +2251,16 @@ namespace JiuZhou.Shop.WebManager.Controllers
                     //    if (resoversea != null && resoversea.Body != null)
                     //        oversea = resoversea.Body;
                     //}
-                    oversea.id = DoRequest.GetFormString("overseaid").Trim();
+                    oversea.id = DoRequest.GetFormInt("overseaid");
                     oversea.countrycode = DoRequest.GetFormString("sel_code").Trim();
                     oversea.hscode = DoRequest.GetFormString("tx_hscode").Trim();
-                    oversea.isfreetax = DoRequest.GetFormString("isfreetax");
+                    oversea.isfreetax = DoRequest.GetFormInt("isfreetax");
                     oversea.product_id = product.product_id.ToString();
                     oversea.taxrate = DoRequest.GetFormString("sel_taxrate").Trim();
                     oversea.freestarttime = "2010-01-01 00:00:00";
                     oversea.freeendtime = "2010-01-01 23:59:59";
                     
-                    if (oversea.isfreetax == "1")
+                    if (oversea.isfreetax == 1)
                     {
                         string ftsDate = DoRequest.GetFormString("ftsdate").Trim();
                         int ftsHours = DoRequest.GetFormInt("ftshours");

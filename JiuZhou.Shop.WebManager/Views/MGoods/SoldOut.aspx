@@ -119,6 +119,10 @@
 <p>
 <input type="submit" value=" 搜索 " class="submit"/>
 </p>
+
+                <p>
+                         <a href="/mgoods/export?classid=<%=classid %>&sType=<%=sType %>&shopid=<%=shopid %>&promotion=-1&ison=0&insurance=-1" style="font-size: 20px" target="_blank">导出商品</a>
+                     </p>
 			</div>
 </form>
 <script type="text/javascript">

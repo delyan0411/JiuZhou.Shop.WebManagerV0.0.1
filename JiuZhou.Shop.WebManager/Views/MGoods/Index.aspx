@@ -20,10 +20,11 @@
 </head>
 <body>
     <%
-        int classid = DoRequest.GetQueryInt("classid",-1);
-        int sType = DoRequest.GetQueryInt("sType",0);
-        int shopid = DoRequest.GetQueryInt("shopid",-1);
-        int promotion = DoRequest.GetQueryInt("promotion",-1);
+        int classid = DoRequest.GetQueryInt("classid", -1);
+        int sType = DoRequest.GetQueryInt("sType", 0);
+        int shopid = DoRequest.GetQueryInt("shopid", -1);
+        int promotion = DoRequest.GetQueryInt("promotion", -1);
+        int insurance = DoRequest.GetQueryInt("insurance", -1);
         List<TypeList> tList = new List<TypeList>();
         DoCache chche = new DoCache();
         if (chche.GetCache("typelist") == null)
@@ -137,6 +138,14 @@
                             <%--<option value="4"></option>--%>
                         </select>
                     </p>
+                      <p>
+                        <select id="insurance" name="insurance" style="width: 80px; height: 26px;">
+                            <option value="-1" init="true">商保类型</option>
+                            <option value="1">企健</option>
+                            <option value="2">可乐否</option>
+                            <%--<option value="4"></option>--%>
+                        </select>
+                    </p>
                     <p style="position: relative">
                         <input type="text" id="sQuery" name="q" value="<%=DoRequest.GetQueryString("q")%>" class="input" autocomplete="off" onkeyup="suggest.init(event,this,'/MTools/SeachSuggest')" style="width: 220px; height: 24px; line-height: 24px;" />
                     </p>
@@ -147,9 +156,9 @@
                     &nbsp;
                    
                      <p>
-                        <a href="/mgoods/export?classid=<%=classid %>&sType=<%=sType %>&shopid=<%=shopid %>&promotion=<%=promotion %>" style="font-size: 20px" target="_blank">导出商品</a>
-                    </p>
-                     <p>
+                         <a href="/mgoods/export?classid=<%=classid %>&sType=<%=sType %>&shopid=<%=shopid %>&promotion=<%=promotion %>&insurance=<%=insurance %>" style="font-size: 20px" target="_blank">导出商品</a>
+                     </p>
+                    <p>
                         <a href="/mgoods/editor?classid=0&id=0" style="font-size: 20px" target="_blank">添加商品</a>
                     </p>
                 </div>
@@ -160,6 +169,7 @@
                     $("#classid option[value='<%=DoRequest.GetQueryInt("classid", -1)%>']").attr("selected", true);
                     $("#shopid option[value='<%=DoRequest.GetQueryInt("shopid", -1)%>']").attr("selected", true);
                     $("#promotion option[value='<%=DoRequest.GetQueryInt("promotion", -1)%>']").attr("selected", true);
+                    $("#insurance option[value='<%=DoRequest.GetQueryInt("insurance", -1)%>']").attr("selected", true);
                 });
 
 function checksearch(form){
@@ -262,12 +272,12 @@ var changeOrderBy=function(ocol,ot){
                                             gifts = (List<GiftsList>)chche.GetCache("product-GetProductGift" + info.product_id);
                                         }
                                         //if (gifts.Count > 0)
-                                        if (info.gift_flag> 0)
+                                        if (info.gift_flag > 0)
                                         {
                                             Response.Write("&nbsp;<span>买赠</span>");
                                         }
                                         if (info.pro_flag > 0)
-                                        {  
+                                        {
                                             if (promotion_bgdate >= DateTime.Now)
                                                 Response.Write("&nbsp;<span>即将直降</span>");
                                             else
@@ -289,36 +299,63 @@ var changeOrderBy=function(ocol,ot){
                                 </p>
                                 <p style="color: #999">
                                     分类：<%  string _s = info.product_type_path;
-                             string[] _tem = _s.Split(',');
-                             int _xCount = 0;
-                             for (int x = 0; x < _tem.Length; x++)
-                             {
-                                 if (string.IsNullOrEmpty(_tem[x].Trim())) continue;
-                                 int _v = Utils.StrToInt(_tem[x].Trim());
-                                 foreach (TypeList item in tList)
-                                 {
-                                     if (item.product_type_id == _v)
-                                     {
-                                         if (_xCount > 0) Response.Write(" &gt;&gt; ");
-                                         Response.Write(item.type_name);
-                                         _xCount++;
-                                     }
-                                 }
-                             }
-                             //clsInfo.n_name
+                                           string[] _tem = _s.Split(',');
+                                           int _xCount = 0;
+                                           for (int x = 0; x < _tem.Length; x++)
+                                           {
+                                               if (string.IsNullOrEmpty(_tem[x].Trim())) continue;
+                                               int _v = Utils.StrToInt(_tem[x].Trim());
+                                               foreach (TypeList item in tList)
+                                               {
+                                                   if (item.product_type_id == _v)
+                                                   {
+                                                       if (_xCount > 0) Response.Write(" &gt;&gt; ");
+                                                       Response.Write(item.type_name);
+                                                       _xCount++;
+                                                   }
+                                               }
+                                           }
+                                           //clsInfo.n_name
                                     %>
                                 </p>
                                 <p>
-                                    <a href="javascript:;" onclick="Countercheck('<%=info.product_id %>','<%=info.product_name %>','<%=info.img_src %>')">赠品反查</a>
+                                    <a href="javascript:;" onclick="Countercheck('<%=info.product_id %>','<%=info.product_name %>','<%=info.img_src %>')">赠品反查</a>&nbsp;&nbsp;&nbsp;
+                                     
+                                    <%if (info.allow_qj.IndexOf("1") == 0)
+                                              {%>
+                                                  <span style="color:green"><a href="javascript:;"   onclick="getQJstate(this,'<%=info.product_id %>','<%=info.product_code%>')">企健</a></span>
+                                             <% }
+                                              else
+                                              {%>
+                                                  <span style="color:grey"><a href="javascript:;"   onclick="getQJstate(this,'<%=info.product_id %>','<%=info.product_code%>')">企健</a></span>")
+                                              <%}%>
+                                    /
+                                               <%if (info.allow_qj.IndexOf("3") >= 0)
+                                              {
+                                                  Response.Write("<span style=\"color:green\">可乐否</span>");
+                                              }
+                                              else
+                                              {
+                                                  Response.Write("<span style=\"color:grey\">可乐否</span>");
+                                              } %>
+                                    /
+                                               <%if (info.allow_ebaolife> 0)
+                                              {
+                                                  Response.Write("<span style=\"color:green\">医卡通</span>");
+                                              }
+                                                else
+                                              {
+                                                  Response.Write("<span style=\"color:grey\">医卡通</span>");
+                                              } %>
                                 </p>
                             </td>
                             <td>
                                 <%int minStock = 0;
-                                int maxStock = 0;
-                                int vminStock = 0;
-                                int vmaxStock = 0;
-                                if (skus.Count < 1)
-                                {
+                                    int maxStock = 0;
+                                    int vminStock = 0;
+                                    int vmaxStock = 0;
+                                    if (skus.Count < 1)
+                                    {
                                 %>
                                 <p style="color: #555; margin-top: 3px">售&nbsp;价：<input type="text" value="<%=info.sale_price%>" v="<%=info.product_id%>" oprice="<%=info.sale_price%>" class="hiddenInput" onmouseover="inputMouseOver(this)" onmouseout="inputMouseOut(this)" onclick="inputClick(this)" onblur="priceBlur(this,'member')" style="width: 50px; background: none; color: #555;" /></p>
                                 <p style="color: #555; margin-top: 3px">手&nbsp;机：<input type="text" value="<%=info.mobile_price%>" v="<%=info.product_id%>" oprice="<%=info.mobile_price%>" class="hiddenInput" onmouseover="inputMouseOver(this)" onmouseout="inputMouseOut(this)" onclick="inputClick(this)" onblur="priceBlur(this,'mobile')" style="width: 50px; background: none; color: #555;" /></p>
@@ -360,18 +397,7 @@ var changeOrderBy=function(ocol,ot){
                                 if (info.modify_time != null && !info.modify_time.Equals(""))
                                     modifytime = DateTime.Parse(info.modify_time).ToString("yyyy-MM-dd HH:mm");%>
                             <td><%=modifytime%><div style="height: 8px; line-height: 8px; font-size: 1px; overflow: hidden;">&nbsp;</div>
-                                <%if (info.allow_qj == 1)
-                                    {
-                                        //Response.Write("<a href=\"javascript:;\" val='0' onclick=\"resetAllowYBLife2(this," + info.product_id + ")\">医卡通支付 √</a>");
-                                        Response.Write("<span style=\"color:green\">企健可支付");
-                                    }
-                                    else if (info.allow_qj == 0)
-                                    {
-                                        //Response.Write("<a href=\"javascript:;\" val='1' onclick=\"resetAllowYBLife2(this," + info.product_id + ")\" style=\"color:#999\">医卡通支付 ×</a>");
-                                        Response.Write("企健不可支付");
-                                    }
 
-                                %>
                             </td>
                             <td style="text-align: center">
                                 <%  string onclick = "inputClick(this)";
@@ -388,8 +414,8 @@ var changeOrderBy=function(ocol,ot){
                                     <%=vminStock%>-<%=vmaxStock%>
                                 </div>
                                 <%}
-    else
-    {
+             else
+             {
                                 %><div style="text-align: center;">
                                     <input type="text" id="stock-<%=info.product_id%>" value="<%=info.stock_num%>" v="<%=info.product_id%>" ostock="<%=info.stock_num%>" class="hiddenInput" disabled style="width: 40px; background: none; text-align: center;" />
                                 </div>
@@ -700,6 +726,7 @@ function deleteList(form, status){
     <%Html.RenderPartial("Base/_PageFootControl"); %>
     <%Html.RenderPartial("MGoods/SkuEditorControl"); %>
     <%Html.RenderPartial("MGoods/CounterCheckGiftControl"); %>
+     <%Html.RenderPartial("MGoods/CheckQJControl"); %>
 </body>
 </html>
 

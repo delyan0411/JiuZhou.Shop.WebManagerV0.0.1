@@ -9,7 +9,7 @@ namespace JiuZhou.MySql
 {
     public class QueryProductInfo
     {
-        public static Response<ResponseSearchBody> Do(int pagesize, int pageindex, int checktype, int shopid, int classid, int _stype, int promotion, int isonsale, int isVisible, string _skey, string _ocol, string _ot, ref int dataCount, ref int pageCount)
+        public static Response<ResponseSearchBody> Do(int pagesize, int pageindex, int checktype, int shopid, int classid, int _stype, int promotion,int insurance, int isonsale, int isVisible, string _skey, string _ocol, string _ot, ref int dataCount, ref int pageCount)
         {
             RequestSearchBody search = new RequestSearchBody();
 
@@ -18,6 +18,7 @@ namespace JiuZhou.MySql
             search.product_type_id = classid.ToString();
             search.search_type = _stype.ToString();
             search.promotion = promotion.ToString();
+            search.insurance = insurance.ToString();
             search.is_on_sale = isonsale.ToString();
             search.is_visible = isVisible.ToString();
             search.key_word = _skey;
@@ -49,7 +50,7 @@ namespace JiuZhou.MySql
 
             return response;
         }
-        public static Response<ResponseExportBody> ExportDo(int pagesize, int pageindex, int checktype, int shopid, int classid, int _stype, int promotion, int isonsale, int isVisible, string _skey, string _ocol, string _ot, ref int dataCount, ref int pageCount)
+        public static Response<ResponseExportBody> ExportDo(int pagesize, int pageindex, int checktype, int shopid, int classid, int _stype, int promotion, int insurance, int isonsale, int isVisible, string _skey, string _ocol, string _ot, ref int dataCount, ref int pageCount)
         {
             RequestSearchBody search = new RequestSearchBody();
 
@@ -58,6 +59,7 @@ namespace JiuZhou.MySql
             search.product_type_id = classid.ToString();
             search.search_type = _stype.ToString();
             search.promotion = promotion.ToString();
+            search.insurance = insurance.ToString();
             search.is_on_sale = isonsale.ToString();
             search.is_visible = isVisible.ToString();
             search.key_word = _skey;
@@ -110,6 +112,9 @@ namespace JiuZhou.MySql
 
         [DataMember]
         public string promotion { set; get; }
+
+        [DataMember]
+        public string insurance { set; get; }
 
         [DataMember]
         public string is_visible { set; get; }
@@ -336,7 +341,7 @@ namespace JiuZhou.MySql
 
 
         [DataMember]
-        public int allow_qj { set; get; }
+        public string allow_qj { set; get; }
         
     } 
 }

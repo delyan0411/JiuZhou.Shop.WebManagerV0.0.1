@@ -969,7 +969,7 @@
                             </tr>
                             <tr>                                
                                 <td style="width: 3%">&nbsp;</td>
-                                <td class="lable">商家免税时间</td>
+                                <td class="lable">商家免税时间(暂时没用)</td>
                                 <td colspan="2">
                                     <%if (rsinfo.freestarttime == null)
                                             rsinfo.freestarttime = DateTime.Now.ToString();

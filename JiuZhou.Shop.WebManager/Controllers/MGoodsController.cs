@@ -43,13 +43,14 @@ namespace JiuZhou.Shop.WebManager.Controllers
             //ViewData["pageTitle"] = base.FormatPageTile(currResBody, ref position);
             //ViewData["position"] = position;//页面位置
             int pagesize = 30;
-            int pageindex = 1;
-            int isVisible = 1;
+            int pageindex = 1;            
             int classid = DoRequest.GetQueryInt("classid", -1);
             int shopid = DoRequest.GetQueryInt("shopid", -1);
-            int ison = 1;
+            int ison = DoRequest.GetQueryInt("ison", 1);
+            int isVisible = DoRequest.GetQueryInt("isVisible", 1);
             int sType = DoRequest.GetQueryInt("stype");
             int promotion = DoRequest.GetQueryInt("promotion", -1);
+            int insurance = DoRequest.GetQueryInt("insurance", -1);
             string ocol = DoRequest.GetQueryString("ocol").Trim().ToLower();
             if (ocol == "")
             {
@@ -83,6 +84,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
                 , classid
                 , sType
                 , promotion
+                , insurance
                 , ison
                 , isVisible
                 , sKey
@@ -100,6 +102,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
                     , classid
                     , sType
                     , promotion
+                    , insurance
                     , ison
                     , isVisible
                     , sKey
@@ -118,8 +121,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
             }
             return Content("出现了错误");            
         }
-        #endregion
-       
+        #endregion       
 
         #region 在售商品列表
         public ActionResult Index()
@@ -143,18 +145,21 @@ namespace JiuZhou.Shop.WebManager.Controllers
 
             int pagesize = DoRequest.GetQueryInt("size", 30);
             int pageindex = DoRequest.GetQueryInt("page", 1);
-            int isVisible = 1; 
+            int isVisible = 1;
             int classid = DoRequest.GetQueryInt("classid", -1);
             int shopid = DoRequest.GetQueryInt("shopid", -1);
             int ison = 1;
             int sType = DoRequest.GetQueryInt("stype");
             int promotion = DoRequest.GetQueryInt("promotion", -1);
+            int insurance = DoRequest.GetQueryInt("insurance", -1);
             string ocol = DoRequest.GetQueryString("ocol").Trim().ToLower();
-            if (ocol == "") {
+            if (ocol == "")
+            {
                 ocol = "modifytime";
             }
             string otype = DoRequest.GetQueryString("ot").ToLower().Trim();
-            if (otype == "") {
+            if (otype == "")
+            {
                 otype = "desc";
             }
 
@@ -178,36 +183,23 @@ namespace JiuZhou.Shop.WebManager.Controllers
             int dataCount = 0;
             int pageCount = 0;
             List<ProductsInfo> _table = new List<ProductsInfo>();
-            DoCache cache = new DoCache();
-            string cachekey = "product-index=" + pageindex + "shopid=" + shopid + "classid=" + classid + "stype=" + sType + "promotion=" + promotion + "ison=" + ison + "visible=" + isVisible + "skey=" + sKey + "ocol=" + ocol + "otype=" + otype;
-            if (cache.GetCache(cachekey) == null)
+            var resp = QueryProductInfo.Do(pagesize, pageindex
+                , 0
+                , shopid
+                , classid
+                , sType
+                , promotion
+                , insurance
+                , ison
+                , isVisible
+                , sKey
+                , ocol
+                , otype
+                , ref dataCount
+                , ref pageCount);
+            if (resp != null && resp.Body != null && resp.Body.product_list != null)
             {
-                var resp = QueryProductInfo.Do(pagesize, pageindex
-                    , 0
-                    , shopid
-                    , classid
-                    , sType
-                    , promotion
-                    , ison
-                    , isVisible
-                    , sKey
-                    , ocol
-                    , otype
-                    , ref dataCount
-                    , ref pageCount);
-                if (resp != null && resp.Body != null && resp.Body.product_list != null)
-                {
-                    _table = resp.Body.product_list;
-                    cache.SetCache(cachekey, _table, 10);
-                    cache.SetCache("product-datacount1", dataCount, 10);
-                    if (_table.Count == 0)
-                        cache.RemoveCache(cachekey);
-                }
-            }
-            else
-            {
-                _table = (List<ProductsInfo>)cache.GetCache(cachekey);
-                dataCount = (int)cache.GetCache("product-datacount1");
+                _table = resp.Body.product_list;
             }
             ViewData["infoList"] = _table;//商品列表
 
@@ -217,6 +209,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
             currPageUrl.Append("&classid=" + classid);
             currPageUrl.Append("&stype=" + sType);
             currPageUrl.Append("&promotion=" + promotion);
+            currPageUrl.Append("&insurance=" + insurance);
             currPageUrl.Append("&visi=" + isVisible);
             currPageUrl.Append("&ison=" + ison);
             currPageUrl.Append("&ocol=" + ocol);
@@ -307,6 +300,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
                     , classid
                     , sType
                     , -1
+                    , -1
                     , ison
                     , isVisible
                     , sKey
@@ -381,8 +375,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
             int isVisible = 0;
             int sType = DoRequest.GetQueryInt("stype");
             int classid = DoRequest.GetQueryInt("classid", -1);
-            int shopid = -1;
-
+            int shopid = DoRequest.GetQueryInt("shopid", -1);
             string ocol = DoRequest.GetQueryString("ocol").Trim().ToLower();
             if (ocol == "")
             {
@@ -413,36 +406,23 @@ namespace JiuZhou.Shop.WebManager.Controllers
             int dataCount = 0;
             int pageCount = 0;
             List<ProductsInfo> _table = new List<ProductsInfo>();
-            DoCache cache = new DoCache();
-            string cachekey = "product-index=" + pageindex + "shopid=" + shopid + "classid=" + classid + "stype=" + sType + "ison=" + ison + "visible=" + isVisible + "skey=" + sKey + "ocol=" + ocol + "otype=" + otype;
-            if (cache.GetCache(cachekey) == null)
+            var resp = QueryProductInfo.Do(pagesize, pageindex
+                , 0
+                , shopid
+                , classid
+                , sType
+                , -1
+                , -1
+                , ison
+                , isVisible
+                , sKey
+                , ocol
+                , otype
+                , ref dataCount
+                , ref pageCount);
+            if (resp != null && resp.Body != null && resp.Body.product_list != null)
             {
-                var resp = QueryProductInfo.Do(pagesize, pageindex
-                    , 0
-                    , shopid
-                    , classid
-                    , sType
-                    , -1
-                    , ison
-                    , isVisible
-                    , sKey
-                    , ocol
-                    , otype
-                    , ref dataCount
-                    , ref pageCount);
-                if (resp != null && resp.Body != null && resp.Body.product_list != null)
-                {
-                    _table = resp.Body.product_list;
-                    cache.SetCache(cachekey, _table, 10);
-                    cache.SetCache("product-datacount3", dataCount, 10);
-                    if (_table.Count == 0)
-                        cache.RemoveCache(cachekey);
-                }
-            }
-            else
-            {
-                _table = (List<ProductsInfo>)cache.GetCache(cachekey);
-                dataCount = (int)cache.GetCache("product-datacount3");
+                _table = resp.Body.product_list;                
             }
             ViewData["infoList"] = _table;//商品列表
 
@@ -539,6 +519,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
                     , shopid
                     , classid
                     , sType
+                    , -1
                     , -1
                     , ison
                     , isVisible
@@ -3525,6 +3506,66 @@ namespace JiuZhou.Shop.WebManager.Controllers
                 return Json(new { error = false });
             }
             return Json(new { error = true, message="编码不存在，请核实！" });
+        }
+        #endregion
+
+        #region CheckQJ 企健商品状态查询
+        [HttpPost]
+        public ActionResult CheckQJ()
+        {
+            string product_id = DoRequest.GetFormString("product_id").Trim();
+            string product_code = DoRequest.GetFormString("product_code").Trim();
+            if (string.IsNullOrEmpty(product_code)|| string.IsNullOrEmpty(product_id))
+            {
+                return Json(new { error = true, message = "参数错误" });
+            }
+            int returnValue = -1;
+            var res = CheckQJProduct.Do(product_id, product_code);
+            if (res != null && res.Header != null && res.Header.Result != null && res.Header.Result.Code != null)
+                returnValue = Utils.StrToInt(res.Header.Result.Code, -1);
+            string result = res.Body.result;
+            if (returnValue == 0)
+            {
+                return Json(new
+                {
+                    error = false,
+                    message = "操作成功!",
+                    result = result
+                });
+            }
+            if (returnValue != 0)
+                return Json(new { error = true, message = res.Header.Result.Msg });
+            return Json(new { error = true, message = "操作失败" });
+        }
+        #endregion
+
+        #region CheckQJ 企健商品推送
+        [HttpPost]
+        public ActionResult PushQJ()
+        {
+            string product_id = DoRequest.GetFormString("product_id").Trim();
+            string product_type_name = DoRequest.GetFormString("product_type_name").Trim();
+            if (string.IsNullOrEmpty(product_type_name) || string.IsNullOrEmpty(product_id))
+            {
+                return Json(new { error = true, message = "参数错误" });
+            }
+            int returnValue = -1;
+            var res = PushQjProduct.Do(product_id, product_type_name);
+            if (res != null && res.Header != null && res.Header.Result != null && res.Header.Result.Code != null)
+                returnValue = Utils.StrToInt(res.Header.Result.Code, -1);
+            string result = res.Body.result;
+            if (returnValue == 0)
+            {
+                return Json(new
+                {
+                    error = false,
+                    message = "操作成功!",
+                    result = result
+                });
+            }
+            if (returnValue != 0)
+                return Json(new { error = true, message = res.Header.Result.Msg });
+            return Json(new { error = true, message = "操作失败" });
         }
         #endregion
     }

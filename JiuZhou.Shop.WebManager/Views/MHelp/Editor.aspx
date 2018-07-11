@@ -71,10 +71,10 @@
         var restype = GetHelpType.Do(0, 2, -1);
         if (restype != null && restype.Body != null && restype.Body.help_type_list != null)
             tList = restype.Body.help_type_list;
-        int classId = DoRequest.GetQueryInt("classid");
-        int id = DoRequest.GetQueryInt("typeid");
+        int classId = DoRequest.GetQueryInt("typeid");
+        //int id = DoRequest.GetQueryInt("id");
         HelpInfo Info = new HelpInfo();
-        var resinfo = GetHelpInfo.Do(id);
+        var resinfo = GetHelpInfo.Do(classId);
         if (resinfo != null && resinfo.Body != null)
             Info = resinfo.Body;
         string _path = "";

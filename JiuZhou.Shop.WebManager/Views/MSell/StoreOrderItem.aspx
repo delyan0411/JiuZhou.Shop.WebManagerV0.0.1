@@ -178,10 +178,10 @@
                                 switch (totalStatei)
                                 {
                                     case 0:
-                                        stateDesc = "未付款" + "&nbsp;&nbsp;<a href='" + config.UrlHome + "OrderInfo/SuccessComm/" + payOrder.order_no + "'>去支付</a>";
+                                        stateDesc = "未付款";
                                         break;
                                     case 1:
-                                        stateDesc = "待付款" + "&nbsp;&nbsp;<a href='" + config.UrlHome + "OrderInfo/SuccessComm/" + payOrder.order_no + "'>去支付</a>"; ;
+                                        stateDesc = "待付款"; 
                                         break;
                                     case 2:
                                         stateDesc = "待发货";

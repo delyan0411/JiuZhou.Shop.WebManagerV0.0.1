@@ -492,6 +492,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
                 , -1
                 , sType
                 , -1
+                ,-1
                 , isonsale
                 , 1
                 , sKey

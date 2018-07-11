@@ -239,7 +239,7 @@ font-weight:bold;background:url(../images/titleBG.jpg) 0px -2px repeat-x;border:
 .div-tab-bottom span{cursor:pointer;}
 .div-tab-bottom a{color:#478500;}
 
-.div-tab-h1{width:99.8%;background:#f4f7ec;height:35px;line-height:36px;color:#478500;position:relative;
+.div-tab-h1{width:99.8%;background:#f4f7ec;line-height:36px;color:#478500;position:relative;
 border:#dbe0cb 1px solid;text-indent:20px;font-size:14px;font-weight:bold;float:none;clear:both;overflow:hidden;margin-bottom:8px;}
 .div-tab-h1 .save{color:#fff;display:block;position:absolute;right:16px;top:3px;height:28px;line-height:28px;text-indent:0;padding:0 8px;
 font-weight:bold;background:url(../images/titleBG.jpg) 0px -2px repeat-x;border:#6A920E 2px solid;cursor:pointer;}

@@ -10,21 +10,23 @@ namespace JiuZhou.MySql
     public class GetOrderDetail
     {
         public static Response<OrderDetail> Do(string orderno)
-       {
-           RequestOrderInfoBody search = new RequestOrderInfoBody();
+        {
+            RequestOrderInfoBody search = new RequestOrderInfoBody();
 
-           search.order_no = orderno;
+            search.order_no = orderno;
 
-           Request<RequestOrderInfoBody> request = new Request<RequestOrderInfoBody>();
-           request.Body = search;
-           request.Header = request.NewHeader();
-           request.Key = "GetOrderInfo";
-           string requestStr = JsonHelper.ObjectToJson<Request<RequestOrderInfoBody>>(request);
-           string responseStr = HttpUtils.HttpPost(requestStr);
-           var response = JsonHelper.JsonToObject<Response<OrderDetail>>(responseStr);
+            Request<RequestOrderInfoBody> request = new Request<RequestOrderInfoBody>();
+            request.Body = search;
+            request.Header = request.NewHeader();
+            request.Key = "GetOrderInfo";
+            string requestStr = JsonHelper.ObjectToJson<Request<RequestOrderInfoBody>>(request);
+            Logger.Log(requestStr);
+            string responseStr = HttpUtils.HttpPost(requestStr);
+            Logger.Log(responseStr);
+            var response = JsonHelper.JsonToObject<Response<OrderDetail>>(responseStr);
 
-           return response;
-       }
+            return response;
+        }
     }
 
     [DataContract]

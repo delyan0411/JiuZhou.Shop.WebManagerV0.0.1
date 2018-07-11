@@ -2110,6 +2110,64 @@ namespace JiuZhou.Shop.WebManager.Controllers
             return Json(new { error = true, message = "操作失败" });
         }
         #endregion
+
+        #region CheckHYState 翰医订单状态查询
+        [HttpPost]
+        public ActionResult CheckHYOrder()
+        {
+            string order_no = DoRequest.GetFormString("order_no").Trim();
+            if (string.IsNullOrEmpty(order_no))
+            {
+                return Json(new { error = true, message = "参数错误" });
+            }
+            int returnValue = -1;
+            var res = CheckHYState.Do(order_no);
+            if (res != null && res.Header != null && res.Header.Result != null && res.Header.Result.Code != null)
+                returnValue = Utils.StrToInt(res.Header.Result.Code, -1);
+            string result = res.Body.result;            
+            if (returnValue == 0)
+            {
+                return Json(new
+                {
+                    error = false,
+                    message = "操作成功!",
+                    order_no = res.Body.order_no,
+                    result = result
+                });
+            }
+            if (returnValue != 0)
+                return Json(new { error = true, message = res.Header.Result.Msg });
+            return Json(new { error = true, message = "操作失败" });
+        }
+        #endregion
+
+        #region UpdateHYOrderState 更新翰医订单状态
+        [HttpPost]
+        public ActionResult UpdateHYOrderState()
+        {
+            string order_no = DoRequest.GetFormString("order_no").Trim();
+            if (string.IsNullOrEmpty(order_no))
+            {
+                return Json(new { error = true, message = "参数错误" });
+            }
+            int returnValue = -1;
+            var res = UpdateHYState.Do(order_no);
+            if (res != null && res.Header != null && res.Header.Result != null && res.Header.Result.Code != null)
+                returnValue = Utils.StrToInt(res.Header.Result.Code, -1);            
+            if (returnValue == 0)
+            {
+                return Json(new
+                {
+                    error = false,
+                    message = "操作成功!"
+                });
+            }
+            if (returnValue != 0)
+                return Json(new { error = true, message = res.Header.Result.Msg });
+            return Json(new { error = true, message = "操作失败" });
+        }
+        #endregion
+        
     }
 }
  

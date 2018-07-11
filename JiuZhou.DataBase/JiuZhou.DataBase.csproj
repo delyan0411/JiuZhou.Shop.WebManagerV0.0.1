@@ -43,6 +43,10 @@
   <ItemGroup>
     <Compile Include="MySql\AuditOrder.cs" />
     <Compile Include="MySql\BalanceRefund.cs" />
+    <Compile Include="MySql\PushQjProduct.cs" />
+    <Compile Include="MySql\CheckQJProduct.cs" />
+    <Compile Include="MySql\UpdateHYState.cs" />
+    <Compile Include="MySql\CheckHYState.cs" />
     <Compile Include="MySql\DeleteBrust.cs" />
     <Compile Include="MySql\DeleteInsType.cs" />
     <Compile Include="MySql\DeleteStore.cs" />

@@ -440,7 +440,7 @@ $(function(){
                                       {
                                           _statusString = "<span style=\"color:#f00\">货到付款</span>";
                                       }
-                                      if (od.order_state == 2 && order.pay_type == 2 && od.delivery_state == 1)
+                                      if (od.order_state == 2 && order.pay_state == 2 && od.delivery_state == 1)
                                       {
                                           _statusString = "<span style=\"color:#00f\">等待确认收货</span>";
                                       }

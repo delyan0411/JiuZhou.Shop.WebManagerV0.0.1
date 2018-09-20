@@ -111,6 +111,14 @@ function checksearch(form){
     { %>
     <a href="<%=config.UrlHome%>hdzt/<%=DateTime.Parse(item.add_time).ToString("yyyy")%>/<%=item.st_dir%>/" style="color:#00F" target="_blank">查看PC专题</a>
         <%} %>
+        <%if (item.is_home_page == 0)
+                { %>
+        <a onclick="sethome(<%=item.st_id%>,<%=item.type%>,this)" href="javascript:;">设为首页</a>
+        <%}
+                else
+                { %>
+         <a onclick="sethome(0,<%=item.type%>,this)" href="javascript:;" style="color:palevioletred;">取消首页</a>
+        <%} %>
     </td>
       <td>
           <%=item.type==1?"手机端":"PC端" %>
@@ -189,6 +197,26 @@ function deleteList(form){
 		});
 	});
 	return false;
+}
+
+function sethome(id,type,obj) {
+    var postData = { st_id: id, type: type };
+    jsbox.confirm('您确定要设为首页吗？', function () {
+        $.ajax({
+            url: "/MPromotions/SetHome"
+			, data: postData
+            , type: "post"
+			, dataType: "json"
+			, success: function (json) {
+			    if (!json.error) {
+			        window.location.href = window.location.href;
+			    } else {
+			        //window.location.href = window.location.href;
+			    }
+			}
+        });
+    });
+    return false;
 }
 </script>
 

@@ -360,7 +360,7 @@
                         <tbody>
                             <tr>
                                 <td style="width: 3%">&nbsp;</td>
-                                <td class="lable">包装规格</td>
+                                <td class="lable">包装规格<b>*</b></td>
                                 <td colspan="2">
                                     <input type="text" name="p_spec" value="<%=Info.product_spec%>" class="input" />
                                     &nbsp;生产厂家&nbsp;<input type="text" name="manufacturer" value="<%=Info.manu_facturer%>" class="input" />
@@ -1091,9 +1091,9 @@
                             </tr>
                             <tr>
                                 <td style="width: 3%">&nbsp;</td>
-                                <td class="lable">海仓编码</td>
+                                <td class="lable">海仓编码<b>*</b></td>
                                 <td colspan="2">
-                                    <input type="text" id="tx_hscode" name="tx_hscode" value="<%=rsinfo.hscode %>" class="input" style="width: 164px" />
+                                    <input type="text" id="tx_hscode" name="tx_hscode" value="<%=rsinfo.bsj_goods_no %>" class="input" style="width: 164px" />
                                 </td>
                             </tr>
                         </tbody>

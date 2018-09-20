@@ -91,6 +91,10 @@ namespace JiuZhou.MySql
 
         [DataMember]
         public int type { set; get; }
-        
+
+
+        [DataMember]
+        public int is_home_page { set; get; }
+
     } 
 }

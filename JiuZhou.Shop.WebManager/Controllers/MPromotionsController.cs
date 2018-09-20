@@ -47,24 +47,13 @@ namespace JiuZhou.Shop.WebManager.Controllers
 
             List<TopicInfo> infoList = new List<TopicInfo>();
             DoCache cache = new DoCache();
-            string cachekey = "stopic-index=" + pageindex + "q=" + q;
-            if (cache.GetCache(cachekey) == null)
+
+            var resp = QueryTopicList.Do(pagesize, pageindex
+                , q
+                , ref dataCount, ref pageCount);
+            if (resp != null && resp.Body != null && resp.Body.topic_list != null)
             {
-                var resp = QueryTopicList.Do(pagesize, pageindex
-                    , q
-                    , ref dataCount, ref pageCount);
-                if (resp != null && resp.Body != null && resp.Body.topic_list != null)
-                {
-                    infoList = resp.Body.topic_list;
-                    cache.SetCache(cachekey, infoList);
-                    cache.SetCache("stopic-datacount", dataCount);
-                    if (infoList.Count == 0)
-                        cache.RemoveCache(cachekey);
-                }
-            }
-            else {
-                infoList = (List<TopicInfo>)cache.GetCache(cachekey);
-                dataCount = (int)cache.GetCache("stopic-datacount");
+                infoList = resp.Body.topic_list;
             }
             ViewData["infoList"] = infoList;
 
@@ -2660,6 +2649,34 @@ namespace JiuZhou.Shop.WebManager.Controllers
         }
         #endregion
 
-
+        #region 设为首页
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SetHome()
+        {
+            int st_id = DoRequest.GetFormInt("st_id");
+            int type = DoRequest.GetFormInt("type",-1);
+            RequestSetHome Info = new RequestSetHome();
+            //if (st_id <=0)
+            //{
+            //    return Json(new { error = true, message = "[st_id] 不能为空" });
+            //}
+            if (st_id ==-1)
+            {
+                return Json(new { error = true, message = "[type] 不能为空" });
+            }
+            Info.st_id = st_id.ToString();
+            Info.type = type.ToString();           
+            int returnValue = -1;
+            var res = OpSetHome.Do(Info);
+            if (res != null && res.Header != null && res.Header.Result != null && res.Header.Result.Code != null)
+                returnValue = Utils.StrToInt(res.Header.Result.Code, -1);
+            if (returnValue == 0)
+            {
+                return Json(new { error = false, message = "操作成功" });
+            }
+            return Json(new { error = true, message = "操作失败" });
+        }
+        #endregion
     }
 }

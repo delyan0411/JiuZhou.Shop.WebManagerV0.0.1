@@ -26,9 +26,9 @@ namespace JiuZhou.MySql
             request.Header = request.NewHeader();
             request.Key = "RefundOrder";
             string requestStr = JsonHelper.ObjectToJson<Request<RequestRefundOrder>>(request);
-            //Logger.Log(requestStr);
-            //string responseStr = null;
-            string responseStr = HttpUtils.HttpPost(requestStr);
+            Logger.Log(requestStr);
+            string responseStr = null;
+            //string responseStr = HttpUtils.HttpPost(requestStr);
             var response = JsonHelper.JsonToObject<Response<ResponseBodyEmpty>>(responseStr);
             return response;
         }

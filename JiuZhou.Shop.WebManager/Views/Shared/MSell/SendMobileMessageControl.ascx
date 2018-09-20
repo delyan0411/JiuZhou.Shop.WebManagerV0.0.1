@@ -94,7 +94,7 @@ function sendMobileMessageBox(obj, orderNumber) {
 			        $(_MobileMessageBoxDialog.dialog).find("#mobile-orderNumber").val(orderNumber);
 			        $(_MobileMessageBoxDialog.dialog).find("#mobile-mobile").val(json.mobile);
 			        $(_MobileMessageBoxDialog.dialog).find("input[name='mobile2']").val(json.mobile);
-			        var message = "您的订单已经生成，因商品数量有限，请您完成最后的支付流程，以便物品及时发出，如需帮助可联系客服，电话：4008866360！谢谢！[www.dada360.com]";
+			        var message = "您的订单已经生成，因商品数量有限，请您完成最后的支付流程，以便物品及时发出，如需帮助可联系客服，电话：4008866360！谢谢！";
 			        $(_MobileMessageBoxDialog.dialog).find("textarea[name='message']").val(message);
 			    }
 			}

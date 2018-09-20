@@ -152,5 +152,11 @@ namespace JiuZhou.MySql
 
         [DataMember]
         public int expired_minute { set; get; }
+
+        [DataMember]
+        public int ywlx { set; get; }
+
+        [DataMember]
+        public decimal taxes_money { set; get; }
     }
 }

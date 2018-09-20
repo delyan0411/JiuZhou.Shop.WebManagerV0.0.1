@@ -1186,6 +1186,7 @@
     <Content Include="images\font\iconfont.svg" />
     <Content Include="images\foot-tub.gif" />
     <Content Include="images\icon-100.gif" />
+    <Content Include="images\icon\oversea.png" />
     <Content Include="images\icon\clock2.png" />
     <Content Include="images\icon\phone-1.png" />
     <Content Include="images\icon\selected.gif" />

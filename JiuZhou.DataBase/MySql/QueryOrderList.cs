@@ -9,43 +9,45 @@ namespace JiuZhou.MySql
 {
     public class QueryOrderList
     {
-        public static Response<ResponseQueOrderPayBody> Do(int pagesize, int pageindex, int orderstate, string stime, string etime, int searchtype,int paytype, string _skey, string _ocol, string _ot, ref int dataCount, ref int pageCount)
-       {
-           RequestSearchOrderPayBody search = new RequestSearchOrderPayBody();
+        public static Response<ResponseQueOrderPayBody> Do(int pagesize, int pageindex, int orderstate, string stime, string etime, int searchtype, int paytype, string _skey, string _ocol, string _ot, ref int dataCount, ref int pageCount)
+        {
+            RequestSearchOrderPayBody search = new RequestSearchOrderPayBody();
 
-           search.page_size = pagesize.ToString();
-           search.page_no = pageindex.ToString();
-           search.order_state = orderstate.ToString();
-           search.search_type = searchtype.ToString();
-           search.pay_type = paytype.ToString();
-           search.start_time = stime;
-           search.end_time = etime;
-           search.search_key = _skey;
-           search.sort_column = _ocol;
-           search.sort_type = _ot;
+            search.page_size = pagesize.ToString();
+            search.page_no = pageindex.ToString();
+            search.order_state = orderstate.ToString();
+            search.search_type = searchtype.ToString();
+            search.pay_type = paytype.ToString();
+            search.start_time = stime;
+            search.end_time = etime;
+            search.search_key = _skey;
+            search.sort_column = _ocol;
+            search.sort_type = _ot;
 
-           Request<RequestSearchOrderPayBody> request = new Request<RequestSearchOrderPayBody>();
-           request.Body = search;
-           request.Header = request.NewHeader();
-           request.Key = "QueryOrderList";
-           string requestStr = JsonHelper.ObjectToJson<Request<RequestSearchOrderPayBody>>(request);          
-           string responseStr = HttpUtils.HttpPost(requestStr);
-           var response = JsonHelper.JsonToObject<Response<ResponseQueOrderPayBody>>(responseStr);
+            Request<RequestSearchOrderPayBody> request = new Request<RequestSearchOrderPayBody>();
+            request.Body = search;
+            request.Header = request.NewHeader();
+            request.Key = "QueryOrderList";
+            string requestStr = JsonHelper.ObjectToJson<Request<RequestSearchOrderPayBody>>(request);
+            Logger.Log(requestStr);
+            string responseStr = HttpUtils.HttpPost(requestStr);
+            Logger.Log(responseStr);
+            var response = JsonHelper.JsonToObject<Response<ResponseQueOrderPayBody>>(responseStr);
 
-           if (response != null && response.Body != null && response.Body.order_pay_list != null)
-           {
-               dataCount = int.Parse(response.Body.rec_num);
-               if (dataCount % pagesize == 0)
-               {
-                   pageCount = dataCount / pagesize;
-               }
-               else
-               {
-                   pageCount = dataCount / pagesize + 1;
-               }
-           }
-           return response;
-       }
+            if (response != null && response.Body != null && response.Body.order_pay_list != null)
+            {
+                dataCount = int.Parse(response.Body.rec_num);
+                if (dataCount % pagesize == 0)
+                {
+                    pageCount = dataCount / pagesize;
+                }
+                else
+                {
+                    pageCount = dataCount / pagesize + 1;
+                }
+            }
+            return response;
+        }
     }
 
     [DataContract]
@@ -154,6 +156,13 @@ namespace JiuZhou.MySql
 
         [DataMember]
         public List<OrderInfo> order_list { set; get; }
+
+
+        [DataMember]
+        public int ywlx { set; get; }
+
+        [DataMember]
+        public decimal taxes_money { set; get; }
     }
 
     [DataContract]
@@ -214,6 +223,9 @@ namespace JiuZhou.MySql
         public string zip_code { set; get; }
 
         [DataMember]
+        public string id_card { set; get; }
+
+        [DataMember]
         public List<OrderItemsInfo> item_list { set; get; }
     }
 
@@ -249,5 +261,9 @@ namespace JiuZhou.MySql
 
         [DataMember]
         public string img_src { set; get; }
+
+        [DataMember]
+        public decimal taxes_money { set; get; }
+        
     } 
 }

@@ -24,7 +24,7 @@
         payorder = new OrderPayList();
     }
     else {
-        if (order.order_pay_list == null )
+        if (order.order_pay_list == null)
         {
             payorder = new OrderPayList();
         }
@@ -33,7 +33,7 @@
             payorder = order.order_pay_list;
         }
     }
-	JiuZhou.ControllerBase.ForeBaseController su=new JiuZhou.ControllerBase.ForeBaseController();
+    JiuZhou.ControllerBase.ForeBaseController su = new JiuZhou.ControllerBase.ForeBaseController();
 %>
 
 <div id="container-syscp">
@@ -46,35 +46,35 @@
 <a href="/" title="管理首页">管理首页</a> &gt;&gt; <a href="/msell" title="管理首页">订单列表</a> &gt;&gt; <span>订单明细</span>
 </div>
 <%
-   /*     
-	DateTime expiredTime=DateTime.Parse(payorder.add_time).AddMinutes(payorder.expired_minute);
-	if(payorder.expired_minute>240)
-		expiredTime=DateTime.Now.AddDays(1);
-*/
-	string _statusString="未知状态";
-	string _statusImage="jindu0.gif";
-	string _gotoPay="";
-	if((order.order_state==1||order.order_state==2)
-		&& (payorder.pay_state==0 || payorder.pay_state==1)
-	){
-		_statusString="<span>等待买家付款</span>";
-	}
-	if(order.order_state==2 && payorder.pay_state==2 && order.delivery_state==0){
-		//_statusImage="jindu2.gif";
-		_statusString="<span style='color:blue'>等待卖家发货</span>";
-	}
-	if(order.order_state==2 && payorder.pay_state==2 && order.delivery_state==1){
-		//_statusImage="jindu3.gif";
-		_statusString="<span>等待买家确认收货</span>";
-	}
-	if(order.order_state==3 && payorder.pay_state==2){
-		//_statusImage="jindu5.gif";
-		_statusString="<span style='color:green'>交易成功</span>";
-	}
-	if(order.order_state==0 || order.order_state==4 || order.order_state==5){
-		_statusString="<span style='color:#999'>交易关闭</span>";
-	}else if(payorder.pay_type==18){
-	}
+    /*     
+     DateTime expiredTime=DateTime.Parse(payorder.add_time).AddMinutes(payorder.expired_minute);
+     if(payorder.expired_minute>240)
+         expiredTime=DateTime.Now.AddDays(1);
+    */
+    string _statusString = "未知状态";
+    string _statusImage = "jindu0.gif";
+    string _gotoPay = "";
+    if ((order.order_state == 1 || order.order_state == 2)
+        && (payorder.pay_state == 0 || payorder.pay_state == 1)
+    ) {
+        _statusString = "<span>等待买家付款</span>";
+    }
+    if (order.order_state == 2 && payorder.pay_state == 2 && order.delivery_state == 0) {
+        //_statusImage="jindu2.gif";
+        _statusString = "<span style='color:blue'>等待卖家发货</span>";
+    }
+    if (order.order_state == 2 && payorder.pay_state == 2 && order.delivery_state == 1) {
+        //_statusImage="jindu3.gif";
+        _statusString = "<span>等待买家确认收货</span>";
+    }
+    if (order.order_state == 3 && payorder.pay_state == 2) {
+        //_statusImage="jindu5.gif";
+        _statusString = "<span style='color:green'>交易成功</span>";
+    }
+    if (order.order_state == 0 || order.order_state == 4 || order.order_state == 5) {
+        _statusString = "<span style='color:#999'>交易关闭</span>";
+    } else if (payorder.pay_type == 18) {
+    }
     if (order.order_state == 9 && payorder.pay_state == 0) {
         _statusString = "<span style='color:#999'>交易过期</span>";
     }
@@ -89,13 +89,13 @@
 <tbody>
   <tr>
     <td class="lable" style="width:66px">订单编号</td>
-    <td class="inputText" style="font-family:Arial;font-weight:bold;"><%=payorder.order_no%><%if(payorder.order_type==2){
-			Response.Write("<img src=\"/images/icon/phone-1.png\" alt\"手机订单\"/>");
-		}%></td>
+    <td class="inputText" style="font-family:Arial;font-weight:bold;"><%=payorder.order_no%><%if (payorder.order_type == 2) {
+                                                                                                    Response.Write("<img src=\"/images/icon/phone-1.png\" alt\"手机订单\"/>");
+                                                                                                }%></td>
     <td class="lable">创建时间</td>
     <%string addtime = "";
-      if (payorder.add_time != null && !payorder.add_time.Equals(""))
-          addtime = DateTime.Parse(payorder.add_time).ToString("yyyy-MM-dd HH:mm:ss");
+        if (payorder.add_time != null && !payorder.add_time.Equals(""))
+            addtime = DateTime.Parse(payorder.add_time).ToString("yyyy-MM-dd HH:mm:ss");
            %>
     <td class="inputText"><%=addtime%></td>
     <td class="lable" style="width:70px">发票抬头</td>
@@ -108,24 +108,32 @@
     <td class="inputText" style="font-family:Arial;">￥<%=payorder.total_money%>
     </td>
     <td class="lable">优惠金额</td>
-    <td class="inputText"><%=payorder.total_money-payorder.order_money%></td>
+    <td class="inputText"><%=payorder.total_money - payorder.order_money + payorder.taxes_money%></td>
   </tr>
   <tr>
     <td class="lable">积分金额</td>
     <td class="inputText" style="font-family:Arial;"><%=payorder.integral_money%></td>
     <td class="lable" style="width:80px">优惠券金额</td>
     <td class="inputText"><%
-      Response.Write(payorder.coupon_money);
-		
+                              Response.Write(payorder.coupon_money);
+
 	%></td>
     <td class="lable">满减金额</td>
     <td class="inputText"><%=payorder.fulloff_money %></td>
     </tr>
     <tr>
     <td class="lable">贵&nbsp;宾&nbsp;卡</td>
-    <td class="inputText"><%=string.IsNullOrEmpty(payorder.vip_no)?"&nbsp;":payorder.vip_no%></td>
+    <td class="inputText"><%=string.IsNullOrEmpty(payorder.vip_no) ? "&nbsp;" : payorder.vip_no%></td>
+        <%if (payorder.ywlx != 2)
+            { %>
     <td class="lable">运&nbsp;&nbsp;费</td>
-    <td class="inputText" style="font-family:Arial;" colspan="3">￥<%=payorder.trans_money%> </td>
+    <td class="inputText" style="font-family:Arial;" colspan="3" >￥<%=payorder.trans_money%> </td>
+        <%} else {%>
+          <td class="lable">运&nbsp;&nbsp;费</td>
+    <td class="inputText" style="font-family:Arial;"  >￥<%=payorder.trans_money%> </td>
+         <td class="lable">税费</td>
+    <td class="inputText"><%=payorder.taxes_money %></td>
+        <%} %>
   </tr>
    <tr>
     <td class="lable">支付方式</td>

@@ -98,6 +98,7 @@
                             <option value="6">可乐否订单</option>
                             <option value="7">企健网</option>
                             <option value="8">微脉订单</option>
+                            <option value="9">海外购订单</option>
                         </select>
                     </p>
                     <p>
@@ -158,34 +159,34 @@
                     }); dropOStatus.maxHeight = "260px"; dropOStatus.width = "100px";
                     dropOStatus.init(); dropOStatus.setDefault("<%=status%>");
 
-	droppaytypeStatus = new _DropListUI({
-	    input: Atai.$("#paytypeStatus")
-	}); droppaytypeStatus.maxHeight = "260px"; droppaytypeStatus.width = "80px";
-	droppaytypeStatus.init(); droppaytypeStatus.setDefault("<%=paytype%>");
+                    droppaytypeStatus = new _DropListUI({
+                        input: Atai.$("#paytypeStatus")
+                    }); droppaytypeStatus.maxHeight = "260px"; droppaytypeStatus.width = "80px";
+                    droppaytypeStatus.init(); droppaytypeStatus.setDefault("<%=paytype%>");
                 });
-function checksearch(form) {
-    $("#sForm input[name='status']").val($("#oStatus option:selected").val());
-}
-var _currUrl = "<%=ViewData["currPageUrl"]%>";
-function formatUrl(ocol, val, url) {
-    if (!url) url = _currUrl;
-    var reg = ocol + "=[^-]*";
-    var reg = new RegExp(ocol + "=[^&\.]*");
-    url = url.replace(reg, ocol + "=" + val);
-    return url;
-}
-var changeOrderBy = function (ocol, ot) {
-    _currUrl = formatUrl("ocol", ocol);
-    url = formatUrl("ot", ot);
-    window.location.href = url;
-};
-$(function () {
-    $("table[v='order-list']").mouseenter(function () {
-        $(this).addClass("table-hover");
-    }).mouseleave(function () {
-        $(this).removeClass("table-hover");
-    });
-});
+                function checksearch(form) {
+                    $("#sForm input[name='status']").val($("#oStatus option:selected").val());
+                }
+                var _currUrl = "<%=ViewData["currPageUrl"]%>";
+                function formatUrl(ocol, val, url) {
+                    if (!url) url = _currUrl;
+                    var reg = ocol + "=[^-]*";
+                    var reg = new RegExp(ocol + "=[^&\.]*");
+                    url = url.replace(reg, ocol + "=" + val);
+                    return url;
+                }
+                var changeOrderBy = function (ocol, ot) {
+                    _currUrl = formatUrl("ocol", ocol);
+                    url = formatUrl("ot", ot);
+                    window.location.href = url;
+                };
+                $(function () {
+                    $("table[v='order-list']").mouseenter(function () {
+                        $(this).addClass("table-hover");
+                    }).mouseleave(function () {
+                        $(this).removeClass("table-hover");
+                    });
+                });
             </script>
             <%=ViewData["pageIndexLink"]%>
             <%
@@ -215,17 +216,25 @@ $(function () {
                                 <%
                                     if (order.order_type == 2)
                                     {
-                                        Response.Write("<img src=\"/images/icon/phone-1.png\" align=\"absmiddle\" alt\"手机订单\"/>");
+                                        Response.Write("<img src=\"/images/icon/phone-1.png\" align=\"absmiddle\" alt=\"手机订单\"/>");
                                     }
                                     if (order.expired_minute <= 240)
                                         Response.Write("&nbsp;<img src=\"/images/icon/clock2.png\" align=\"absmiddle\" alt\"限时秒杀\"/>");
+                                    
+                                        // Response.Write("&nbsp;<img src=\"/images/icon/oversea.png\" align=\"absmiddle\" alt\"海外购\"/>");
                                 %>
-                            </strong><b v="price">￥<%=order.pay_order_money + order.pay_trans_money%></b> <span
-                                v="farePrice">(含运费
+                            </strong><b v="price">￥<%=order.pay_order_money + order.pay_trans_money%></b> <span v="farePrice">(含运费
                                 <%=order.pay_trans_money%>
-                                元 优惠
-                                <%=order.pay_total_money - order.pay_order_money %><%--这两个都是不含运费pay_trans_money 但是pay_order_money减了优惠金额--%>
-                                元)</span> <span>
+                                元 
+                                <%if (order.ywlx == 2)
+                                    { %>
+                                税费
+                                <%=order.taxes_money%>
+                                元)
+                                <%}%>
+                                    优惠
+                              <%= order.pay_total_money - order.pay_order_money + order.taxes_money %><%--这两个都是不含运费pay_trans_money 但是pay_order_money减了优惠金额--%>
+                                元)                                                                    </span><span>
                                     <%=(order.pay_type==0 && order.pay_state > 0)?"医卡通":order.pay_type_name%></span>
                             &nbsp; <a href="/msell?status=-1&stype=4&q=<%=order.user_id%>" target="_blank">查看用户订单</a>
                             <%
@@ -323,13 +332,18 @@ $(function () {
                                 </div>
                                 <div>
                                     <%=od.province_name%>,<%=od.city_name%>,<%=od.county_name%>,<%=od.receive_addr%>,<%=od.receive_name%>,<%
-                                                                          Response.Write(od.receive_mobile_no);
-                                                                          if (!string.IsNullOrEmpty(od.receive_user_tel) && !string.IsNullOrEmpty(od.receive_mobile_no))
-                                                                          {
-                                                                              Response.Write(",");
-                                                                              Response.Write(od.receive_user_tel);
-                                                                          }
-                                    %>
+                                                                                                                                              Response.Write(od.receive_mobile_no);
+                                                                                                                                              if (!string.IsNullOrEmpty(od.receive_user_tel) && !string.IsNullOrEmpty(od.receive_mobile_no))
+                                                                                                                                              {
+                                                                                                                                                  Response.Write(",");
+                                                                                                                                                  Response.Write(od.receive_user_tel);
+                                                                                                                                              }
+                                    %>,<%if (order.ywlx == 2)
+                                           { %>
+                                身份证号:
+                                <%=od.id_card %>
+                                )
+                                <%}%>
                                 </div>
                                 <div id="remark-<%=od.order_id%>" style="background-color: #ccc">
                                     <%=od.inner_remark%>
@@ -440,7 +454,7 @@ $(function () {
                                     _statusString = "<span style='color:#999'>订单过期</span>";
                                 }
                                 Response.Write(_statusString);
-                                      if (order.pay_state == 53 || od.order_state == 1  || (od.order_state == 9 && order.pay_state == 0) || od.order_state == 0)
+                                if (order.pay_state == 53 || od.order_state == 1 || (od.order_state == 9 && order.pay_state == 0) || od.order_state == 0)
                                 {
                                     Response.Write("<a href=\"javascript:;\" onclick=\"getHYstate(this,'" + od.order_no + "','" + od.order_state + "')\" >查看翰医支付状态</a><br/>");
                                 }

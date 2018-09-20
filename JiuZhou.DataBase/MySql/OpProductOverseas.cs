@@ -17,7 +17,8 @@ namespace JiuZhou.MySql
             reqproductinfo.id = overseasinfo.id.ToString();
             reqproductinfo.product_id = overseasinfo.product_id;
             reqproductinfo.countrycode = overseasinfo.countrycode;
-            reqproductinfo.hscode = overseasinfo.hscode;
+            reqproductinfo.hscode = overseasinfo.bsj_goods_no;
+            reqproductinfo.bsj_goods_no = overseasinfo.bsj_goods_no;
             reqproductinfo.taxrate = overseasinfo.taxrate;
             reqproductinfo.isfreetax = overseasinfo.isfreetax.ToString();
             reqproductinfo.freestarttime = overseasinfo.freestarttime;
@@ -47,6 +48,9 @@ namespace JiuZhou.MySql
 
         [DataMember]
         public string hscode { set; get; }
+
+        [DataMember]
+        public string bsj_goods_no { set; get; }
 
         [DataMember]
         public string taxrate { set; get; }

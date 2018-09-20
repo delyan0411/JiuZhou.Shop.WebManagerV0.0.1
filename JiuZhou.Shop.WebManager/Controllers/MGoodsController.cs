@@ -1955,6 +1955,17 @@ namespace JiuZhou.Shop.WebManager.Controllers
             {
                 return Json(new { error = true, input = "message", message = "海外购商品必须选择海仓商家" });
             }
+            if (product.sea_flag == 1)
+            {
+                if (product.product_spec.Equals(""))
+                {
+                    return Json(new { error = true, input = "message", message = "海外购商品必须填写包装规格" });
+                }
+                if (DoRequest.GetFormString("tx_hscode").Trim().Equals(""))
+                {
+                    return Json(new { error = true, input = "message", message = "海外购商品必须填写海仓编码" });
+                }
+            }
             #endregion
 
             List<ProductAlbumInfo> images = new List<ProductAlbumInfo>();
@@ -2234,7 +2245,7 @@ namespace JiuZhou.Shop.WebManager.Controllers
                     //}
                     oversea.id = DoRequest.GetFormInt("overseaid");
                     oversea.countrycode = DoRequest.GetFormString("sel_code").Trim();
-                    oversea.hscode = DoRequest.GetFormString("tx_hscode").Trim();
+                    oversea.bsj_goods_no = DoRequest.GetFormString("tx_hscode").Trim();
                     oversea.isfreetax = DoRequest.GetFormInt("isfreetax");
                     oversea.product_id = product.product_id.ToString();
                     oversea.taxrate = DoRequest.GetFormString("sel_taxrate").Trim();

@@ -45,7 +45,7 @@ namespace JiuZhou.MySql
         public string countrycode { set; get; }
 
         [DataMember]
-        public string hscode { set; get; }
+        public string bsj_goods_no { set; get; }
 
         [DataMember]
         public string taxrate { set; get; }

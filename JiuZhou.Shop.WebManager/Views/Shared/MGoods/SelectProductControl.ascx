@@ -139,11 +139,11 @@ function searchProductForSelector(page){
 	return false;
 }
 
-function ajaxChangePage(pageIndex) {
+function ProductajaxChangePage(pageIndex) {
     searchProductForSelector(pageIndex);
 }
 var _formatAjaxPageLinkCount = 0;
-function formatAjaxPageLink(pagecount, pageindex) {
+function ProductformatAjaxPageLink(pagecount, pageindex) {
     _formatAjaxPageLinkCount++;
     var arr = [];
     var maxCount = 6;
@@ -151,8 +151,8 @@ function formatAjaxPageLink(pagecount, pageindex) {
     if (n <= 0)
         n = 1;
     if (pageindex > 1) {
-        arr.push("		<a href=\"javascript:ajaxChangePage(1);\" title=\"首页\">&lt;&lt;</a>");
-        arr.push("		<a href=\"javascript:ajaxChangePage(" + (pageindex - 1) + ")\" title=\"上页\">&lt;</a>");
+        arr.push("		<a href=\"javascript:ProductajaxChangePage(1);\" title=\"首页\">&lt;&lt;</a>");
+        arr.push("		<a href=\"javascript:ProductajaxChangePage(" + (pageindex - 1) + ")\" title=\"上页\">&lt;</a>");
     } else {
         arr.push("		<strong>&lt;&lt;</strong>");
         arr.push("		<strong>&lt;</strong>");
@@ -162,7 +162,7 @@ function formatAjaxPageLink(pagecount, pageindex) {
             if (k == pageindex) {
                 arr.push("		<strong><span>" + k + "</span></strong>");
             } else {
-                arr.push("		<a href=\"javascript:ajaxChangePage(" + k + ")\" title=\"第" + k + "页\">" + k + "</a>");
+                arr.push("		<a href=\"javascript:ProductajaxChangePage(" + k + ")\" title=\"第" + k + "页\">" + k + "</a>");
             }
         } else {
             if (k == pageindex)
@@ -170,22 +170,22 @@ function formatAjaxPageLink(pagecount, pageindex) {
         }
     }
     if (pageindex < pagecount) {
-        arr.push("		<a href=\"javascript:ajaxChangePage(" + (pageindex + 1) + ")\" title=\"下页\">&gt;</a>");
-        arr.push("		<a href=\"javascript:ajaxChangePage(" + pagecount + ")\" title=\"末页\">&gt;&gt;</a>");
+        arr.push("		<a href=\"javascript:ProductajaxChangePage(" + (pageindex + 1) + ")\" title=\"下页\">&gt;</a>");
+        arr.push("		<a href=\"javascript:ProductajaxChangePage(" + pagecount + ")\" title=\"末页\">&gt;&gt;</a>");
     } else {
         arr.push("		<strong>&gt;</strong>");
         arr.push("		<strong>&gt;&gt;</strong>");
     }
     arr.push("		<strong class=\"txt\"><span>" + pageindex + "</span>/" + pagecount + "</strong>");
     arr.push("		<strong class=\"goto\"><input id=\"goto-" + _formatAjaxPageLinkCount + "\" type=\"text\" value=\"" + (pageindex + 1 < pagecount ? (pageindex + 1) : pagecount) + "\" onclick=\"this.select()\"/></strong>");
-    arr.push("		<a href=\"javascript:;\" onclick=\"ajaxChangePage(Atai.$('#goto-" + _formatAjaxPageLinkCount + "').value)\" title=\"GO\">GO</a>");
+    arr.push("		<a href=\"javascript:;\" onclick=\"ProductajaxChangePage(Atai.$('#goto-" + _formatAjaxPageLinkCount + "').value)\" title=\"GO\">GO</a>");
     return arr.join("\r\n");
 }
 
 //搜索
 
 function appendSearchResultForSelector(data, pageCount, pageIndex) {
-    var changeLinks = formatAjaxPageLink(pageCount, pageIndex);
+    var changeLinks = ProductformatAjaxPageLink(pageCount, pageIndex);
 	if(!_productSelector || !_productSelector.dialog)
 	    return false;
 	var arr=[];
